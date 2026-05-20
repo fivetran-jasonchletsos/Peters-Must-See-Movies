@@ -202,17 +202,17 @@ export default function MovieExplorer() {
   return (
     <div className="relative">
       {/* Timeline — first thing in the list, click to filter by year */}
-      <div className="mb-8 pb-6 border-b border-paper/10">
+      <div className="mb-8 pb-6 border-b border-ink/10">
         <MovieTimeline />
       </div>
 
       {/* Controls */}
-      <div className="mb-8 flex flex-col gap-4 border-b border-paper/10 pb-6 md:flex-row md:items-center md:justify-between">
+      <div className="mb-8 flex flex-col gap-4 border-b border-ink/10 pb-6 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40">
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
             Sort
           </span>
-          <div className="flex border border-paper/15">
+          <div className="flex border border-ink/15">
             {(["year", "director"] as const).map((mode) => (
               <button
                 key={mode}
@@ -222,8 +222,8 @@ export default function MovieExplorer() {
                 className={
                   "px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
                   (sort === mode
-                    ? "bg-accent text-ink"
-                    : "text-paper/60 hover:text-accent")
+                    ? "bg-accent text-paper"
+                    : "text-ink/60 hover:text-accent")
                 }
               >
                 {mode === "year" ? "Year" : "Artist (A–Z)"}
@@ -231,7 +231,7 @@ export default function MovieExplorer() {
             ))}
           </div>
 
-          <span className="ml-2 font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40">
+          <span className="ml-2 font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
             Decade
           </span>
           <div className="flex flex-wrap gap-1">
@@ -242,8 +242,8 @@ export default function MovieExplorer() {
               className={
                 "px-2 py-1 font-mono text-[10px] uppercase tracking-[0.2em] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
                 (decadeFilter === null
-                  ? "bg-ember/80 text-paper"
-                  : "text-paper/50 hover:text-accent")
+                  ? "bg-ember/80 text-ink"
+                  : "text-ink/50 hover:text-accent")
               }
             >
               All
@@ -257,8 +257,8 @@ export default function MovieExplorer() {
                 className={
                   "px-2 py-1 font-mono text-[10px] uppercase tracking-[0.2em] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
                   (decadeFilter === d
-                    ? "bg-accent text-ink"
-                    : "text-paper/50 hover:text-accent")
+                    ? "bg-accent text-paper"
+                    : "text-ink/50 hover:text-accent")
                 }
               >
                 {d}s
@@ -268,10 +268,10 @@ export default function MovieExplorer() {
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40">
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
             Size
           </span>
-          <div className="flex border border-paper/15">
+          <div className="flex border border-ink/15">
             {(["s", "m", "l"] as const).map((s) => (
               <button
                 key={s}
@@ -282,8 +282,8 @@ export default function MovieExplorer() {
                 className={
                   "px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
                   (size === s
-                    ? "bg-accent text-ink"
-                    : "text-paper/60 hover:text-accent")
+                    ? "bg-accent text-paper"
+                    : "text-ink/60 hover:text-accent")
                 }
               >
                 {s.toUpperCase()}
@@ -297,7 +297,7 @@ export default function MovieExplorer() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Find director, movie, lyric phrase…"
             aria-label="Search the list"
-            className="w-full bg-paper/5 px-3 py-1.5 font-mono text-xs text-paper placeholder:text-paper/30
+            className="w-full bg-ink/5 px-3 py-1.5 font-mono text-xs text-ink placeholder:text-ink/30
               focus:outline-none focus:ring-2 focus:ring-accent/40 md:w-60"
           />
           {(query || decadeFilter !== null) && (
@@ -307,7 +307,7 @@ export default function MovieExplorer() {
                 setQuery("");
                 setDecadeFilter(null);
               }}
-              className="font-mono text-[10px] uppercase tracking-[0.25em] text-paper/40 hover:text-accent"
+              className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/40 hover:text-accent"
             >
               Clear
             </button>
@@ -316,7 +316,7 @@ export default function MovieExplorer() {
       </div>
 
       {/* Result count */}
-      <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40">
+      <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
         Showing {filtered.length} of {movies.length} records
       </p>
 
@@ -381,7 +381,7 @@ export default function MovieExplorer() {
       )}
 
       {filtered.length === 0 && (
-        <p className="mt-12 text-center serif text-paper/40">
+        <p className="mt-12 text-center serif text-ink/40">
           No records match. Try clearing the filter.
         </p>
       )}

@@ -15,7 +15,7 @@ export default function Section({
       <div className="mx-auto max-w-6xl mb-10 sm:mb-14">
         <div className="section-ornament">
           <span
-            className="font-mono text-[10px] text-paper/20 tracking-widest select-none"
+            className="font-mono text-[10px] text-ink/20 tracking-widest select-none"
             aria-hidden="true"
           >
             &#x2042;
@@ -29,12 +29,12 @@ export default function Section({
             <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent sm:text-xs">
               {number}
             </p>
-            <h2 className="serif mt-2 text-3xl font-light text-paper sm:text-4xl md:text-5xl leading-[1.1]">
+            <h2 className="serif mt-2 text-3xl font-light text-ink sm:text-4xl md:text-5xl leading-[1.1]">
               {title}
             </h2>
           </div>
           {blurb ? (
-            <p className="max-w-md serif text-sm text-paper/50 sm:text-base md:text-right leading-relaxed italic">
+            <p className="max-w-md serif text-sm text-ink/50 sm:text-base md:text-right leading-relaxed italic">
               {blurb}
             </p>
           ) : null}

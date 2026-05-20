@@ -3,20 +3,33 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
+}
+
+/* -----------------------------------------------------------------------
+   Base — light/warm-paper theme + larger base font (18px) for readability.
+   This site is read by a 75-year-old; that's the priority over aesthetics.
+----------------------------------------------------------------------- */
+
+html {
+  /* Bumps every rem-based size up. Tailwind's default base = 16px → now 18px. */
+  font-size: 112.5%;
 }
 
 html, body {
-  background: #0a0a0a;
-  color: #f5f1ea;
+  background: #faf6ec;       /* warm paper */
+  color:      #1a1a1a;       /* near-black ink */
   font-family: ui-sans-serif, system-ui, -apple-system, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+p, li {
+  line-height: 1.65;
 }
 
 /* -----------------------------------------------------------------------
    Typography
-   Fraunces: display/editorial serif
-   JetBrains Mono: mono kicker / metadata
 ----------------------------------------------------------------------- */
 
 .serif {
@@ -29,33 +42,29 @@ html, body {
 }
 
 /* -----------------------------------------------------------------------
-   Texture layers
-   Layer 1 (scratchy): coarse halftone dot pattern — original
-   Layer 2 (noise): fine SVG-noise film grain — new, much subtler
+   Texture — kept but very subtle on warm paper.
 ----------------------------------------------------------------------- */
 
 .scratchy {
   background-image:
-    /* fine SVG noise — data URI, roughly 0.8% opacity pattern */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
-    /* coarse halftone dots — original */
-    radial-gradient(rgba(245,241,234,0.04) 1px, transparent 1px),
-    radial-gradient(rgba(245,241,234,0.02) 1px, transparent 1px);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"),
+    radial-gradient(rgba(26,26,26,0.04) 1px, transparent 1px),
+    radial-gradient(rgba(26,26,26,0.02) 1px, transparent 1px);
   background-size: 200px 200px, 3px 3px, 9px 9px;
   background-position: 0 0, 0 0, 1px 2px;
 }
 
 /* -----------------------------------------------------------------------
-   Focus
+   Focus — high contrast for older eyes.
 ----------------------------------------------------------------------- */
 
 :focus-visible {
-  outline: 2px solid rgba(217, 79, 58, 0.5);
+  outline: 3px solid rgba(184, 52, 32, 0.85);
   outline-offset: 3px;
 }
 
 /* -----------------------------------------------------------------------
-   Hero underline — ember tone
+   Hero underline.
 ----------------------------------------------------------------------- */
 
 @keyframes underline-grow {
@@ -81,7 +90,7 @@ html, body {
 }
 
 /* -----------------------------------------------------------------------
-   Marquee — horizontal scrolling ticker for Hero
+   Marquee.
 ----------------------------------------------------------------------- */
 
 @keyframes marquee-scroll {
@@ -100,7 +109,7 @@ html, body {
 }
 
 /* -----------------------------------------------------------------------
-   Album card hover — elevated lift
+   Card hover.
 ----------------------------------------------------------------------- */
 
 .album-card-cover {
@@ -112,33 +121,31 @@ html, body {
 .group:hover .album-card-cover {
   transform: translateY(-5px) rotate(-0.5deg) scale(1.02);
   box-shadow:
-    0 6px 16px rgba(0,0,0,0.4),
-    0 20px 48px rgba(0,0,0,0.55),
-    0 1px 3px rgba(185,52,32,0.15);
+    0 6px 16px rgba(0,0,0,0.10),
+    0 20px 48px rgba(0,0,0,0.18),
+    0 1px 3px rgba(185,52,32,0.18);
 }
 
-/* curator note slide-reveal on hover */
 .album-note {
   max-height: 2.8rem;
   overflow: hidden;
   transition: max-height 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 350ms ease;
-  opacity: 0.75;
+  opacity: 0.8;
 }
 
 .group:hover .album-note {
-  max-height: 10rem;
+  max-height: 12rem;
   opacity: 1;
 }
 
 /* -----------------------------------------------------------------------
-   Section ornament divider
+   Section ornament.
 ----------------------------------------------------------------------- */
 
 .section-ornament {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0 0 0 0;
 }
 
 .section-ornament::before,
@@ -146,11 +153,11 @@ html, body {
   content: "";
   flex: 1;
   height: 1px;
-  background: rgba(245,241,234,0.1);
+  background: rgba(26,26,26,0.15);
 }
 
 /* -----------------------------------------------------------------------
-   Pull quote
+   Pull quote.
 ----------------------------------------------------------------------- */
 
 .pull-quote {
@@ -159,7 +166,7 @@ html, body {
 }
 
 /* -----------------------------------------------------------------------
-   Sticky meta-bar
+   Sticky meta-bar — light variant.
 ----------------------------------------------------------------------- */
 
 .meta-bar {
@@ -168,6 +175,6 @@ html, body {
   z-index: 40;
   backdrop-filter: blur(12px) saturate(1.2);
   -webkit-backdrop-filter: blur(12px) saturate(1.2);
-  background: rgba(10,10,10,0.85);
-  border-bottom: 1px solid rgba(245,241,234,0.08);
+  background: rgba(250,246,236,0.92);
+  border-bottom: 1px solid rgba(26,26,26,0.12);
 }

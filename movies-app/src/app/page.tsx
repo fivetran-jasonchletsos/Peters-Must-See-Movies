@@ -69,7 +69,7 @@ export default function Home() {
         blurb={`${total} films. Use the timeline to pick a year, or scroll the list.`}
       >
         <div id="canon" />
-        <Suspense fallback={<p className="serif text-paper/40">Loading…</p>}>
+        <Suspense fallback={<p className="serif text-ink/40">Loading…</p>}>
           <MovieExplorer />
         </Suspense>
       </Section>
@@ -84,21 +84,21 @@ export default function Home() {
             <Link
               key={card.href}
               href={card.href}
-              className="group flex flex-col gap-3 border border-paper/10 bg-paper/5 p-6 transition
-                hover:border-accent hover:bg-paper/10
+              className="group flex flex-col gap-3 border border-ink/10 bg-ink/5 p-6 transition
+                hover:border-accent hover:bg-ink/10
                 focus:outline-none focus:ring-2 focus:ring-accent/40"
             >
               <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
                 {card.number}
               </p>
-              <h3 className="serif text-2xl text-paper leading-snug">{card.title}</h3>
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-paper/35">
+              <h3 className="serif text-2xl text-ink leading-snug">{card.title}</h3>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/35">
                 {card.glyph}
               </p>
-              <p className="serif text-sm text-paper/65 mt-auto pt-2 leading-snug">
+              <p className="serif text-sm text-ink/65 mt-auto pt-2 leading-snug">
                 {card.blurb}
               </p>
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40 group-hover:text-accent transition">
+              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 group-hover:text-accent transition">
                 Open →
               </span>
             </Link>

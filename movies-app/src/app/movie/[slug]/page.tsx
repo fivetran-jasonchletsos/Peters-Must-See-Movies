@@ -84,24 +84,24 @@ export default function MoviePage({ params }: Props) {
 
   return (
     <main className="min-h-screen">
-      <div className="border-b border-paper/10 px-5 py-4 sm:px-6 md:px-16">
+      <div className="border-b border-ink/10 px-5 py-4 sm:px-6 md:px-16">
         <div className="mx-auto max-w-6xl flex flex-wrap items-center gap-3">
-          <Link href="/" className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40 transition hover:text-accent">
+          <Link href="/" className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 transition hover:text-accent">
             Must See
           </Link>
-          <span className="font-mono text-[10px] text-paper/20">/</span>
-          <Link href={`/?decade=${decade}#canon`} className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40 transition hover:text-accent">
+          <span className="font-mono text-[10px] text-ink/20">/</span>
+          <Link href={`/?decade=${decade}#canon`} className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 transition hover:text-accent">
             {decade}s
           </Link>
-          <span className="font-mono text-[10px] text-paper/20">/</span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/70 truncate">{movie.title}</span>
+          <span className="font-mono text-[10px] text-ink/20">/</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/70 truncate">{movie.title}</span>
         </div>
       </div>
 
       <section className="px-5 py-10 sm:px-6 md:px-16 md:py-14">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[300px_1fr] md:gap-12">
           <div className="flex flex-col gap-4">
-            <div className="aspect-[2/3] overflow-hidden border border-paper/10 shadow-2xl">
+            <div className="aspect-[2/3] overflow-hidden border border-ink/10 shadow-2xl">
               {(() => {
                 const real = realPosterUrl(movie.director, movie.title);
                 return real ? (
@@ -113,43 +113,43 @@ export default function MoviePage({ params }: Props) {
               })()}
             </div>
             <div className="flex flex-wrap gap-3">
-              <a href={imdbSearchUrl(movie.title, movie.year)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink transition hover:bg-paper focus:outline-none focus:ring-2 focus:ring-accent/40">
+              <a href={imdbSearchUrl(movie.title, movie.year)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-paper transition hover:bg-ink focus:outline-none focus:ring-2 focus:ring-accent/40">
                 IMDb <span aria-hidden>→</span>
               </a>
-              <a href={letterboxdSearchUrl(movie.title)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-paper/20 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-paper/80 transition hover:border-accent hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40">
+              <a href={letterboxdSearchUrl(movie.title)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-ink/20 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink/80 transition hover:border-accent hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40">
                 Letterboxd <span aria-hidden>→</span>
               </a>
             </div>
           </div>
 
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/45">
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/45">
               Directed by {movie.director} · {movie.year} · {decade}s · Entry {positionInList} of {movies.length}
             </p>
-            <h1 className="serif mt-3 text-4xl font-light text-paper leading-tight sm:text-5xl md:text-6xl">
+            <h1 className="serif mt-3 text-4xl font-light text-ink leading-tight sm:text-5xl md:text-6xl">
               {movie.title}
             </h1>
 
             <blockquote className="mt-8 border-l-2 border-accent pl-5">
-              <p className="serif text-lg italic leading-relaxed text-paper/90 sm:text-xl">{movie.note}</p>
-              <footer className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-paper/45">— Pete Chletsos, curator</footer>
+              <p className="serif text-lg italic leading-relaxed text-ink/90 sm:text-xl">{movie.note}</p>
+              <footer className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-ink/45">— Pete Chletsos, curator</footer>
             </blockquote>
           </div>
         </div>
       </section>
 
       {others.length > 0 ? (
-        <section className="border-t border-paper/10 px-5 py-10 sm:px-6 md:px-16">
+        <section className="border-t border-ink/10 px-5 py-10 sm:px-6 md:px-16">
           <div className="mx-auto max-w-6xl">
-            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40">
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
               Also on the list by {movie.director}
             </p>
             <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {others.map((o) => (
                 <li key={o.title}>
-                  <Link href={`/movie/${movieSlug(o.director, o.title)}`} className="block border border-paper/10 bg-paper/5 px-4 py-3 transition hover:border-accent hover:bg-paper/10 focus:outline-none focus:ring-2 focus:ring-accent/40">
-                    <p className="serif text-base text-paper">{o.title}</p>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-paper/45">{o.year}</p>
+                  <Link href={`/movie/${movieSlug(o.director, o.title)}`} className="block border border-ink/10 bg-ink/5 px-4 py-3 transition hover:border-accent hover:bg-ink/10 focus:outline-none focus:ring-2 focus:ring-accent/40">
+                    <p className="serif text-base text-ink">{o.title}</p>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/45">{o.year}</p>
                   </Link>
                 </li>
               ))}
@@ -159,17 +159,17 @@ export default function MoviePage({ params }: Props) {
       ) : null}
 
       {sameYear.length > 0 ? (
-        <section className="border-t border-paper/10 px-5 py-10 sm:px-6 md:px-16">
+        <section className="border-t border-ink/10 px-5 py-10 sm:px-6 md:px-16">
           <div className="mx-auto max-w-6xl">
-            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40">
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
               Also on the list from {movie.year}
             </p>
             <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {sameYear.slice(0, 12).map((o) => (
                 <li key={`${o.director}-${o.title}`}>
-                  <Link href={`/movie/${movieSlug(o.director, o.title)}`} className="block border border-paper/10 bg-paper/5 px-4 py-3 transition hover:border-accent hover:bg-paper/10 focus:outline-none focus:ring-2 focus:ring-accent/40">
-                    <p className="serif text-base text-paper truncate">{o.title}</p>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-paper/45 truncate">{o.director}</p>
+                  <Link href={`/movie/${movieSlug(o.director, o.title)}`} className="block border border-ink/10 bg-ink/5 px-4 py-3 transition hover:border-accent hover:bg-ink/10 focus:outline-none focus:ring-2 focus:ring-accent/40">
+                    <p className="serif text-base text-ink truncate">{o.title}</p>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/45 truncate">{o.director}</p>
                   </Link>
                 </li>
               ))}
@@ -178,9 +178,9 @@ export default function MoviePage({ params }: Props) {
         </section>
       ) : null}
 
-      <div className="border-t border-paper/10 px-5 py-8 sm:px-6 md:px-16">
+      <div className="border-t border-ink/10 px-5 py-8 sm:px-6 md:px-16">
         <div className="mx-auto max-w-6xl">
-          <Link href="/" className="font-mono text-[10px] uppercase tracking-[0.25em] text-paper/50 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40">
+          <Link href="/" className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/50 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40">
             ← Back to the list
           </Link>
         </div>

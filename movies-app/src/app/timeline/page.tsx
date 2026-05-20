@@ -15,35 +15,35 @@ export default function TimelinePage() {
   return (
     <main className="min-h-screen">
       {/* Breadcrumb */}
-      <div className="border-b border-paper/10 px-5 py-4 sm:px-6 md:px-16">
+      <div className="border-b border-ink/10 px-5 py-4 sm:px-6 md:px-16">
         <div className="mx-auto max-w-6xl flex items-center gap-3">
           <Link
             href="/"
-            className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40 transition hover:text-accent"
+            className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 transition hover:text-accent"
           >
             Must See
           </Link>
-          <span className="font-mono text-[10px] text-paper/20">/</span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/70">
+          <span className="font-mono text-[10px] text-ink/20">/</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/70">
             Timeline
           </span>
         </div>
       </div>
 
       {/* Hero */}
-      <header className="border-b border-paper/10 px-5 py-8 sm:px-6 sm:py-10 md:px-16 md:py-14">
+      <header className="border-b border-ink/10 px-5 py-8 sm:px-6 sm:py-10 md:px-16 md:py-14">
         <div className="mx-auto max-w-6xl">
           <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
             Across time
           </p>
-          <h1 className="serif mt-2 text-3xl font-light leading-tight text-paper sm:text-4xl md:text-5xl">
-            1939 <span className="text-paper/40">→</span> 2023
+          <h1 className="serif mt-2 text-3xl font-light leading-tight text-ink sm:text-4xl md:text-5xl">
+            1939 <span className="text-ink/40">→</span> 2023
           </h1>
-          <p className="serif mt-4 max-w-xl text-sm italic text-paper/70 leading-relaxed sm:text-base">
+          <p className="serif mt-4 max-w-xl text-sm italic text-ink/70 leading-relaxed sm:text-base">
             Every film placed by year. Click a decade label to filter the list.
             Click any dot to open the film.
           </p>
-          <p className="mt-3 font-mono text-[9px] uppercase tracking-[0.28em] text-paper/30">
+          <p className="mt-3 font-mono text-[9px] uppercase tracking-[0.28em] text-ink/30">
             {total} films across 84 years
           </p>
         </div>
@@ -57,17 +57,17 @@ export default function TimelinePage() {
       </section>
 
       {/* Back link */}
-      <div className="border-t border-paper/10 px-5 py-8 sm:px-6 md:px-16">
+      <div className="border-t border-ink/10 px-5 py-8 sm:px-6 md:px-16">
         <div className="mx-auto max-w-6xl flex items-center justify-between">
           <Link
             href="/"
-            className="font-mono text-[10px] uppercase tracking-[0.25em] text-paper/50 hover:text-accent transition focus:outline-none focus:ring-2 focus:ring-accent/40"
+            className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/50 hover:text-accent transition focus:outline-none focus:ring-2 focus:ring-accent/40"
           >
             ← Back to the list
           </Link>
           <Link
             href="/analytics"
-            className="font-mono text-[10px] uppercase tracking-[0.25em] text-paper/50 hover:text-accent transition focus:outline-none focus:ring-2 focus:ring-accent/40"
+            className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/50 hover:text-accent transition focus:outline-none focus:ring-2 focus:ring-accent/40"
           >
             Stats →
           </Link>

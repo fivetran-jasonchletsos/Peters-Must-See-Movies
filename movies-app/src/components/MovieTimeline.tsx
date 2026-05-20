@@ -94,7 +94,7 @@ export default function MovieTimeline() {
   return (
     <div className="w-full">
       {/* Mobile drag hint */}
-      <p className="mb-3 flex items-center justify-center gap-2 font-mono text-[9px] uppercase tracking-[0.3em] text-paper/25 sm:hidden">
+      <p className="mb-3 flex items-center justify-center gap-2 font-mono text-[9px] uppercase tracking-[0.3em] text-ink/25 sm:hidden">
         <span aria-hidden="true">←</span>
         drag to explore
         <span aria-hidden="true">→</span>
@@ -116,7 +116,7 @@ export default function MovieTimeline() {
         >
           {/* ── Rail ──────────────────────────────────────────────────────── */}
           <div
-            className="absolute left-0 right-0 bg-paper/15"
+            className="absolute left-0 right-0 bg-ink/15"
             style={{ top: "42px", height: "1px" }}
             aria-hidden="true"
           />
@@ -145,7 +145,7 @@ export default function MovieTimeline() {
                   title={`Filter to ${decade}s`}
                 >
                   <span
-                    className="font-mono text-[9px] uppercase tracking-[0.28em] text-paper/35
+                    className="font-mono text-[9px] uppercase tracking-[0.28em] text-ink/35
                       transition-colors group-hover:text-accent whitespace-nowrap block text-center"
                   >
                     {decade}s
@@ -154,7 +154,7 @@ export default function MovieTimeline() {
 
                 {/* Tick mark */}
                 <div
-                  className="absolute w-px bg-paper/20"
+                  className="absolute w-px bg-ink/20"
                   style={{
                     left: "0px",
                     top: "20px",
@@ -230,8 +230,8 @@ export default function MovieTimeline() {
 
                         {/* Title chip */}
                         <span
-                          className="block whitespace-nowrap bg-ink border border-paper/15
-                            px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-paper
+                          className="block whitespace-nowrap bg-paper border border-ink/15
+                            px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-ink
                             shadow-[0_4px_16px_rgba(0,0,0,0.7)]"
                         >
                           {dot.title}
@@ -258,14 +258,14 @@ export default function MovieTimeline() {
 
           {/* ── Year span labels at far edges ─────────────────────────────── */}
           <span
-            className="absolute font-mono text-[9px] text-paper/20 tracking-widest"
+            className="absolute font-mono text-[9px] text-ink/20 tracking-widest"
             style={{ left: `${yearToPercent(1939) - 0.5}%`, top: "35px", transform: "translateX(-50%)" }}
             aria-hidden="true"
           >
             1939
           </span>
           <span
-            className="absolute font-mono text-[9px] text-paper/20 tracking-widest"
+            className="absolute font-mono text-[9px] text-ink/20 tracking-widest"
             style={{ left: `${yearToPercent(2023) + 0.5}%`, top: "35px", transform: "translateX(-50%)" }}
             aria-hidden="true"
           >
@@ -275,7 +275,7 @@ export default function MovieTimeline() {
       </div>
 
       {/* Total count */}
-      <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.3em] text-paper/30 text-center">
+      <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.3em] text-ink/30 text-center">
         {total} films &middot; 1939 &ndash; 2023
       </p>
     </div>

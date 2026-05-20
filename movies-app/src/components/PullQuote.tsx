@@ -10,12 +10,12 @@ export default function PullQuote({
 }) {
   return (
     <blockquote
-      className="col-span-full border-t border-paper/10 py-10 sm:py-14 md:py-16"
+      className="col-span-full border-t border-ink/10 py-10 sm:py-14 md:py-16"
       aria-label={`Pull quote: ${quote}`}
     >
       <div className="max-w-4xl mx-auto px-2">
         <p
-          className="pull-quote text-4xl leading-[1.12] text-paper/90 sm:text-5xl md:text-6xl"
+          className="pull-quote text-4xl leading-[1.12] text-ink/90 sm:text-5xl md:text-6xl"
           style={{ fontStyle: "italic", fontWeight: 300 }}
         >
           &ldquo;{quote}&rdquo;

@@ -126,14 +126,14 @@ export default function SubmissionRejector() {
     <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_1.2fr] md:gap-12">
       <form
         onSubmit={onSubmit}
-        className="border border-paper/10 bg-paper/5 p-6 sm:p-8"
+        className="border border-ink/10 bg-ink/5 p-6 sm:p-8"
         aria-label="Submit a film for the list"
       >
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40 mb-5">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 mb-5">
           The Suggestion Box
         </p>
         <label className="block">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-paper/40">
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
             Film
           </span>
           <input
@@ -141,15 +141,15 @@ export default function SubmissionRejector() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder={placeholder}
-            className="mt-2 w-full bg-ink border border-paper/15 px-3 py-2 font-mono text-sm text-paper placeholder:text-paper/30
+            className="mt-2 w-full bg-paper border border-ink/15 px-3 py-2 font-mono text-sm text-ink placeholder:text-ink/30
               focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50"
           />
         </label>
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <button
             type="submit"
-            className="bg-accent px-5 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink
-              transition hover:bg-paper focus:outline-none focus:ring-2 focus:ring-accent/40"
+            className="bg-accent px-5 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-paper
+              transition hover:bg-ink focus:outline-none focus:ring-2 focus:ring-accent/40"
           >
             Submit for consideration →
           </button>
@@ -157,26 +157,26 @@ export default function SubmissionRejector() {
             <button
               type="button"
               onClick={reset}
-              className="font-mono text-[10px] uppercase tracking-[0.25em] text-paper/50
+              className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/50
                 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40"
             >
               Try another
             </button>
           ) : null}
         </div>
-        <p className="serif mt-6 text-xs italic text-paper/35 leading-relaxed">
+        <p className="serif mt-6 text-xs italic text-ink/35 leading-relaxed">
           Submissions evaluated against the list by Cortex.
           {" "}{movies.length} films, several decades of opinion, one curator with strong views.
         </p>
       </form>
 
-      <div className="flex min-h-[14rem] flex-col border border-paper/10 bg-ink p-6 sm:p-8">
+      <div className="flex min-h-[14rem] flex-col border border-ink/10 bg-paper p-6 sm:p-8">
         <div className="flex items-baseline gap-2 mb-4">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
             Cortex / Verdict
           </span>
           {submitted ? (
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-paper/40">
+            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ink/40">
               Re: {submitted.title || "(no film)"}
             </span>
           ) : null}
@@ -184,16 +184,16 @@ export default function SubmissionRejector() {
         {submitted ? (
           <>
             <blockquote className="border-l-2 border-accent pl-5">
-              <p className="serif text-base italic leading-relaxed text-paper/90 sm:text-lg">
+              <p className="serif text-base italic leading-relaxed text-ink/90 sm:text-lg">
                 {submitted.response}
               </p>
             </blockquote>
-            <p className="mt-auto pt-6 font-mono text-[9px] uppercase tracking-[0.28em] text-paper/35">
+            <p className="mt-auto pt-6 font-mono text-[9px] uppercase tracking-[0.28em] text-ink/35">
               Powered by Snowflake Cortex · Curated by Pete Chletsos
             </p>
           </>
         ) : (
-          <p className="serif text-base italic text-paper/40 leading-relaxed">
+          <p className="serif text-base italic text-ink/40 leading-relaxed">
             Waiting for a submission. Type a film title. Cortex will weigh it against the list
             and explain what's already on Pete's shelf that beats it.
           </p>

@@ -7,16 +7,16 @@ export default function NotFound() {
         <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
           Error / 404
         </p>
-        <h1 className="serif mt-4 text-6xl leading-none text-paper sm:text-8xl">
+        <h1 className="serif mt-4 text-6xl leading-none text-ink sm:text-8xl">
           Side not found.
         </h1>
-        <p className="serif mt-6 text-lg text-paper/60">
+        <p className="serif mt-6 text-lg text-ink/60">
           This track isn't in the list. Try flipping the record.
         </p>
         <Link
           href="/"
-          className="mt-10 inline-block border border-paper/20 px-6 py-3
-            font-mono text-[10px] uppercase tracking-[0.25em] text-paper/70
+          className="mt-10 inline-block border border-ink/20 px-6 py-3
+            font-mono text-[10px] uppercase tracking-[0.25em] text-ink/70
             transition hover:border-accent hover:text-accent
             focus:outline-none focus:ring-2 focus:ring-accent/40"
         >

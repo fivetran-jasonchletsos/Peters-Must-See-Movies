@@ -45,8 +45,8 @@ const marqueeTrack: MarqueeItem[] = [...marqueeItems, ...marqueeItems];
 
 export default function Hero() {
   return (
-    <header className="relative border-b border-paper/10 overflow-hidden">
-      <div className="border-b border-paper/10 py-2 overflow-hidden">
+    <header className="relative border-b border-ink/10 overflow-hidden">
+      <div className="border-b border-ink/10 py-2 overflow-hidden">
         <div className="marquee-track gap-3">
           {marqueeTrack.map((item, i) => (
             <Link
@@ -61,13 +61,13 @@ export default function Hero() {
                 <img
                   src={item.poster}
                   alt=""
-                  className="h-12 w-8 object-cover border border-paper/10 transition group-hover:border-accent group-hover:scale-105"
+                  className="h-12 w-8 object-cover border border-ink/10 transition group-hover:border-accent group-hover:scale-105"
                   loading="lazy"
                 />
               ) : (
                 <span
-                  className="inline-flex h-12 w-8 items-center justify-center bg-paper/5 border border-paper/15
-                    font-mono text-[10px] uppercase tracking-[0.18em] text-paper/55 transition group-hover:border-accent"
+                  className="inline-flex h-12 w-8 items-center justify-center bg-ink/5 border border-ink/15
+                    font-mono text-[10px] uppercase tracking-[0.18em] text-ink/55 transition group-hover:border-accent"
                 >
                   {item.director.replace(/^(The|A|An)\s+/i, "").slice(0, 2).toUpperCase()}
                 </span>
@@ -83,16 +83,16 @@ export default function Hero() {
             <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">
               Must See &nbsp;/&nbsp; Pete Chletsos
             </p>
-            <h1 className="serif mt-1 text-2xl leading-tight text-paper sm:text-3xl md:text-4xl font-light">
+            <h1 className="serif mt-1 text-2xl leading-tight text-ink sm:text-3xl md:text-4xl font-light">
               It's not what you look at{" "}
               <span className="hero-underline italic">that matters.</span>
             </h1>
           </div>
           <div className="min-w-0">
-            <p className="serif text-sm italic text-paper/70 sm:text-base leading-snug max-w-md">
+            <p className="serif text-sm italic text-ink/70 sm:text-base leading-snug max-w-md">
               It's what you see.  — Henry David Thoreau
             </p>
-            <p className="serif mt-1 text-xs text-paper/45 leading-snug max-w-md">
+            <p className="serif mt-1 text-xs text-ink/45 leading-snug max-w-md">
               Pete Chletsos's list of must-see movies. In no particular order — and the list is fluid.
             </p>
           </div>

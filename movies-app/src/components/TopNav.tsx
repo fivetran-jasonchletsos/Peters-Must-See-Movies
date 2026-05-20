@@ -22,11 +22,11 @@ export default function TopNav() {
   }
 
   return (
-    <header className="sticky top-0 z-30 border-b border-paper/10 bg-ink/95 backdrop-blur-md">
+    <header className="sticky top-0 z-30 border-b border-ink/10 bg-paper/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center gap-x-6 gap-y-2 px-4 py-3 overflow-x-auto sm:px-6 sm:py-4 md:px-10">
         <Link
           href="/"
-          className="flex-none flex items-center gap-2.5 serif text-lg text-paper hover:text-accent
+          className="flex-none flex items-center gap-2.5 serif text-lg text-ink hover:text-accent
             focus:outline-none focus:ring-2 focus:ring-accent/40 sm:text-xl"
           aria-label="Must See home"
         >
@@ -63,7 +63,7 @@ export default function TopNav() {
                 <span
                   className={
                     "serif text-base sm:text-lg transition-colors " +
-                    (active ? "text-paper" : "text-paper/70 group-hover:text-paper")
+                    (active ? "text-ink" : "text-ink/70 group-hover:text-ink")
                   }
                 >
                   {item.label}

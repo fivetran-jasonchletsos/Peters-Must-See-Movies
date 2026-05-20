@@ -100,15 +100,15 @@ export default function AddPage() {
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-3">
             Must See / Add
           </p>
-          <h1 className="serif text-3xl sm:text-4xl text-paper leading-tight mb-4">
+          <h1 className="serif text-3xl sm:text-4xl text-ink leading-tight mb-4">
             For Pete.
           </h1>
-          <p className="text-paper/70 text-lg leading-relaxed mb-8">
+          <p className="text-ink/70 text-lg leading-relaxed mb-8">
             Enter the password to add a film to the suggestion list.
           </p>
           <form onSubmit={tryUnlock} className="space-y-4">
             <label className="block">
-              <span className="block font-mono text-xs uppercase tracking-[0.25em] text-paper/50 mb-2">
+              <span className="block font-mono text-xs uppercase tracking-[0.25em] text-ink/50 mb-2">
                 Password
               </span>
               <input
@@ -119,7 +119,7 @@ export default function AddPage() {
                   setPasswordError(false);
                 }}
                 autoFocus
-                className="w-full text-lg px-4 py-3 bg-paper/5 border border-paper/20 rounded text-paper focus:outline-none focus:border-accent"
+                className="w-full text-lg px-4 py-3 bg-ink/5 border border-ink/20 rounded text-ink focus:outline-none focus:border-accent"
               />
             </label>
             {passwordError && (
@@ -127,12 +127,12 @@ export default function AddPage() {
             )}
             <button
               type="submit"
-              className="px-5 py-3 text-lg font-medium bg-accent text-paper rounded hover:bg-ember transition"
+              className="px-5 py-3 text-lg font-medium bg-accent text-ink rounded hover:bg-ember transition"
             >
               Unlock
             </button>
           </form>
-          <p className="text-paper/40 text-sm mt-10">
+          <p className="text-ink/40 text-sm mt-10">
             <Link href="/" className="underline underline-offset-4 hover:text-accent">← Back to the list</Link>
           </p>
         </div>
@@ -146,10 +146,10 @@ export default function AddPage() {
         <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-3">
           Must See / Add
         </p>
-        <h1 className="serif text-3xl sm:text-4xl text-paper leading-tight mb-3">
+        <h1 className="serif text-3xl sm:text-4xl text-ink leading-tight mb-3">
           Add a film to the list.
         </h1>
-        <p className="text-paper/70 text-lg leading-relaxed mb-10">
+        <p className="text-ink/70 text-lg leading-relaxed mb-10">
           Welcome, Pete. Type a film below and click "Submit." Your suggestion is saved here
           on your screen right away, and a note is opened so Jason can add it to the
           canonical list.
@@ -157,7 +157,7 @@ export default function AddPage() {
 
         <form onSubmit={handleSubmit} className="space-y-5 mb-12">
           <div>
-            <label htmlFor="title" className="block font-mono text-xs uppercase tracking-[0.25em] text-paper/50 mb-2">
+            <label htmlFor="title" className="block font-mono text-xs uppercase tracking-[0.25em] text-ink/50 mb-2">
               Title <span className="text-accent">*</span>
             </label>
             <input
@@ -165,13 +165,13 @@ export default function AddPage() {
               name="title"
               required
               autoFocus
-              className="w-full text-lg px-4 py-3 bg-paper/5 border border-paper/20 rounded text-paper focus:outline-none focus:border-accent"
+              className="w-full text-lg px-4 py-3 bg-ink/5 border border-ink/20 rounded text-ink focus:outline-none focus:border-accent"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label htmlFor="year" className="block font-mono text-xs uppercase tracking-[0.25em] text-paper/50 mb-2">
+              <label htmlFor="year" className="block font-mono text-xs uppercase tracking-[0.25em] text-ink/50 mb-2">
                 Year
               </label>
               <input
@@ -179,36 +179,36 @@ export default function AddPage() {
                 name="year"
                 inputMode="numeric"
                 pattern="[0-9]*"
-                className="w-full text-lg px-4 py-3 bg-paper/5 border border-paper/20 rounded text-paper focus:outline-none focus:border-accent"
+                className="w-full text-lg px-4 py-3 bg-ink/5 border border-ink/20 rounded text-ink focus:outline-none focus:border-accent"
               />
             </div>
             <div>
-              <label htmlFor="director" className="block font-mono text-xs uppercase tracking-[0.25em] text-paper/50 mb-2">
+              <label htmlFor="director" className="block font-mono text-xs uppercase tracking-[0.25em] text-ink/50 mb-2">
                 Director
               </label>
               <input
                 id="director"
                 name="director"
-                className="w-full text-lg px-4 py-3 bg-paper/5 border border-paper/20 rounded text-paper focus:outline-none focus:border-accent"
+                className="w-full text-lg px-4 py-3 bg-ink/5 border border-ink/20 rounded text-ink focus:outline-none focus:border-accent"
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="why" className="block font-mono text-xs uppercase tracking-[0.25em] text-paper/50 mb-2">
+            <label htmlFor="why" className="block font-mono text-xs uppercase tracking-[0.25em] text-ink/50 mb-2">
               Why does it deserve a spot?
             </label>
             <textarea
               id="why"
               name="why"
               rows={4}
-              className="w-full text-lg px-4 py-3 bg-paper/5 border border-paper/20 rounded text-paper focus:outline-none focus:border-accent"
+              className="w-full text-lg px-4 py-3 bg-ink/5 border border-ink/20 rounded text-ink focus:outline-none focus:border-accent"
             />
           </div>
 
           <button
             type="submit"
-            className="px-6 py-3 text-lg font-medium bg-accent text-paper rounded hover:bg-ember transition"
+            className="px-6 py-3 text-lg font-medium bg-accent text-ink rounded hover:bg-ember transition"
           >
             Submit suggestion
           </button>
@@ -216,11 +216,11 @@ export default function AddPage() {
 
         {justAdded && (
           <div className="mb-10 p-5 border border-accent/40 bg-accent/5 rounded">
-            <p className="serif text-lg text-paper mb-1">
+            <p className="serif text-lg text-ink mb-1">
               Saved: <span className="italic">{justAdded.title}</span>
               {justAdded.year ? ` (${justAdded.year})` : ""}
             </p>
-            <p className="text-paper/60 text-sm">
+            <p className="text-ink/60 text-sm">
               A new tab opened with a pre-filled note for Jason. If it didn't open,
               that's okay — your suggestion is still saved here.
             </p>
@@ -229,22 +229,22 @@ export default function AddPage() {
 
         {pending.length > 0 && (
           <div>
-            <h2 className="font-mono text-xs uppercase tracking-[0.3em] text-paper/50 mb-4">
+            <h2 className="font-mono text-xs uppercase tracking-[0.3em] text-ink/50 mb-4">
               Your suggestions so far
             </h2>
             <ul className="space-y-3">
               {pending.map((s, i) => (
                 <li
                   key={i}
-                  className="p-4 border border-paper/10 rounded"
+                  className="p-4 border border-ink/10 rounded"
                 >
-                  <p className="serif text-lg text-paper">
+                  <p className="serif text-lg text-ink">
                     {s.title}
                     {s.year ? ` (${s.year})` : ""}
                     {s.director ? ` — dir. ${s.director}` : ""}
                   </p>
-                  {s.why && <p className="text-paper/70 mt-1 text-base leading-relaxed">{s.why}</p>}
-                  <p className="text-paper/30 text-xs font-mono mt-2">
+                  {s.why && <p className="text-ink/70 mt-1 text-base leading-relaxed">{s.why}</p>}
+                  <p className="text-ink/30 text-xs font-mono mt-2">
                     {new Date(s.submitted_at).toLocaleString()}
                   </p>
                 </li>
@@ -253,7 +253,7 @@ export default function AddPage() {
           </div>
         )}
 
-        <p className="text-paper/40 text-sm mt-12">
+        <p className="text-ink/40 text-sm mt-12">
           <Link href="/" className="underline underline-offset-4 hover:text-accent">← Back to the list</Link>
         </p>
       </div>

@@ -150,16 +150,16 @@ export function computeliststats(): liststatsData {
 // ---------------------------------------------------------------------------
 
 const KICKER = "font-mono text-[10px] uppercase tracking-[0.3em] text-accent";
-const MUTED = "font-mono text-[10px] uppercase tracking-[0.3em] text-paper/50";
+const MUTED = "font-mono text-[10px] uppercase tracking-[0.3em] text-ink/50";
 
 // Shared classes for clickable rows — adds hover highlight, cursor, and the
 // subtle right-arrow affordance via a CSS pseudo-element approach using a
 // hidden span that reveals on hover.
 const ROW_LINK =
-  "group/row flex items-center gap-5 rounded-sm transition-colors hover:bg-paper/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 -mx-2 px-2 py-0.5";
+  "group/row flex items-center gap-5 rounded-sm transition-colors hover:bg-ink/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 -mx-2 px-2 py-0.5";
 
 const ARTIST_CARD_LINK =
-  "block border border-paper/10 bg-paper/[0.03] p-5 transition hover:border-accent/40 hover:bg-paper/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50";
+  "block border border-ink/10 bg-ink/[0.03] p-5 transition hover:border-accent/40 hover:bg-ink/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50";
 
 export default function MovieStats() {
   const stats = computeliststats();
@@ -182,10 +182,10 @@ export default function MovieStats() {
       <Section number="02" title="By the Numbers" blurb="What a life's worth of curation looks like, quantified.">
         <div className="flex flex-col gap-0 lg:flex-row lg:items-stretch">
           {/* Giant number — takes up dominant visual space */}
-          <div className="flex items-center justify-center border border-paper/8 bg-paper/[0.03] p-10 lg:flex-1 lg:p-16">
+          <div className="flex items-center justify-center border border-ink/8 bg-ink/[0.03] p-10 lg:flex-1 lg:p-16">
             <div className="text-center">
               <p
-                className="serif leading-none text-paper select-none"
+                className="serif leading-none text-ink select-none"
                 style={{ fontSize: "clamp(6rem, 20vw, 14rem)", fontWeight: 300 }}
                 aria-label={`${totalAlbums} films in the list`}
               >
@@ -196,7 +196,7 @@ export default function MovieStats() {
           </div>
 
           {/* Stats column — tight, contrasting. Year/median rows are non-clickable. */}
-          <div className="border border-paper/8 bg-paper/[0.02] lg:w-64 lg:border-l-0">
+          <div className="border border-ink/8 bg-ink/[0.02] lg:w-64 lg:border-l-0">
             {[
               { label: "Distinct directors", value: distinctArtists },
               { label: "First year", value: earliestYear },
@@ -205,10 +205,10 @@ export default function MovieStats() {
             ].map(({ label, value }) => (
               <div
                 key={label}
-                className="flex flex-col justify-between gap-2 border-b border-paper/8 p-6 last:border-b-0"
+                className="flex flex-col justify-between gap-2 border-b border-ink/8 p-6 last:border-b-0"
               >
                 <p className={MUTED}>{label}</p>
-                <p className="serif text-3xl font-light text-paper sm:text-4xl">{value}</p>
+                <p className="serif text-3xl font-light text-ink sm:text-4xl">{value}</p>
               </div>
             ))}
           </div>
@@ -236,14 +236,14 @@ export default function MovieStats() {
                 <p className={`${KICKER} w-16 shrink-0 text-right`}>
                   {decade}s
                 </p>
-                <div className="relative h-7 flex-1 bg-paper/5 overflow-hidden">
+                <div className="relative h-7 flex-1 bg-ink/5 overflow-hidden">
                   <div
                     className="h-full bg-accent/60 transition-all group-hover/row:bg-accent"
                     style={{ width: `${pct}%` }}
                   />
                 </div>
                 <div className="flex w-20 shrink-0 flex-col items-end">
-                  <span className="serif text-xl font-light text-paper">{count}</span>
+                  <span className="serif text-xl font-light text-ink">{count}</span>
                   <span className={`${MUTED} text-right`}>{share}%</span>
                 </div>
                 {/* Arrow affordance */}
@@ -275,10 +275,10 @@ export default function MovieStats() {
               className={ROW_LINK}
               aria-label={`Browse ${director} — ${count} films`}
             >
-              <p className="serif w-48 shrink-0 text-sm font-light text-paper sm:w-56">
+              <p className="serif w-48 shrink-0 text-sm font-light text-ink sm:w-56">
                 {director}
               </p>
-              <div className="relative h-5 flex-1 bg-paper/5 overflow-hidden">
+              <div className="relative h-5 flex-1 bg-ink/5 overflow-hidden">
                 <div
                   className="h-full bg-accent/60 transition-all group-hover/row:bg-accent"
                   style={{ width: `${pct}%` }}
@@ -316,10 +316,10 @@ export default function MovieStats() {
               aria-label={`Browse ${director} — ${gap}-year arc`}
             >
               <p className={KICKER}>{gap} yr arc</p>
-              <p className="serif mt-3 text-lg font-light text-paper leading-snug">
+              <p className="serif mt-3 text-lg font-light text-ink leading-snug">
                 {director}
               </p>
-              <p className="mt-2 font-mono text-xs text-paper/40">
+              <p className="mt-2 font-mono text-xs text-ink/40">
                 {earliest}&thinsp;&mdash;&thinsp;{latest}
               </p>
               <p className="mt-3 font-mono text-[9px] text-accent opacity-0 transition-opacity group-hover:opacity-100">
@@ -358,7 +358,7 @@ export default function MovieStats() {
                 browse in movies &#x2192;
               </p>
             </Link>
-            <p className="serif mt-2 text-paper/40 text-sm italic">
+            <p className="serif mt-2 text-ink/40 text-sm italic">
               out of {totalAlbums} total
             </p>
           </div>
@@ -366,13 +366,13 @@ export default function MovieStats() {
             {stats.wu.films.map(({ director, title, year }) => (
               <div
                 key={`${director}-${title}`}
-                className="flex items-baseline justify-between gap-4 border-b border-paper/10 pb-3"
+                className="flex items-baseline justify-between gap-4 border-b border-ink/10 pb-3"
               >
                 <div>
-                  <p className="serif font-light text-paper">{title}</p>
+                  <p className="serif font-light text-ink">{title}</p>
                   <p className={MUTED}>{director}</p>
                 </div>
-                <p className="serif shrink-0 font-light text-paper/40">{year}</p>
+                <p className="serif shrink-0 font-light text-ink/40">{year}</p>
               </div>
             ))}
           </div>
@@ -387,25 +387,25 @@ export default function MovieStats() {
         title="Curator's Eras"
         blurb="the list split into three equal thirds by year. Each era's signature film is the median entry of that bucket."
       >
-        <div className="grid grid-cols-1 gap-px bg-paper/10 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-px bg-ink/10 md:grid-cols-3">
           {stats.eras.map(({ label, startYear, endYear, count, pct, signature }) => (
             <Link
               key={label}
               href={`/?decade=${startYear}#movies`}
-              className="group/era block bg-ink p-6 sm:p-8 transition-colors hover:bg-paper/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/50"
+              className="group/era block bg-paper p-6 sm:p-8 transition-colors hover:bg-ink/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/50"
               aria-label={`Browse ${label} era (${startYear}–${endYear}) — ${count} films`}
             >
               <p className={KICKER}>{label}</p>
-              <p className="serif mt-2 text-3xl font-light text-paper">{startYear}&ndash;{endYear}</p>
-              <p className="mt-2 font-mono text-xs text-paper/40">
+              <p className="serif mt-2 text-3xl font-light text-ink">{startYear}&ndash;{endYear}</p>
+              <p className="mt-2 font-mono text-xs text-ink/40">
                 {count} films &middot; {pct}% of movies
               </p>
-              <div className="mt-6 border-t border-paper/10 pt-5">
+              <div className="mt-6 border-t border-ink/10 pt-5">
                 <p className={MUTED}>Signature film</p>
-                <p className="serif mt-2 text-base font-light text-paper leading-snug">
+                <p className="serif mt-2 text-base font-light text-ink leading-snug">
                   {signature.title}
                 </p>
-                <p className="mt-1 font-mono text-xs text-paper/40">
+                <p className="mt-1 font-mono text-xs text-ink/40">
                   {signature.director} &middot; {signature.year}
                 </p>
               </div>
