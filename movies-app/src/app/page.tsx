@@ -3,6 +3,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import MovieExplorer from "@/components/MovieExplorer";
+import MovieTimeline from "@/components/MovieTimeline";
 import { movies } from "@/lib/movies";
 
 type HubCard = {
@@ -16,6 +17,14 @@ type HubCard = {
 const HUB: HubCard[] = [
   {
     number: "02",
+    href: "/timeline",
+    title: "Timeline",
+    blurb:
+      "Every film placed by year on a single scrollable rail. Click a decade or a dot to navigate directly into the list.",
+    glyph: "1939 → 2023 · every film",
+  },
+  {
+    number: "03",
     href: "/analytics",
     title: "Stats",
     blurb:
@@ -23,7 +32,7 @@ const HUB: HubCard[] = [
     glyph: "decades · directors · eras",
   },
   {
-    number: "03",
+    number: "04",
     href: "/blink",
     title: "Blink",
     blurb:
@@ -31,7 +40,7 @@ const HUB: HubCard[] = [
     glyph: "17 DVDs · 1965 → 1989 · classic Who",
   },
   {
-    number: "04",
+    number: "05",
     href: "/submit",
     title: "Submit a Movie",
     blurb:
@@ -39,7 +48,7 @@ const HUB: HubCard[] = [
     glyph: "→ politely rejected",
   },
   {
-    number: "05",
+    number: "06",
     href: "/voting",
     title: "Your Picks",
     blurb:
@@ -64,6 +73,14 @@ export default function Home() {
         <Suspense fallback={<p className="serif text-paper/40">Loading…</p>}>
           <MovieExplorer />
         </Suspense>
+      </Section>
+
+      <Section
+        number="·"
+        title="Across time"
+        blurb="Every film, placed by year. Click a decade or a film."
+      >
+        <MovieTimeline />
       </Section>
 
       <Section

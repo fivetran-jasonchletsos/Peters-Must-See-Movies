@@ -5,10 +5,11 @@ import { usePathname } from "next/navigation";
 
 const NAV = [
   { num: "01", href: "/", label: "The List" },
-  { num: "02", href: "/analytics", label: "Stats" },
-  { num: "03", href: "/blink", label: "Blink" },
-  { num: "04", href: "/submit", label: "Submit" },
-  { num: "05", href: "/voting", label: "Picks" },
+  { num: "02", href: "/timeline", label: "Timeline" },
+  { num: "03", href: "/analytics", label: "Stats" },
+  { num: "04", href: "/blink", label: "Blink" },
+  { num: "05", href: "/submit", label: "Submit" },
+  { num: "06", href: "/voting", label: "Picks" },
 ];
 
 export default function TopNav() {
