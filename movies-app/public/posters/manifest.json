@@ -1,0 +1,343 @@
+{
+  "c8ae23db": {
+    "found": true,
+    "title": "The Wizard of Oz",
+    "director": "Victor Fleming",
+    "imdbId": "tt0032138"
+  },
+  "d0bf8404": {
+    "found": true,
+    "title": "Citizen Kane",
+    "director": "Orson Welles",
+    "imdbId": "tt0033467"
+  },
+  "1eba2e99": {
+    "found": true,
+    "title": "It's a Wonderful Life",
+    "director": "Frank Capra",
+    "imdbId": "tt0038650"
+  },
+  "91a6acd3": {
+    "found": true,
+    "title": "The Treasure of the Sierra Madre",
+    "director": "John Huston",
+    "imdbId": "tt0040897"
+  },
+  "ab721351": {
+    "found": true,
+    "title": "The Loneliness of the Long Distance Runner",
+    "director": "Tony Richardson",
+    "imdbId": "tt0056194"
+  },
+  "3da592a0": {
+    "found": true,
+    "title": "It's a Mad, Mad, Mad, Mad World",
+    "director": "Stanley Kramer",
+    "imdbId": "tt0057193"
+  },
+  "d59d6b47": {
+    "found": true,
+    "title": "If....",
+    "director": "Lindsay Anderson",
+    "imdbId": "tt0063850"
+  },
+  "4818f724": {
+    "found": true,
+    "title": "THX 1138",
+    "director": "George Lucas",
+    "imdbId": "tt0066434"
+  },
+  "8663f106": {
+    "found": true,
+    "title": "The Godfather",
+    "director": "Francis Ford Coppola",
+    "imdbId": "tt0068646"
+  },
+  "6a56f7d8": {
+    "found": true,
+    "title": "Jeremiah Johnson",
+    "director": "Sydney Pollack",
+    "imdbId": "tt0068762"
+  },
+  "e8edea06": {
+    "found": true,
+    "title": "A Boy and His Dog",
+    "director": "L.Q. Jones",
+    "imdbId": "tt0072730"
+  },
+  "8ffdd09": {
+    "found": true,
+    "title": "Dog Day Afternoon",
+    "director": "Sidney Lumet",
+    "imdbId": "tt0072890"
+  },
+  "922ab900": {
+    "found": true,
+    "title": "Monty Python and the Holy Grail",
+    "director": "Terry Gilliam, Terry Jones",
+    "imdbId": "tt0071853"
+  },
+  "92231c7b": {
+    "found": true,
+    "title": "The Deer Hunter",
+    "director": "Michael Cimino",
+    "imdbId": "tt24735970"
+  },
+  "fd0ca8b1": {
+    "found": true,
+    "title": "Alien",
+    "director": "Ridley Scott",
+    "imdbId": "tt0078748"
+  },
+  "e6087f1b": {
+    "found": true,
+    "title": "Time Bandits",
+    "director": "Terry Gilliam",
+    "imdbId": "tt0081633"
+  },
+  "99a7c0ba": {
+    "found": true,
+    "title": "Blade Runner",
+    "director": "Ridley Scott",
+    "imdbId": "tt0083658"
+  },
+  "fd25ce0b": {
+    "found": true,
+    "title": "The Last Starfighter",
+    "director": "Nick Castle",
+    "imdbId": "tt0087597"
+  },
+  "6607ec2d": {
+    "found": true,
+    "title": "Birdy",
+    "director": "Alan Parker",
+    "imdbId": "tt0086969"
+  },
+  "77acfead": {
+    "found": true,
+    "title": "The Terminator",
+    "director": "James Cameron",
+    "imdbId": "tt0088247"
+  },
+  "29e6144b": {
+    "found": true,
+    "title": "Brazil",
+    "director": "Terry Gilliam",
+    "imdbId": "tt0088846"
+  },
+  "f1a1cece": {
+    "found": true,
+    "title": "Ferris Bueller's Day Off",
+    "director": "John Hughes",
+    "imdbId": "tt0091042"
+  },
+  "efd64eca": {
+    "found": true,
+    "title": "Labyrinth",
+    "director": "Jim Henson",
+    "imdbId": "tt0091369"
+  },
+  "6c061c1f": {
+    "found": true,
+    "title": "The Lost Boys",
+    "director": "Joel Schumacher",
+    "imdbId": "tt0093437"
+  },
+  "3cbd89c8": {
+    "found": true,
+    "title": "The Princess Bride",
+    "director": "Rob Reiner",
+    "imdbId": "tt0093779"
+  },
+  "37b473d2": {
+    "found": true,
+    "title": "Cinema Paradiso",
+    "director": "Giuseppe Tornatore",
+    "imdbId": "tt0095765"
+  },
+  "f629a67e": {
+    "found": true,
+    "title": "Jacob's Ladder",
+    "director": "Adrian Lyne",
+    "imdbId": "tt0099871"
+  },
+  "ed998d9f": {
+    "found": false,
+    "title": "Stanno Tutti Bene (Everybody's Fine)",
+    "director": "Giuseppe Tornatore"
+  },
+  "1952bafa": {
+    "found": true,
+    "title": "Night on Earth",
+    "director": "Jim Jarmusch",
+    "imdbId": "tt0102536"
+  },
+  "d98f2fcc": {
+    "found": true,
+    "title": "Buffy the Vampire Slayer",
+    "director": "Fran Rubel Kuzui",
+    "imdbId": "tt0103893"
+  },
+  "728716b3": {
+    "found": true,
+    "title": "Pulp Fiction",
+    "director": "Quentin Tarantino",
+    "imdbId": "tt0110912"
+  },
+  "8dff2f22": {
+    "found": true,
+    "title": "Léon: The Professional",
+    "director": "Luc Besson",
+    "imdbId": "tt0110413"
+  },
+  "41f93250": {
+    "found": true,
+    "title": "12 Monkeys",
+    "director": "Terry Gilliam",
+    "imdbId": "tt0114746"
+  },
+  "91cb9db1": {
+    "found": true,
+    "title": "Fargo",
+    "director": "Joel Coen, Ethan Coen",
+    "imdbId": "tt0116282"
+  },
+  "523b9bc": {
+    "found": true,
+    "title": "The Fifth Element",
+    "director": "Luc Besson",
+    "imdbId": "tt0119116"
+  },
+  "e8b892b5": {
+    "found": true,
+    "title": "The Big Lebowski",
+    "director": "Joel Coen, Ethan Coen",
+    "imdbId": "tt0118715"
+  },
+  "779a4f9a": {
+    "found": true,
+    "title": "Run Lola Run",
+    "director": "Tom Tykwer",
+    "imdbId": "tt0130827"
+  },
+  "89d8216a": {
+    "found": true,
+    "title": "Memento",
+    "director": "Christopher Nolan",
+    "imdbId": "tt24735934"
+  },
+  "164a53f4": {
+    "found": true,
+    "title": "O Brother, Where Art Thou?",
+    "director": "Joel Coen, Ethan Coen",
+    "imdbId": "tt0190590"
+  },
+  "4baf175e": {
+    "found": true,
+    "title": "Donnie Darko",
+    "director": "Richard Kelly",
+    "imdbId": "tt0246578"
+  },
+  "ca2a2e15": {
+    "found": true,
+    "title": "A.I. Artificial Intelligence",
+    "director": "Steven Spielberg",
+    "imdbId": "tt0212720"
+  },
+  "b8b2c195": {
+    "found": true,
+    "title": "Vanilla Sky",
+    "director": "Cameron Crowe",
+    "imdbId": "tt0259711"
+  },
+  "1fa840ff": {
+    "found": true,
+    "title": "Kill Bill: Vol. 1",
+    "director": "Quentin Tarantino",
+    "imdbId": "tt0266697"
+  },
+  "1fa84100": {
+    "found": true,
+    "title": "Kill Bill: Vol. 2",
+    "director": "Quentin Tarantino",
+    "imdbId": "tt0378194"
+  },
+  "3a063ccb": {
+    "found": true,
+    "title": "Garden State",
+    "director": "Zach Braff",
+    "imdbId": "tt0333766"
+  },
+  "bff4eaaa": {
+    "found": true,
+    "title": "Eternal Sunshine of the Spotless Mind",
+    "director": "Michel Gondry",
+    "imdbId": "tt0338013"
+  },
+  "28d42eec": {
+    "found": true,
+    "title": "The Man from Earth",
+    "director": "Richard Schenkman",
+    "imdbId": "tt0756683"
+  },
+  "9f8649fc": {
+    "found": true,
+    "title": "WALL-E",
+    "director": "Andrew Stanton",
+    "imdbId": "tt0910970"
+  },
+  "6f3d4fc3": {
+    "found": true,
+    "title": "Moon",
+    "director": "Duncan Jones",
+    "imdbId": "tt1182345"
+  },
+  "d719358": {
+    "found": true,
+    "title": "District 9",
+    "director": "Neill Blomkamp",
+    "imdbId": "tt1136608"
+  },
+  "b055b8eb": {
+    "found": true,
+    "title": "Hanna",
+    "director": "Joe Wright",
+    "imdbId": "tt0993842"
+  },
+  "ce5a0896": {
+    "found": true,
+    "title": "Source Code",
+    "director": "Duncan Jones",
+    "imdbId": "tt0945513"
+  },
+  "630aca47": {
+    "found": true,
+    "title": "John Wick",
+    "director": "Chad Stahelski",
+    "imdbId": "tt2911666"
+  },
+  "2c19e4fa": {
+    "found": true,
+    "title": "John Wick: Chapter 2",
+    "director": "Chad Stahelski",
+    "imdbId": "tt4425200"
+  },
+  "efc914b3": {
+    "found": true,
+    "title": "John Wick: Chapter 3 – Parabellum",
+    "director": "Chad Stahelski",
+    "imdbId": "tt6146586"
+  },
+  "15d56b32": {
+    "found": true,
+    "title": "The Map of Tiny Perfect Things",
+    "director": "Ian Samuels",
+    "imdbId": "tt11080108"
+  },
+  "2c19e4fc": {
+    "found": true,
+    "title": "John Wick: Chapter 4",
+    "director": "Chad Stahelski",
+    "imdbId": "tt10366206"
+  }
+}

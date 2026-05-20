@@ -1,5 +1,21 @@
 import Link from "next/link";
 import { movies } from "@/lib/movies";
+import postersManifest from "@/../public/posters/manifest.json";
+
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function posterFileSlug(director: string, title: string): string {
+  let h = 5381;
+  const s = director + "///" + title;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+  return h.toString(16);
+}
+function realPosterUrlForHero(director: string, title: string): string | null {
+  const slug = posterFileSlug(director, title);
+  const m = postersManifest as Record<string, { found: boolean }>;
+  if (m[slug]?.found) return `${BASE_PATH}/posters/${slug}.jpg`;
+  return null;
+}
 
 function djb2(s: string): number {
   let h = 5381;
@@ -15,12 +31,14 @@ type MarqueeItem = {
   director: string;
   title: string;
   slug: string;
+  poster: string | null;
 };
 
 const marqueeItems: MarqueeItem[] = movies.map((m) => ({
   director: m.director,
   title: m.title,
   slug: movieSlug(m.director, m.title),
+  poster: realPosterUrlForHero(m.director, m.title),
 }));
 
 const marqueeTrack: MarqueeItem[] = [...marqueeItems, ...marqueeItems];
@@ -36,18 +54,24 @@ export default function Hero() {
               href={`/movie/${item.slug}`}
               aria-label={`${item.title} (${item.director})`}
               title={`${item.title} — ${item.director}`}
-              className="shrink-0 group inline-flex items-center gap-2 px-3 py-1 border border-paper/10 bg-paper/5
-                transition hover:border-accent hover:bg-paper/10"
+              className="shrink-0 group block"
             >
-              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-paper/45">
-                {item.director
-                  .replace(/^(The|A|An)\s+/i, "")
-                  .slice(0, 2)
-                  .toUpperCase()}
-              </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-paper/80 whitespace-nowrap">
-                {item.title}
-              </span>
+              {item.poster ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={item.poster}
+                  alt=""
+                  className="h-12 w-8 object-cover border border-paper/10 transition group-hover:border-accent group-hover:scale-105"
+                  loading="lazy"
+                />
+              ) : (
+                <span
+                  className="inline-flex h-12 w-8 items-center justify-center bg-paper/5 border border-paper/15
+                    font-mono text-[10px] uppercase tracking-[0.18em] text-paper/55 transition group-hover:border-accent"
+                >
+                  {item.director.replace(/^(The|A|An)\s+/i, "").slice(0, 2).toUpperCase()}
+                </span>
+              )}
             </Link>
           ))}
         </div>
@@ -57,7 +81,7 @@ export default function Hero() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
           <div className="min-w-0">
             <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">
-              Must See &nbsp;/&nbsp; Peter Chletsos
+              Must See &nbsp;/&nbsp; Pete Chletsos
             </p>
             <h1 className="serif mt-1 text-2xl leading-tight text-paper sm:text-3xl md:text-4xl font-light">
               It's not what you look at{" "}
@@ -69,7 +93,7 @@ export default function Hero() {
               It's what you see.  — Henry David Thoreau
             </p>
             <p className="serif mt-1 text-xs text-paper/45 leading-snug max-w-md">
-              Peter Chletsos's list of must-see movies. In no particular order — and the list is fluid.
+              Pete Chletsos's list of must-see movies. In no particular order — and the list is fluid.
             </p>
           </div>
         </div>

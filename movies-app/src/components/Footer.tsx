@@ -17,7 +17,7 @@ export default function Footer() {
               What awesome music looks like.
             </p>
             <p className="serif mt-2 text-sm text-paper/40">
-              Curated by Peter Chletsos
+              Curated by Pete Chletsos
             </p>
           </div>
 

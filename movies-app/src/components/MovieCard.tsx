@@ -3,6 +3,23 @@
 import { useEffect, useState } from "react";
 import { movies, type CanonMovie } from "@/lib/movies";
 import { useLikes } from "@/lib/likes";
+import postersManifest from "@/../public/posters/manifest.json";
+
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function posterSlug(director: string, title: string): string {
+  let h = 5381;
+  const s = director + "///" + title;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+  return h.toString(16);
+}
+
+function realPosterUrl(director: string, title: string): string | null {
+  const slug = posterSlug(director, title);
+  const m = postersManifest as Record<string, { found: boolean }>;
+  if (m[slug]?.found) return `${BASE_PATH}/posters/${slug}.jpg`;
+  return null;
+}
 
 function imdbSearchUrl(title: string, year: number) {
   return `https://www.imdb.com/find/?q=${encodeURIComponent(`${title} ${year}`)}&s=tt`;
@@ -128,7 +145,15 @@ function MovieDetailModal({ movie, onClose }: { movie: CanonMovie; onClose: () =
 
         <div className="grid gap-8 px-5 py-6 sm:px-8 sm:py-8 md:grid-cols-[280px_1fr] md:gap-10">
           <div className="aspect-[2/3] overflow-hidden border border-paper/10 shadow-xl">
-            <ProceduralPoster director={movie.director} title={movie.title} />
+            {(() => {
+              const real = realPosterUrl(movie.director, movie.title);
+              return real ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={real} alt={`${movie.title} poster`} className="h-full w-full object-cover" />
+              ) : (
+                <ProceduralPoster director={movie.director} title={movie.title} />
+              );
+            })()}
           </div>
 
           <div className="flex flex-col gap-5">
@@ -143,7 +168,7 @@ function MovieDetailModal({ movie, onClose }: { movie: CanonMovie; onClose: () =
 
             <blockquote className="border-l-2 border-accent pl-5">
               <p className="serif text-base italic leading-relaxed text-paper/85 sm:text-lg">{movie.note}</p>
-              <footer className="mt-3 font-mono text-[9px] uppercase tracking-[0.28em] text-paper/40">— Peter Chletsos, curator</footer>
+              <footer className="mt-3 font-mono text-[9px] uppercase tracking-[0.28em] text-paper/40">— Pete Chletsos, curator</footer>
             </blockquote>
 
             <div className="flex flex-wrap gap-3">
@@ -203,7 +228,15 @@ export default function MovieCard({
           style={{ borderRadius: "2px" }}
         >
           <div className="film-card-cover h-full w-full">
-            <ProceduralPoster director={movie.director} title={movie.title} />
+            {(() => {
+              const real = realPosterUrl(movie.director, movie.title);
+              return real ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={real} alt={`${movie.title} poster`} className="h-full w-full object-cover" />
+              ) : (
+                <ProceduralPoster director={movie.director} title={movie.title} />
+              );
+            })()}
           </div>
 
           <span

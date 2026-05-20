@@ -27,7 +27,7 @@ const HUB: HubCard[] = [
     href: "/blink",
     title: "Blink",
     blurb:
-      "Peter wished he could have added the 17 DVDs from Doctor Who's 'Blink' but didn't know the titles. Here they are.",
+      "Pete wished he could have added the 17 DVDs from Doctor Who's 'Blink' but didn't know the titles. Here they are.",
     glyph: "17 DVDs · 1965 → 1989 · classic Who",
   },
   {
@@ -35,7 +35,7 @@ const HUB: HubCard[] = [
     href: "/submit",
     title: "Submit a Movie",
     blurb:
-      "Pitch a film for the list. Snowflake Cortex returns a verdict — usually no, always with a reason rooted in what's already on Peter's shelf.",
+      "Pitch a film for the list. Snowflake Cortex returns a verdict — usually no, always with a reason rooted in what's already on Pete's shelf.",
     glyph: "→ politely rejected",
   },
   {

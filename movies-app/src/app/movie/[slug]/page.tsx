@@ -3,6 +3,23 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { movies } from "@/lib/movies";
 import { movieSlug, findMovieBySlug, allMovieSlugs } from "@/lib/movie-slug";
+import postersManifest from "@/../public/posters/manifest.json";
+
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function posterFileSlug(director: string, title: string): string {
+  let h = 5381;
+  const s = director + "///" + title;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+  return h.toString(16);
+}
+
+function realPosterUrl(director: string, title: string): string | null {
+  const slug = posterFileSlug(director, title);
+  const m = postersManifest as Record<string, { found: boolean }>;
+  if (m[slug]?.found) return `${BASE_PATH}/posters/${slug}.jpg`;
+  return null;
+}
 
 export function generateStaticParams() {
   return allMovieSlugs().map((slug) => ({ slug }));
@@ -85,7 +102,15 @@ export default function MoviePage({ params }: Props) {
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[300px_1fr] md:gap-12">
           <div className="flex flex-col gap-4">
             <div className="aspect-[2/3] overflow-hidden border border-paper/10 shadow-2xl">
-              <ProceduralPoster director={movie.director} title={movie.title} />
+              {(() => {
+                const real = realPosterUrl(movie.director, movie.title);
+                return real ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={real} alt={`${movie.title} poster`} className="h-full w-full object-cover" />
+                ) : (
+                  <ProceduralPoster director={movie.director} title={movie.title} />
+                );
+              })()}
             </div>
             <div className="flex flex-wrap gap-3">
               <a href={imdbSearchUrl(movie.title, movie.year)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink transition hover:bg-paper focus:outline-none focus:ring-2 focus:ring-accent/40">
@@ -107,7 +132,7 @@ export default function MoviePage({ params }: Props) {
 
             <blockquote className="mt-8 border-l-2 border-accent pl-5">
               <p className="serif text-lg italic leading-relaxed text-paper/90 sm:text-xl">{movie.note}</p>
-              <footer className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-paper/45">— Peter Chletsos, curator</footer>
+              <footer className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-paper/45">— Pete Chletsos, curator</footer>
             </blockquote>
           </div>
         </div>

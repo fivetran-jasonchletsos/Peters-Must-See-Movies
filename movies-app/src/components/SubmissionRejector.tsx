@@ -263,7 +263,7 @@ export default function SubmissionRejector() {
               </p>
             </blockquote>
             <p className="mt-auto pt-6 font-mono text-[9px] uppercase tracking-[0.28em] text-paper/35">
-              Powered by Snowflake Cortex · Curated by Peter Chletsos
+              Powered by Snowflake Cortex · Curated by Pete Chletsos
             </p>
           </>
         ) : (
