@@ -14,10 +14,10 @@ export default function Footer() {
               Must See &middot; Volume 1
             </p>
             <p className="serif text-2xl font-light text-paper/80 leading-snug max-w-xs italic">
-              What awesome music looks like.
+              It's not what you look at that matters; it's what you see.
             </p>
             <p className="serif mt-2 text-sm text-paper/40">
-              Curated by Pete Chletsos
+              Curated by Pete Chletsos · — Henry David Thoreau
             </p>
           </div>
 
@@ -26,7 +26,7 @@ export default function Footer() {
             aria-label="Footer navigation"
           >
             <a
-              href="https://github.com/fivetran-jasonchletsos/LinerNotes-ODI-Demo"
+              href="https://github.com/fivetran-jasonchletsos/Peters-Must-See-Movies"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-[10px] uppercase tracking-[0.25em] text-paper/35
@@ -35,13 +35,13 @@ export default function Footer() {
               GitHub
             </a>
             <a
-              href="https://developer.spotify.com"
+              href="https://www.omdbapi.com"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-[10px] uppercase tracking-[0.25em] text-paper/35
                 transition hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40"
             >
-              TMDB for Developers
+              OMDB API
             </a>
             <a
               href="https://www.fivetran.com"

@@ -6,6 +6,7 @@ import { movies, type CanonMovie } from "@/lib/movies";
 import MovieCard, { type CardSize } from "./MovieCard";
 import GroupMarker from "./DecadeMarker";
 import PullQuote from "./PullQuote";
+import MovieTimeline from "./MovieTimeline";
 
 type SortMode = "year" | "director";
 
@@ -74,19 +75,18 @@ type GridItem =
   | { type: "film"; movie: CanonMovie }
   | { type: "pullquote"; quote: string; attribution: string };
 
-function interleave(films: CanonMovie[]): GridItem[] {
+function interleave(films: CanonMovie[], startQuoteIdx: number): { items: GridItem[]; nextQuoteIdx: number } {
   const INTERVAL = 13;
   const result: GridItem[] = [];
-  let quoteIdx = 0;
+  let quoteIdx = startQuoteIdx;
   for (let i = 0; i < films.length; i++) {
-    // Insert pull quote after every INTERVAL films (not at position 0)
     if (i > 0 && i % INTERVAL === 0 && quoteIdx < PULL_QUOTES.length) {
       result.push({ type: "pullquote", ...PULL_QUOTES[quoteIdx] });
       quoteIdx++;
     }
     result.push({ type: "film", movie: films[i] });
   }
-  return result;
+  return { items: result, nextQuoteIdx: quoteIdx };
 }
 
 const GRID_CLASS_BY_SIZE: Record<CardSize, string> = {
@@ -201,6 +201,11 @@ export default function MovieExplorer() {
 
   return (
     <div className="relative">
+      {/* Timeline — first thing in the list, click to filter by year */}
+      <div className="mb-8 pb-6 border-b border-paper/10">
+        <MovieTimeline />
+      </div>
+
       {/* Controls */}
       <div className="mb-8 flex flex-col gap-4 border-b border-paper/10 pb-6 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-wrap items-center gap-3">
@@ -339,10 +344,12 @@ export default function MovieExplorer() {
       ) : (
         /* Default view: grouped by decade/alpha with pull quotes after every 13 records */
         <div>
-          {grouped.map((group) => {
-            const groupItems = interleave(group.films);
-            // Only show pull quotes in the first group to avoid repetition
-            return (
+          {(() => {
+            let quoteIdx = 0;
+            return grouped.map((group) => {
+              const { items: groupItems, nextQuoteIdx } = interleave(group.films, quoteIdx);
+              quoteIdx = nextQuoteIdx;
+              return (
               <div key={group.id}>
                 <div className={GRID_CLASS_BY_SIZE[size]}>
                   <GroupMarker
@@ -368,7 +375,8 @@ export default function MovieExplorer() {
                 </div>
               </div>
             );
-          })}
+            });
+          })()}
         </div>
       )}
 

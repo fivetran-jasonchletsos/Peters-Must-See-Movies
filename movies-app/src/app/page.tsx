@@ -3,7 +3,6 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import MovieExplorer from "@/components/MovieExplorer";
-import MovieTimeline from "@/components/MovieTimeline";
 import { movies } from "@/lib/movies";
 
 type HubCard = {
@@ -67,20 +66,12 @@ export default function Home() {
       <Section
         number="01"
         title="The List"
-        blurb={`${total} films, ordered chronologically. In no particular order — and the list is fluid.`}
+        blurb={`${total} films. Use the timeline to pick a year, or scroll the list.`}
       >
         <div id="canon" />
         <Suspense fallback={<p className="serif text-paper/40">Loading…</p>}>
           <MovieExplorer />
         </Suspense>
-      </Section>
-
-      <Section
-        number="·"
-        title="Across time"
-        blurb="Every film, placed by year. Click a decade or a film."
-      >
-        <MovieTimeline />
       </Section>
 
       <Section
