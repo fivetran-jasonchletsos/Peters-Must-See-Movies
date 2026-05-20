@@ -94,20 +94,13 @@ export function computeliststats(): liststatsData {
     .sort((a, b) => b.gap - a.gap)
     .slice(0, 5);
 
-  // ---- Coen Brothers family ----
-  const wuArtists = new Set([
-    "Coen Brothers Clan",
-    "GZA",
-    "Raekwon",
-    "Method Man",
-    "Ghostface Killah",
-  ]);
-  const coenFilms = movies
-    .filter((a) => wuArtists.has(a.director))
+  // ---- The John Wick saga — most-represented director on the list ----
+  const wickFilms = movies
+    .filter((a) => a.director === "Chad Stahelski")
     .sort((a, b) => a.year - b.year);
   const wu = {
-    count: coenFilms.length,
-    films: coenFilms.map(({ director, title, year }) => ({ director, title, year })),
+    count: wickFilms.length,
+    films: wickFilms.map(({ director, title, year }) => ({ director, title, year })),
   };
 
   // ---- Curator eras (thirds by year, sorted) ----
@@ -179,19 +172,18 @@ export default function MovieStats() {
       {/* ------------------------------------------------------------------ */}
       {/* Section A: Headline numbers — giant serif number + stats column     */}
       {/* ------------------------------------------------------------------ */}
-      <Section number="02" title="By the Numbers" blurb="What a life's worth of curation looks like, quantified.">
+      <Section number="02" title="By the Numbers" blurb="Pete's list, quantified.">
         <div className="flex flex-col gap-0 lg:flex-row lg:items-stretch">
-          {/* Giant number — takes up dominant visual space */}
           <div className="flex items-center justify-center border border-ink/8 bg-ink/[0.03] p-10 lg:flex-1 lg:p-16">
             <div className="text-center">
               <p
                 className="serif leading-none text-ink select-none"
                 style={{ fontSize: "clamp(6rem, 20vw, 14rem)", fontWeight: 300 }}
-                aria-label={`${totalAlbums} films in the list`}
+                aria-label={`${totalAlbums} films on the list`}
               >
                 {totalAlbums}
               </p>
-              <p className={`${MUTED} mt-3`}>records in the list</p>
+              <p className={`${MUTED} mt-3`}>films on the list</p>
             </div>
           </div>
 
@@ -265,7 +257,7 @@ export default function MovieStats() {
       <Section
         number="&#x00B7;"
         title="Most Represented"
-        blurb="Artists with more than one entry. Click an director to filter the list."
+        blurb="Directors with more than one entry. Click any director to filter the list."
       >
         <div className="space-y-1">
           {stats.topArtists.map(({ director, count, pct }) => (
@@ -335,17 +327,16 @@ export default function MovieStats() {
       {/* ------------------------------------------------------------------ */}
       <Section
         number="&#x00B7;"
-        title="Most Wu of Em All"
-        blurb="Coen Brothers Clan, GZA, Raekwon, Method Man, and Ghostface Killah — counted as one extended family."
+        title="The John Wick Saga"
+        blurb="Chad Stahelski's Wick chapters — the most-represented director on the list."
       >
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
           <div className="shrink-0">
-            <p className={KICKER}>Coen Brothers family entries</p>
-            {/* The count number is the clickable callout */}
+            <p className={KICKER}>Wick chapters</p>
             <Link
-              href="/?q=Wu#movies"
+              href="/?q=John%20Wick#movies"
               className="group/wu block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded-sm"
-              aria-label={`Browse ${stats.wu.count} Coen Brothers family entries in the list`}
+              aria-label={`Browse the ${stats.wu.count} John Wick films`}
             >
               <p
                 className="serif mt-2 text-accent leading-none transition-opacity hover:opacity-80"
@@ -385,7 +376,7 @@ export default function MovieStats() {
       <Section
         number="&#x00B7;"
         title="Curator's Eras"
-        blurb="the list split into three equal thirds by year. Each era's signature film is the median entry of that bucket."
+        blurb="The list split into three equal thirds by year. Each era's signature film is the median entry of that bucket."
       >
         <div className="grid grid-cols-1 gap-px bg-ink/10 md:grid-cols-3">
           {stats.eras.map(({ label, startYear, endYear, count, pct, signature }) => (
