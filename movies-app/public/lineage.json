@@ -1,0 +1,395 @@
+{
+  "generated_at": "2026-05-20T16:11:25Z",
+  "nodes": [
+    {
+      "id": "agg_top_artists_by_window",
+      "type": "mart",
+      "layer": "listening",
+      "depends_on": [
+        "stg_spotify__top_artists",
+        "dim_artists"
+      ]
+    },
+    {
+      "id": "agg_top_tracks_by_window",
+      "type": "mart",
+      "layer": "listening",
+      "depends_on": [
+        "stg_spotify__top_tracks"
+      ]
+    },
+    {
+      "id": "canon_albums",
+      "type": "seed",
+      "layer": "seed",
+      "depends_on": []
+    },
+    {
+      "id": "canon_vs_listening",
+      "type": "mart",
+      "layer": "curation",
+      "depends_on": [
+        "canon_albums",
+        "dim_albums",
+        "fct_plays",
+        "stg_spotify__top_tracks",
+        "fct_plays"
+      ]
+    },
+    {
+      "id": "decade_distribution",
+      "type": "mart",
+      "layer": "curation",
+      "depends_on": [
+        "fct_plays",
+        "canon_albums"
+      ]
+    },
+    {
+      "id": "dim_albums",
+      "type": "mart",
+      "layer": "core",
+      "depends_on": [
+        "stg_mb__releases",
+        "stg_spotify__saved_albums",
+        "canon_albums"
+      ]
+    },
+    {
+      "id": "dim_artists",
+      "type": "mart",
+      "layer": "core",
+      "depends_on": [
+        "stg_mb__artists",
+        "stg_spotify__top_artists"
+      ]
+    },
+    {
+      "id": "dim_tracks",
+      "type": "mart",
+      "layer": "core",
+      "depends_on": [
+        "stg_mb__recordings",
+        "dim_albums",
+        "dim_artists"
+      ]
+    },
+    {
+      "id": "discoveries",
+      "type": "mart",
+      "layer": "curation",
+      "depends_on": [
+        "stg_spotify__top_artists",
+        "canon_albums"
+      ]
+    },
+    {
+      "id": "fct_plays",
+      "type": "mart",
+      "layer": "listening",
+      "depends_on": [
+        "stg_spotify__recently_played",
+        "dim_tracks",
+        "dim_albums"
+      ]
+    },
+    {
+      "id": "raw_mb.artists",
+      "type": "source",
+      "layer": "source",
+      "schema": "raw_mb",
+      "table": "artists",
+      "depends_on": []
+    },
+    {
+      "id": "raw_mb.recordings",
+      "type": "source",
+      "layer": "source",
+      "schema": "raw_mb",
+      "table": "recordings",
+      "depends_on": []
+    },
+    {
+      "id": "raw_mb.releases",
+      "type": "source",
+      "layer": "source",
+      "schema": "raw_mb",
+      "table": "releases",
+      "depends_on": []
+    },
+    {
+      "id": "raw_spotify.recently_played",
+      "type": "source",
+      "layer": "source",
+      "schema": "raw_spotify",
+      "table": "recently_played",
+      "depends_on": []
+    },
+    {
+      "id": "raw_spotify.saved_albums",
+      "type": "source",
+      "layer": "source",
+      "schema": "raw_spotify",
+      "table": "saved_albums",
+      "depends_on": []
+    },
+    {
+      "id": "raw_spotify.top_artists_long_term",
+      "type": "source",
+      "layer": "source",
+      "schema": "raw_spotify",
+      "table": "top_artists_long_term",
+      "depends_on": []
+    },
+    {
+      "id": "raw_spotify.top_artists_medium_term",
+      "type": "source",
+      "layer": "source",
+      "schema": "raw_spotify",
+      "table": "top_artists_medium_term",
+      "depends_on": []
+    },
+    {
+      "id": "raw_spotify.top_artists_short_term",
+      "type": "source",
+      "layer": "source",
+      "schema": "raw_spotify",
+      "table": "top_artists_short_term",
+      "depends_on": []
+    },
+    {
+      "id": "raw_spotify.top_tracks_long_term",
+      "type": "source",
+      "layer": "source",
+      "schema": "raw_spotify",
+      "table": "top_tracks_long_term",
+      "depends_on": []
+    },
+    {
+      "id": "raw_spotify.top_tracks_medium_term",
+      "type": "source",
+      "layer": "source",
+      "schema": "raw_spotify",
+      "table": "top_tracks_medium_term",
+      "depends_on": []
+    },
+    {
+      "id": "raw_spotify.top_tracks_short_term",
+      "type": "source",
+      "layer": "source",
+      "schema": "raw_spotify",
+      "table": "top_tracks_short_term",
+      "depends_on": []
+    },
+    {
+      "id": "stg_mb__artists",
+      "type": "staging",
+      "layer": "staging",
+      "depends_on": [
+        "raw_mb.artists"
+      ]
+    },
+    {
+      "id": "stg_mb__recordings",
+      "type": "staging",
+      "layer": "staging",
+      "depends_on": [
+        "raw_mb.recordings"
+      ]
+    },
+    {
+      "id": "stg_mb__releases",
+      "type": "staging",
+      "layer": "staging",
+      "depends_on": [
+        "raw_mb.releases"
+      ]
+    },
+    {
+      "id": "stg_spotify__recently_played",
+      "type": "staging",
+      "layer": "staging",
+      "depends_on": [
+        "raw_spotify.recently_played"
+      ]
+    },
+    {
+      "id": "stg_spotify__saved_albums",
+      "type": "staging",
+      "layer": "staging",
+      "depends_on": [
+        "raw_spotify.saved_albums"
+      ]
+    },
+    {
+      "id": "stg_spotify__top_artists",
+      "type": "staging",
+      "layer": "staging",
+      "depends_on": [
+        "raw_spotify.top_artists_short_term",
+        "raw_spotify.top_artists_medium_term",
+        "raw_spotify.top_artists_long_term"
+      ]
+    },
+    {
+      "id": "stg_spotify__top_tracks",
+      "type": "staging",
+      "layer": "staging",
+      "depends_on": [
+        "raw_spotify.top_tracks_short_term",
+        "raw_spotify.top_tracks_medium_term",
+        "raw_spotify.top_tracks_long_term"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "canon_albums",
+      "to": "canon_vs_listening"
+    },
+    {
+      "from": "canon_albums",
+      "to": "decade_distribution"
+    },
+    {
+      "from": "canon_albums",
+      "to": "dim_albums"
+    },
+    {
+      "from": "canon_albums",
+      "to": "discoveries"
+    },
+    {
+      "from": "dim_albums",
+      "to": "canon_vs_listening"
+    },
+    {
+      "from": "dim_albums",
+      "to": "dim_tracks"
+    },
+    {
+      "from": "dim_albums",
+      "to": "fct_plays"
+    },
+    {
+      "from": "dim_artists",
+      "to": "agg_top_artists_by_window"
+    },
+    {
+      "from": "dim_artists",
+      "to": "dim_tracks"
+    },
+    {
+      "from": "dim_tracks",
+      "to": "fct_plays"
+    },
+    {
+      "from": "fct_plays",
+      "to": "canon_vs_listening"
+    },
+    {
+      "from": "fct_plays",
+      "to": "decade_distribution"
+    },
+    {
+      "from": "raw_mb.artists",
+      "to": "stg_mb__artists"
+    },
+    {
+      "from": "raw_mb.recordings",
+      "to": "stg_mb__recordings"
+    },
+    {
+      "from": "raw_mb.releases",
+      "to": "stg_mb__releases"
+    },
+    {
+      "from": "raw_spotify.recently_played",
+      "to": "stg_spotify__recently_played"
+    },
+    {
+      "from": "raw_spotify.saved_albums",
+      "to": "stg_spotify__saved_albums"
+    },
+    {
+      "from": "raw_spotify.top_artists_long_term",
+      "to": "stg_spotify__top_artists"
+    },
+    {
+      "from": "raw_spotify.top_artists_medium_term",
+      "to": "stg_spotify__top_artists"
+    },
+    {
+      "from": "raw_spotify.top_artists_short_term",
+      "to": "stg_spotify__top_artists"
+    },
+    {
+      "from": "raw_spotify.top_tracks_long_term",
+      "to": "stg_spotify__top_tracks"
+    },
+    {
+      "from": "raw_spotify.top_tracks_medium_term",
+      "to": "stg_spotify__top_tracks"
+    },
+    {
+      "from": "raw_spotify.top_tracks_short_term",
+      "to": "stg_spotify__top_tracks"
+    },
+    {
+      "from": "stg_mb__artists",
+      "to": "dim_artists"
+    },
+    {
+      "from": "stg_mb__recordings",
+      "to": "dim_tracks"
+    },
+    {
+      "from": "stg_mb__releases",
+      "to": "dim_albums"
+    },
+    {
+      "from": "stg_spotify__recently_played",
+      "to": "fct_plays"
+    },
+    {
+      "from": "stg_spotify__saved_albums",
+      "to": "dim_albums"
+    },
+    {
+      "from": "stg_spotify__top_artists",
+      "to": "agg_top_artists_by_window"
+    },
+    {
+      "from": "stg_spotify__top_artists",
+      "to": "dim_artists"
+    },
+    {
+      "from": "stg_spotify__top_artists",
+      "to": "discoveries"
+    },
+    {
+      "from": "stg_spotify__top_tracks",
+      "to": "agg_top_tracks_by_window"
+    },
+    {
+      "from": "stg_spotify__top_tracks",
+      "to": "canon_vs_listening"
+    }
+  ],
+  "exposures": [
+    {
+      "id": "liner_notes_site",
+      "type": "application",
+      "depends_on": [
+        "dim_albums",
+        "dim_artists",
+        "fct_plays",
+        "canon_vs_listening",
+        "decade_distribution",
+        "discoveries",
+        "agg_top_artists_by_window",
+        "agg_top_tracks_by_window"
+      ]
+    }
+  ]
+}

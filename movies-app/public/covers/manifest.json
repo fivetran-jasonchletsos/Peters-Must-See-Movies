@@ -1,0 +1,629 @@
+{
+  "258265": {
+    "found": true,
+    "artist": "Animal Collective",
+    "title": "Merriweather Post Pavilion"
+  },
+  "1273468": {
+    "found": true,
+    "artist": "Tool",
+    "title": "Undertow"
+  },
+  "40702711": {
+    "found": true,
+    "artist": "Interpol",
+    "title": "Turn On the Bright Lights"
+  },
+  "e4ed2dcb": {
+    "found": true,
+    "artist": "The Kinks",
+    "title": "Lola Versus Powerman and the Moneygoround, Part One"
+  },
+  "d6270907": {
+    "found": true,
+    "artist": "Harry Nilsson",
+    "title": "Nilsson Schmilsson"
+  },
+  "1121cbc9": {
+    "found": true,
+    "artist": "The Kinks",
+    "title": "Muswell Hillbillies"
+  },
+  "7b2b27b2": {
+    "found": true,
+    "artist": "Jethro Tull",
+    "title": "Thick as a Brick"
+  },
+  "ad9eab4d": {
+    "found": true,
+    "artist": "Joy Division",
+    "title": "Unknown Pleasures"
+  },
+  "1473e231": {
+    "found": true,
+    "artist": "Joy Division",
+    "title": "Closer"
+  },
+  "c00f5586": {
+    "found": true,
+    "artist": "The Cure",
+    "title": "Disintegration"
+  },
+  "dc58847": {
+    "found": false,
+    "artist": "Guns N' Roses",
+    "title": "Appetite for Destruction",
+    "skip": true,
+    "note": "Original 1987 cover is NSFW; falls back to procedural."
+  },
+  "d336150b": {
+    "found": true,
+    "artist": "Guns N' Roses",
+    "title": "G N' R Lies"
+  },
+  "8efec944": {
+    "found": true,
+    "artist": "Guns N' Roses",
+    "title": "Use Your Illusion I"
+  },
+  "6ed7f20d": {
+    "found": true,
+    "artist": "Guns N' Roses",
+    "title": "Use Your Illusion II"
+  },
+  "f521f61e": {
+    "found": true,
+    "artist": "The Stone Roses",
+    "title": "The Stone Roses"
+  },
+  "61854de4": {
+    "found": true,
+    "artist": "Public Enemy",
+    "title": "Fear of a Black Planet"
+  },
+  "13b827b": {
+    "found": true,
+    "artist": "Alice in Chains",
+    "title": "Facelift"
+  },
+  "c256565": {
+    "found": true,
+    "artist": "Pearl Jam",
+    "title": "Ten"
+  },
+  "3dcff655": {
+    "found": true,
+    "artist": "NOFX",
+    "title": "Ribbed"
+  },
+  "f80cf8cc": {
+    "found": true,
+    "artist": "Tori Amos",
+    "title": "Little Earthquakes"
+  },
+  "2f0fd085": {
+    "found": true,
+    "artist": "Nirvana",
+    "title": "Incesticide"
+  },
+  "73a1f9d5": {
+    "found": true,
+    "artist": "Faith No More",
+    "title": "Angel Dust"
+  },
+  "369ac290": {
+    "found": true,
+    "artist": "Alice in Chains",
+    "title": "Dirt"
+  },
+  "af7ea207": {
+    "found": true,
+    "artist": "NOFX",
+    "title": "White Trash, Two Heebs and a Bean"
+  },
+  "9c86c6f0": {
+    "found": true,
+    "artist": "Various Artists",
+    "title": "Singles (Original Motion Picture Soundtrack)"
+  },
+  "e084a2d4": {
+    "found": true,
+    "artist": "Wu-Tang Clan",
+    "title": "Enter the Wu-Tang (36 Chambers)"
+  },
+  "fe9d1698": {
+    "found": true,
+    "artist": "A Tribe Called Quest",
+    "title": "Midnight Marauders"
+  },
+  "51c03907": {
+    "found": true,
+    "artist": "Nirvana",
+    "title": "In Utero"
+  },
+  "e272b493": {
+    "found": true,
+    "artist": "Various Artists",
+    "title": "Judgment Night (Original Motion Picture Soundtrack)"
+  },
+  "ae7c88f7": {
+    "found": true,
+    "artist": "Various Artists",
+    "title": "The Crow (Original Motion Picture Soundtrack)"
+  },
+  "70c769d1": {
+    "found": true,
+    "artist": "Tori Amos",
+    "title": "Under the Pink"
+  },
+  "3f50036d": {
+    "found": true,
+    "artist": "Lagwagon",
+    "title": "Trashed"
+  },
+  "2afe38de": {
+    "found": true,
+    "artist": "GZA",
+    "title": "Liquid Swords"
+  },
+  "a55d18d": {
+    "found": true,
+    "artist": "Raekwon",
+    "title": "Only Built 4 Cuban Linx..."
+  },
+  "944cb11d": {
+    "found": true,
+    "artist": "Blind Melon",
+    "title": "Soup"
+  },
+  "bec7a715": {
+    "found": true,
+    "artist": "Neutral Milk Hotel",
+    "title": "On Avery Island"
+  },
+  "5d0fc66a": {
+    "found": true,
+    "artist": "Tori Amos",
+    "title": "Boys for Pele"
+  },
+  "728166f2": {
+    "found": true,
+    "artist": "DJ Shadow",
+    "title": "Endtroducing....."
+  },
+  "12882fca": {
+    "found": true,
+    "artist": "Björk",
+    "title": "Homogenic"
+  },
+  "97c578bb": {
+    "found": true,
+    "artist": "Neutral Milk Hotel",
+    "title": "In the Aeroplane Over the Sea"
+  },
+  "59566ae4": {
+    "found": true,
+    "artist": "Black Star",
+    "title": "Mos Def & Talib Kweli Are Black Star"
+  },
+  "518d8975": {
+    "found": true,
+    "artist": "Lauryn Hill",
+    "title": "The Miseducation of Lauryn Hill"
+  },
+  "6554d5b3": {
+    "found": true,
+    "artist": "Massive Attack",
+    "title": "Mezzanine"
+  },
+  "33c334bd": {
+    "found": true,
+    "artist": "Air",
+    "title": "Moon Safari"
+  },
+  "7999d525": {
+    "found": false,
+    "artist": "The Flaming Lips",
+    "title": "The Soft Bulletin"
+  },
+  "9534cca3": {
+    "found": true,
+    "artist": "Wilco",
+    "title": "Summerteeth"
+  },
+  "8e8ec401": {
+    "found": true,
+    "artist": "Modest Mouse",
+    "title": "The Moon & Antarctica"
+  },
+  "1edd752c": {
+    "found": true,
+    "artist": "Radiohead",
+    "title": "Kid A"
+  },
+  "e856968c": {
+    "found": true,
+    "artist": "The Avalanches",
+    "title": "Since I Left You"
+  },
+  "9ac86f87": {
+    "found": true,
+    "artist": "Daft Punk",
+    "title": "Discovery"
+  },
+  "e20f2236": {
+    "found": true,
+    "artist": "Björk",
+    "title": "Vespertine"
+  },
+  "356698b3": {
+    "found": true,
+    "artist": "Jay-Z",
+    "title": "The Blueprint"
+  },
+  "1e291be2": {
+    "found": true,
+    "artist": "The White Stripes",
+    "title": "White Blood Cells"
+  },
+  "570d1dbf": {
+    "found": true,
+    "artist": "Wilco",
+    "title": "Yankee Hotel Foxtrot"
+  },
+  "44fd2b06": {
+    "found": true,
+    "artist": "The Flaming Lips",
+    "title": "Yoshimi Battles the Pink Robots"
+  },
+  "d13fb656": {
+    "found": true,
+    "artist": "TV on the Radio",
+    "title": "Young Liars"
+  },
+  "6d44e746": {
+    "found": true,
+    "artist": "Yeah Yeah Yeahs",
+    "title": "Fever to Tell"
+  },
+  "f433b64c": {
+    "found": true,
+    "artist": "Jay-Z",
+    "title": "The Black Album"
+  },
+  "7f0df4ef": {
+    "found": true,
+    "artist": "The White Stripes",
+    "title": "Elephant"
+  },
+  "2ca9e3a7": {
+    "found": true,
+    "artist": "The Postal Service",
+    "title": "Give Up"
+  },
+  "9b889a4f": {
+    "found": true,
+    "artist": "TV on the Radio",
+    "title": "Desperate Youth, Blood Thirsty Babes"
+  },
+  "33755bf6": {
+    "found": true,
+    "artist": "Animal Collective",
+    "title": "Sung Tongs"
+  },
+  "e0ca9b45": {
+    "found": true,
+    "artist": "Arcade Fire",
+    "title": "Funeral"
+  },
+  "bb51fb63": {
+    "found": false,
+    "artist": "Wilco",
+    "title": "A Ghost Is Born"
+  },
+  "45dfc0ad": {
+    "found": true,
+    "artist": "Madvillain",
+    "title": "Madvillainy"
+  },
+  "cb6f7f92": {
+    "found": true,
+    "artist": "MF DOOM",
+    "title": "MM..FOOD"
+  },
+  "df1a7cfb": {
+    "found": true,
+    "artist": "Andrew Bird",
+    "title": "The Mysterious Production of Eggs"
+  },
+  "acc06ae4": {
+    "found": true,
+    "artist": "Sufjan Stevens",
+    "title": "Illinois"
+  },
+  "c2b5e795": {
+    "found": true,
+    "artist": "Wolf Parade",
+    "title": "Apologies to the Queen Mary"
+  },
+  "f9c91d": {
+    "found": true,
+    "artist": "Animal Collective",
+    "title": "Feels"
+  },
+  "39539c1e": {
+    "found": true,
+    "artist": "Bloc Party",
+    "title": "Silent Alarm"
+  },
+  "c16ba1d1": {
+    "found": true,
+    "artist": "TV on the Radio",
+    "title": "Return to Cookie Mountain"
+  },
+  "b228ff21": {
+    "found": true,
+    "artist": "Yeah Yeah Yeahs",
+    "title": "Show Your Bones"
+  },
+  "8ed5cce7": {
+    "found": true,
+    "artist": "Menomena",
+    "title": "Friend and Foe"
+  },
+  "3fe7c701": {
+    "found": true,
+    "artist": "Les Savy Fav",
+    "title": "Let's Stay Friends"
+  },
+  "e1d72826": {
+    "found": true,
+    "artist": "LCD Soundsystem",
+    "title": "Sound of Silver"
+  },
+  "c90e90ba": {
+    "found": true,
+    "artist": "Akron/Family",
+    "title": "Love Is Simple"
+  },
+  "8c34dbbb": {
+    "found": true,
+    "artist": "Animal Collective",
+    "title": "Strawberry Jam"
+  },
+  "e70adb7f": {
+    "found": true,
+    "artist": "Panda Bear",
+    "title": "Person Pitch"
+  },
+  "b1d210a6": {
+    "found": true,
+    "artist": "Arcade Fire",
+    "title": "Neon Bible"
+  },
+  "5723c4e9": {
+    "found": true,
+    "artist": "Spoon",
+    "title": "Ga Ga Ga Ga Ga"
+  },
+  "4600065f": {
+    "found": true,
+    "artist": "TV on the Radio",
+    "title": "Dear Science"
+  },
+  "26f36edc": {
+    "found": true,
+    "artist": "Fleet Foxes",
+    "title": "Fleet Foxes"
+  },
+  "51ffa460": {
+    "found": true,
+    "artist": "Portishead",
+    "title": "Third"
+  },
+  "333a7657": {
+    "found": true,
+    "artist": "Yeah Yeah Yeahs",
+    "title": "It's Blitz!"
+  },
+  "70e30141": {
+    "found": true,
+    "artist": "LCD Soundsystem",
+    "title": "This Is Happening"
+  },
+  "5bd1dd7f": {
+    "found": true,
+    "artist": "Arcade Fire",
+    "title": "The Suburbs"
+  },
+  "8ce0851c": {
+    "found": true,
+    "artist": "Bon Iver",
+    "title": "Bon Iver"
+  },
+  "45e64718": {
+    "found": true,
+    "artist": "Father John Misty",
+    "title": "Fear Fun"
+  },
+  "ad63e264": {
+    "found": true,
+    "artist": "Run the Jewels",
+    "title": "Run the Jewels 2"
+  },
+  "58d66796": {
+    "found": true,
+    "artist": "Father John Misty",
+    "title": "I Love You, Honeybear"
+  },
+  "9167fa78": {
+    "found": true,
+    "artist": "Kendrick Lamar",
+    "title": "DAMN."
+  },
+  "9cf20cb0": {
+    "found": true,
+    "artist": "Tyler, the Creator",
+    "title": "IGOR"
+  },
+  "e718c917": {
+    "found": true,
+    "artist": "Black Sabbath",
+    "title": "Vol. 4"
+  },
+  "18f73d26": {
+    "found": true,
+    "artist": "Beastie Boys",
+    "title": "Paul's Boutique"
+  },
+  "badf66ba": {
+    "found": true,
+    "artist": "Blind Melon",
+    "title": "Blind Melon"
+  },
+  "9449d75f": {
+    "found": true,
+    "artist": "Blind Melon",
+    "title": "Nico"
+  },
+  "c8e4f4e": {
+    "found": true,
+    "artist": "Fugees",
+    "title": "The Score"
+  },
+  "e1ae6bab": {
+    "found": true,
+    "artist": "Blur",
+    "title": "13"
+  },
+  "e1582361": {
+    "found": true,
+    "artist": "Modest Mouse",
+    "title": "Good News for People Who Love Bad News"
+  },
+  "de139dc7": {
+    "found": true,
+    "artist": "Modest Mouse",
+    "title": "We Were Dead Before the Ship Even Sank"
+  },
+  "c727ae31": {
+    "found": true,
+    "artist": "Handsome Furs",
+    "title": "Face Control"
+  },
+  "9860f4f0": {
+    "found": true,
+    "artist": "Handsome Furs",
+    "title": "Sound Kapital"
+  },
+  "13efa3cb": {
+    "found": true,
+    "artist": "Beastie Boys",
+    "title": "Check Your Head"
+  },
+  "cbd53b7d": {
+    "found": true,
+    "artist": "J. Cole",
+    "title": "2014 Forest Hills Drive"
+  },
+  "324a1362": {
+    "found": true,
+    "artist": "Alice in Chains",
+    "title": "Jar of Flies"
+  },
+  "fdf76283": {
+    "found": true,
+    "artist": "Beastie Boys",
+    "title": "Ill Communication"
+  },
+  "40f4f53c": {
+    "found": true,
+    "artist": "Method Man",
+    "title": "Tical"
+  },
+  "7fa3c3a9": {
+    "found": true,
+    "artist": "Nirvana",
+    "title": "MTV Unplugged in New York"
+  },
+  "4c0e071f": {
+    "found": true,
+    "artist": "Alice in Chains",
+    "title": "MTV Unplugged"
+  },
+  "1a039c9a": {
+    "found": true,
+    "artist": "Blackalicious",
+    "title": "Blazing Arrow"
+  },
+  "65134dd1": {
+    "found": true,
+    "artist": "Ghostface Killah",
+    "title": "Supreme Clientele"
+  },
+  "157624cc": {
+    "found": true,
+    "artist": "Talking Heads",
+    "title": "Remain in Light"
+  },
+  "b2de3ea4": {
+    "found": true,
+    "artist": "Dio",
+    "title": "Holy Diver"
+  },
+  "fe822294": {
+    "found": true,
+    "artist": "Dio",
+    "title": "Sacred Heart"
+  },
+  "b4d13f46": {
+    "found": true,
+    "artist": "Pantera",
+    "title": "Vulgar Display of Power"
+  },
+  "7f38ac9f": {
+    "found": true,
+    "artist": "Pantera",
+    "title": "Far Beyond Driven"
+  },
+  "b2c3562f": {
+    "found": true,
+    "artist": "Talking Heads",
+    "title": "Speaking in Tongues"
+  },
+  "4ac5e18b": {
+    "found": true,
+    "artist": "Paul Simon",
+    "title": "Graceland"
+  },
+  "1101e30a": {
+    "found": true,
+    "artist": "Rage Against the Machine",
+    "title": "Rage Against the Machine"
+  },
+  "7563e494": {
+    "found": true,
+    "artist": "Nine Inch Nails",
+    "title": "Pretty Hate Machine"
+  },
+  "fd6a4116": {
+    "found": true,
+    "artist": "Nine Inch Nails",
+    "title": "Broken"
+  },
+  "dea53f72": {
+    "found": true,
+    "artist": "Tool",
+    "title": "Opiate"
+  },
+  "1eab5e1b": {
+    "found": true,
+    "artist": "Tool",
+    "title": "Ænima"
+  },
+  "9aca3ba2": {
+    "found": true,
+    "artist": "Violent Femmes",
+    "title": "Add It Up (1981-1993)"
+  }
+}

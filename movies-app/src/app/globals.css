@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background: #0a0a0a;
+  color: #f5f1ea;
+  font-family: ui-sans-serif, system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* -----------------------------------------------------------------------
+   Typography
+   Fraunces: display/editorial serif
+   JetBrains Mono: mono kicker / metadata
+----------------------------------------------------------------------- */
+
+.serif {
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+}
+
+.font-mono,
+[class*="font-mono"] {
+  font-family: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* -----------------------------------------------------------------------
+   Texture layers
+   Layer 1 (scratchy): coarse halftone dot pattern — original
+   Layer 2 (noise): fine SVG-noise film grain — new, much subtler
+----------------------------------------------------------------------- */
+
+.scratchy {
+  background-image:
+    /* fine SVG noise — data URI, roughly 0.8% opacity pattern */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+    /* coarse halftone dots — original */
+    radial-gradient(rgba(245,241,234,0.04) 1px, transparent 1px),
+    radial-gradient(rgba(245,241,234,0.02) 1px, transparent 1px);
+  background-size: 200px 200px, 3px 3px, 9px 9px;
+  background-position: 0 0, 0 0, 1px 2px;
+}
+
+/* -----------------------------------------------------------------------
+   Focus
+----------------------------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid rgba(217, 79, 58, 0.5);
+  outline-offset: 3px;
+}
+
+/* -----------------------------------------------------------------------
+   Hero underline — ember tone
+----------------------------------------------------------------------- */
+
+@keyframes underline-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.hero-underline {
+  position: relative;
+  display: inline;
+}
+
+.hero-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 3px;
+  width: 100%;
+  background: #b83420;
+  transform-origin: left center;
+  animation: underline-grow 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+/* -----------------------------------------------------------------------
+   Marquee — horizontal scrolling ticker for Hero
+----------------------------------------------------------------------- */
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 320s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* -----------------------------------------------------------------------
+   Album card hover — elevated lift
+----------------------------------------------------------------------- */
+
+.album-card-cover {
+  transition:
+    transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .album-card-cover {
+  transform: translateY(-5px) rotate(-0.5deg) scale(1.02);
+  box-shadow:
+    0 6px 16px rgba(0,0,0,0.4),
+    0 20px 48px rgba(0,0,0,0.55),
+    0 1px 3px rgba(185,52,32,0.15);
+}
+
+/* curator note slide-reveal on hover */
+.album-note {
+  max-height: 2.8rem;
+  overflow: hidden;
+  transition: max-height 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 350ms ease;
+  opacity: 0.75;
+}
+
+.group:hover .album-note {
+  max-height: 10rem;
+  opacity: 1;
+}
+
+/* -----------------------------------------------------------------------
+   Section ornament divider
+----------------------------------------------------------------------- */
+
+.section-ornament {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 0 0 0;
+}
+
+.section-ornament::before,
+.section-ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(245,241,234,0.1);
+}
+
+/* -----------------------------------------------------------------------
+   Pull quote
+----------------------------------------------------------------------- */
+
+.pull-quote {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-style: italic;
+}
+
+/* -----------------------------------------------------------------------
+   Sticky meta-bar
+----------------------------------------------------------------------- */
+
+.meta-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  background: rgba(10,10,10,0.85);
+  border-bottom: 1px solid rgba(245,241,234,0.08);
+}

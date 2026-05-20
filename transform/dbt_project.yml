@@ -1,0 +1,43 @@
+name: 'liner_notes'
+version: '1.0.0'
+config-version: 2
+
+profile: 'liner_notes'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+    - "target"
+    - "dbt_packages"
+
+models:
+    liner_notes:
+        staging:
+            +materialized: view
+            +schema: staging
+        marts:
+            core:
+                +materialized: table
+                +schema: core
+                +cluster_by: ["album_id"]
+            listening:
+                +materialized: table
+                +schema: listening
+                +cluster_by: ["played_at"]
+            curation:
+                +materialized: table
+                +schema: curation
+
+seeds:
+    liner_notes:
+        +schema: seeds
+
+tests:
+    +store_failures: true
+    +schema: test_results

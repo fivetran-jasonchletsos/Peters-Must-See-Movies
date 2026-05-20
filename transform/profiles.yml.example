@@ -1,0 +1,32 @@
+# ============================================================
+# Example dbt profile for the LinerNotes ODI Demo.
+#
+# Copy to ~/.dbt/profiles.yml and set the environment
+# variables referenced below.
+#
+#   SNOWFLAKE_ACCOUNT    e.g. xy12345.us-east-1
+#   SNOWFLAKE_USER       e.g. dbt_runner
+#   SNOWFLAKE_PASSWORD   your Snowflake password (or use key-pair auth)
+#   SNOWFLAKE_ROLE       e.g. LINER_NOTES_DBT_ROLE
+#   SNOWFLAKE_WAREHOUSE  e.g. LINER_NOTES_WH
+#   SNOWFLAKE_DATABASE   e.g. LINER_NOTES
+#   SNOWFLAKE_SCHEMA     e.g. staging  (dbt default schema; overridden per layer)
+#
+# Snowflake credentials are never committed — keep this file as
+# a template only. Use env vars or a secrets manager.
+# ============================================================
+
+liner_notes:
+    target: dev
+    outputs:
+        dev:
+            type: snowflake
+            account:   "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+            user:      "{{ env_var('SNOWFLAKE_USER') }}"
+            password:  "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+            role:      "{{ env_var('SNOWFLAKE_ROLE', 'LINER_NOTES_DBT_ROLE') }}"
+            warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'LINER_NOTES_WH') }}"
+            database:  "{{ env_var('SNOWFLAKE_DATABASE', 'LINER_NOTES') }}"
+            schema:    "{{ env_var('SNOWFLAKE_SCHEMA', 'staging') }}"
+            threads: 4
+            client_session_keep_alive: false

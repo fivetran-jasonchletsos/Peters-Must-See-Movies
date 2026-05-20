@@ -1,0 +1,304 @@
+version: 2
+
+models:
+    # ── Spotify staging ───────────────────────────────────────────────────────
+
+    - name: stg_spotify__recently_played
+      description: |
+          Cleaned and cast version of raw_spotify.recently_played. One row per
+          Spotify recently-played event. The Spotify API returns at most 50 events
+          per call; Fivetran appends new rows on each sync. Grain: played_at +
+          track_id (unique per play event).
+      columns:
+          - name: played_at
+            description: Timestamp when the track was played.
+            data_tests:
+                - not_null
+          - name: track_id
+            description: Spotify track ID. Together with played_at this forms the natural key.
+            data_tests:
+                - not_null
+          - name: track_name
+            description: Track title as returned by Spotify.
+            data_tests:
+                - not_null
+          - name: artist_id
+            description: Spotify artist ID.
+          - name: artist_name
+            description: Artist name as returned by Spotify.
+            data_tests:
+                - not_null
+          - name: album_id
+            description: Spotify album ID.
+          - name: album_name
+            description: Album name as returned by Spotify.
+          - name: duration_ms
+            description: Track duration in milliseconds (cast from source integer).
+          - name: duration_minutes
+            description: Track duration in fractional minutes (duration_ms / 60000).
+          - name: explicit
+            description: True if Spotify marks the track as explicit.
+          - name: context_type
+            description: Playback context type (e.g., playlist, album, artist). Null when context unavailable.
+          - name: context_uri
+            description: Spotify URI for the playback context.
+          - name: loaded_at
+            description: Fivetran sync timestamp (_fivetran_synced) used for incremental watermarking.
+            data_tests:
+                - not_null
+
+    - name: stg_spotify__top_tracks
+      description: |
+          Union of the three Spotify top-tracks endpoint slices (short_term,
+          medium_term, long_term) with a time_range discriminator column added.
+          One row per (track_id, time_range). May contain duplicates across
+          windows; deduplication happens in agg_top_tracks_by_window.
+      columns:
+          - name: track_id
+            description: Spotify track ID.
+            data_tests:
+                - not_null
+          - name: track_name
+            description: Track title.
+            data_tests:
+                - not_null
+          - name: artist_id
+            description: Spotify artist ID.
+          - name: artist_name
+            description: Artist name.
+            data_tests:
+                - not_null
+          - name: album_id
+            description: Spotify album ID.
+          - name: album_name
+            description: Album name.
+          - name: duration_ms
+            description: Track duration in milliseconds.
+          - name: popularity
+            description: Spotify popularity score at snapshot time (0–100).
+          - name: rank
+            description: Position in the top-tracks list for this window (1-based).
+            data_tests:
+                - not_null
+          - name: time_range
+            description: Spotify API time window discriminator.
+            data_tests:
+                - not_null
+                - accepted_values:
+                      values:
+                          - short_term
+                          - medium_term
+                          - long_term
+          - name: explicit
+            description: True if Spotify marks the track as explicit.
+          - name: loaded_at
+            description: Fivetran sync timestamp.
+            data_tests:
+                - not_null
+
+    - name: stg_spotify__top_artists
+      description: |
+          Union of the three Spotify top-artists endpoint slices with a time_range
+          discriminator. One row per (artist_id, time_range). May contain duplicates
+          if the same artist appears in multiple time windows; deduplication in
+          agg_top_artists_by_window.
+      columns:
+          - name: artist_id
+            description: Spotify artist ID.
+            data_tests:
+                - not_null
+          - name: artist_name
+            description: Artist name.
+            data_tests:
+                - not_null
+          - name: popularity
+            description: Spotify popularity score at snapshot time (0–100).
+          - name: rank
+            description: Position in the top-artists list for this window (1-based).
+            data_tests:
+                - not_null
+          - name: time_range
+            description: Spotify API time window discriminator.
+            data_tests:
+                - not_null
+                - accepted_values:
+                      values:
+                          - short_term
+                          - medium_term
+                          - long_term
+          - name: genres_raw
+            description: Comma-separated genre string from Spotify.
+          - name: loaded_at
+            description: Fivetran sync timestamp.
+            data_tests:
+                - not_null
+
+    - name: stg_spotify__saved_albums
+      description: |
+          Cleaned version of raw_spotify.saved_albums. One row per album saved
+          to the Spotify library. Grain: album_id.
+      columns:
+          - name: album_id
+            description: Spotify album ID. Primary key for this staging model.
+            data_tests:
+                - not_null
+                - unique
+          - name: album_name
+            description: Album name.
+            data_tests:
+                - not_null
+          - name: album_type
+            description: Spotify album type (album, single, compilation).
+            data_tests:
+                - accepted_values:
+                      values:
+                          - album
+                          - single
+                          - compilation
+          - name: artist_id
+            description: Spotify artist ID.
+          - name: artist_name
+            description: Primary artist name.
+            data_tests:
+                - not_null
+          - name: release_date_raw
+            description: Raw release date string from Spotify (YYYY, YYYY-MM, or YYYY-MM-DD).
+          - name: total_tracks
+            description: Total track count on the album per Spotify.
+          - name: added_at
+            description: Timestamp when the album was saved to the library.
+            data_tests:
+                - not_null
+          - name: label
+            description: Record label from Spotify.
+          - name: popularity
+            description: Spotify popularity score for the album (0–100).
+          - name: genres_raw
+            description: Comma-separated genre string from Spotify.
+          - name: loaded_at
+            description: Fivetran sync timestamp.
+            data_tests:
+                - not_null
+
+    # ── MusicBrainz staging ───────────────────────────────────────────────────
+
+    - name: stg_mb__artists
+      description: |
+          Cleaned version of raw_mb.artists. One row per MusicBrainz artist entity.
+          Grain: mb_artist_id.
+      columns:
+          - name: mb_artist_id
+            description: MusicBrainz artist MBID (UUID). Primary key.
+            data_tests:
+                - not_null
+                - unique
+          - name: artist_name
+            description: Artist name from MusicBrainz.
+            data_tests:
+                - not_null
+          - name: artist_sort_name
+            description: MusicBrainz sort-form name (e.g., "Cobain, Kurt").
+          - name: artist_type
+            description: MusicBrainz artist type (Person, Group, Orchestra, Choir, Character, Other).
+          - name: country
+            description: Country of origin from MusicBrainz.
+          - name: begin_date_raw
+            description: Formation or birth date as a raw string from MusicBrainz.
+          - name: end_date_raw
+            description: Dissolution or death date as a raw string from MusicBrainz.
+          - name: is_ended
+            description: True if MusicBrainz marks this artist as disbanded or deceased.
+          - name: disambiguation
+            description: Brief phrase to distinguish artists with identical names.
+          - name: search_score
+            description: MusicBrainz API confidence score for the lookup result.
+          - name: loaded_at
+            description: Fivetran sync timestamp.
+            data_tests:
+                - not_null
+
+    - name: stg_mb__releases
+      description: |
+          Cleaned version of raw_mb.releases. One row per MusicBrainz release.
+          Downstream, dim_albums filters to release_status = 'Official'.
+          Grain: mb_release_id.
+      columns:
+          - name: mb_release_id
+            description: MusicBrainz release MBID (UUID). Primary key.
+            data_tests:
+                - not_null
+                - unique
+          - name: release_title
+            description: Album or release title.
+            data_tests:
+                - not_null
+          - name: mb_artist_id
+            description: MusicBrainz artist credit MBID for this release.
+          - name: artist_name
+            description: Artist credit name from MusicBrainz.
+            data_tests:
+                - not_null
+          - name: release_status
+            description: MusicBrainz release status.
+            data_tests:
+                - accepted_values:
+                      values:
+                          - Official
+                          - Promotion
+                          - Bootleg
+                          - Pseudo-Release
+          - name: release_date_raw
+            description: Raw date string from MusicBrainz (YYYY, YYYY-MM, or YYYY-MM-DD).
+          - name: release_year
+            description: Four-digit year extracted from release_date_raw via SUBSTR + TRY_CAST.
+          - name: country
+            description: Country of original release.
+          - name: packaging
+            description: Packaging description from MusicBrainz (Jewel Case, Digipak, etc.).
+          - name: track_count
+            description: Number of tracks per MusicBrainz.
+          - name: label
+            description: Record label from MusicBrainz.
+          - name: barcode
+            description: Barcode string. Null when unavailable.
+          - name: asin
+            description: Amazon Standard Identification Number. Null when unavailable.
+          - name: disambiguation
+            description: Disambiguation phrase from MusicBrainz.
+          - name: loaded_at
+            description: Fivetran sync timestamp.
+            data_tests:
+                - not_null
+
+    - name: stg_mb__recordings
+      description: |
+          Cleaned version of raw_mb.recordings. One row per MusicBrainz recording
+          (track). Grain: mb_recording_id.
+      columns:
+          - name: mb_recording_id
+            description: MusicBrainz recording MBID (UUID). Primary key.
+            data_tests:
+                - not_null
+                - unique
+          - name: recording_title
+            description: Track title from MusicBrainz.
+            data_tests:
+                - not_null
+          - name: mb_artist_id
+            description: MusicBrainz artist credit MBID for this recording.
+          - name: artist_name
+            description: Artist credit name from MusicBrainz.
+          - name: mb_release_id
+            description: Parent release MBID from MusicBrainz.
+          - name: length_ms
+            description: Recording length in milliseconds.
+          - name: length_minutes
+            description: Recording length in fractional minutes (length_ms / 60000).
+          - name: is_video
+            description: True if MusicBrainz classifies this as a video recording.
+          - name: disambiguation
+            description: Disambiguation phrase from MusicBrainz.
+          - name: loaded_at
+            description: Fivetran sync timestamp.
+            data_tests:
+                - not_null

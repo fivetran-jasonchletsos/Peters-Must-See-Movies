@@ -1,0 +1,372 @@
+version: 2
+
+models:
+    # ── core ─────────────────────────────────────────────────────────────────
+
+    - name: dim_artists
+      description: |
+          One row per artist, combining MusicBrainz artist metadata with
+          Spotify top-artist popularity and genre signals. Full-outer-joined
+          on lowercase artist name — rows exist for MB-only, Spotify-only,
+          and matched artists.
+      columns:
+          - name: mb_artist_id
+            description: |
+                Primary key. MusicBrainz artist MBID, or the Spotify artist_id when
+                no MusicBrainz match was found.
+            data_tests:
+                - not_null
+                - unique
+          - name: artist_name
+            description: Canonical artist name (coalesced from MB and Spotify).
+            data_tests:
+                - not_null
+          - name: artist_sort_name
+            description: MusicBrainz sort-form name (e.g., "Beatles, The"). Null for Spotify-only rows.
+          - name: artist_type
+            description: MusicBrainz artist type (Person, Group, etc.). Null for Spotify-only rows.
+          - name: country
+            description: Country of origin from MusicBrainz. Null for Spotify-only rows.
+          - name: begin_date_raw
+            description: Raw formation/birth date string from MusicBrainz.
+          - name: is_ended
+            description: True if MusicBrainz marks this artist as disbanded or deceased.
+          - name: disambiguation
+            description: MusicBrainz disambiguation phrase to distinguish artists with identical names.
+          - name: spotify_artist_id
+            description: Spotify artist ID. Null when the artist is MB-only.
+          - name: genres_raw
+            description: Comma-separated genre string from Spotify. Null when not in Spotify top-artists.
+          - name: spotify_popularity
+            description: Maximum Spotify popularity score (0–100) across all time windows.
+          - name: spotify_long_term_rank
+            description: Rank in the long-term (all-time) top-artists window. Null if not present.
+          - name: spotify_medium_term_rank
+            description: Rank in the medium-term (6-month) top-artists window. Null if not present.
+          - name: spotify_short_term_rank
+            description: Rank in the short-term (4-week) top-artists window. Null if not present.
+
+    - name: dim_albums
+      description: |
+          One row per MusicBrainz "Official" release. Left-joined to the canon
+          seed (is_canon = true when title + artist match canon_albums.csv) and to
+          Spotify saved-albums for popularity context. Grain: mb_release_id.
+      columns:
+          - name: mb_release_id
+            description: Primary key. MusicBrainz release MBID.
+            data_tests:
+                - not_null
+                - unique
+          - name: release_title
+            description: Album title from MusicBrainz.
+            data_tests:
+                - not_null
+          - name: mb_artist_id
+            description: MusicBrainz artist credit MBID for this release.
+            data_tests:
+                - not_null
+                - relationships:
+                      to: ref('dim_artists')
+                      field: mb_artist_id
+          - name: artist_name
+            description: Primary artist name.
+            data_tests:
+                - not_null
+          - name: release_year
+            description: Four-digit year extracted from MusicBrainz date string. May be null for undated releases.
+          - name: release_date_raw
+            description: Raw date string from MusicBrainz (YYYY, YYYY-MM, or YYYY-MM-DD).
+          - name: country
+            description: Country of original release from MusicBrainz.
+          - name: label
+            description: Record label from MusicBrainz.
+          - name: track_count
+            description: Number of tracks on the release per MusicBrainz.
+          - name: is_canon
+            description: True if this album's title and artist match an entry in canon_albums.csv.
+            data_tests:
+                - not_null
+          - name: canon_note
+            description: Jason's curatorial note for the album. Null when is_canon = false.
+          - name: spotify_album_id
+            description: Spotify album ID for albums matched to saved-albums. Null when no Spotify match.
+          - name: spotify_popularity
+            description: Spotify popularity score from the saved-albums endpoint. Null when not saved.
+          - name: spotify_saved_at
+            description: Timestamp when the album was added to the Spotify library. Null when not saved.
+
+    - name: dim_tracks
+      description: |
+          One row per MusicBrainz recording, enriched with album and artist context
+          from dim_albums and dim_artists. Grain: mb_recording_id.
+      columns:
+          - name: mb_recording_id
+            description: Primary key. MusicBrainz recording MBID.
+            data_tests:
+                - not_null
+                - unique
+          - name: recording_title
+            description: Track title from MusicBrainz.
+            data_tests:
+                - not_null
+          - name: mb_artist_id
+            description: Artist credit MBID for this recording.
+            data_tests:
+                - relationships:
+                      to: ref('dim_artists')
+                      field: mb_artist_id
+          - name: artist_name
+            description: Artist name from the MusicBrainz recording record.
+          - name: mb_release_id
+            description: Parent release MBID from MusicBrainz.
+            data_tests:
+                - relationships:
+                      to: ref('dim_albums')
+                      field: mb_release_id
+          - name: length_ms
+            description: Track length in milliseconds.
+          - name: length_minutes
+            description: Track length in fractional minutes (length_ms / 60000).
+          - name: is_video
+            description: True if MusicBrainz marks this recording as a video.
+          - name: disambiguation
+            description: MusicBrainz disambiguation phrase for recordings with identical titles.
+          - name: release_title
+            description: Album title from the joined dim_albums row.
+          - name: release_year
+            description: Album release year from the joined dim_albums row.
+          - name: album_is_canon
+            description: Whether the parent album is in the canon. Null when no dim_albums match.
+          - name: artist_country
+            description: Country of origin from the joined dim_artists row.
+          - name: artist_type
+            description: MusicBrainz artist type from the joined dim_artists row.
+          - name: genres_raw
+            description: Spotify genre string from the joined dim_artists row.
+          - name: artist_spotify_popularity
+            description: Spotify popularity of the recording's artist from dim_artists.
+
+    # ── listening ────────────────────────────────────────────────────────────
+
+    - name: fct_plays
+      description: |
+          One row per Spotify recently-played event. Enriched with album dimension
+          keys via a left join on spotify_album_id. Grain: played_at + spotify_track_id
+          (Spotify's recently-played feed is de-duplicated on those two columns upstream).
+      columns:
+          - name: played_at
+            description: Timestamp when the track was played. Partition key (truncated to month in Iceberg).
+            data_tests:
+                - not_null
+          - name: spotify_track_id
+            description: Spotify track ID.
+            data_tests:
+                - not_null
+          - name: track_name
+            description: Track name as returned by Spotify.
+          - name: spotify_artist_id
+            description: Spotify artist ID for the playing track.
+          - name: artist_name
+            description: Artist name as returned by Spotify.
+            data_tests:
+                - not_null
+          - name: spotify_album_id
+            description: Spotify album ID. Used as the join key to dim_albums.
+          - name: album_name
+            description: Album name as returned by Spotify.
+          - name: duration_ms
+            description: Track duration in milliseconds.
+          - name: duration_minutes
+            description: Track duration in fractional minutes (duration_ms / 60000).
+          - name: explicit
+            description: True if Spotify marks the track as explicit.
+          - name: context_type
+            description: Playback context type (e.g., playlist, album, artist).
+          - name: mb_release_id
+            description: MusicBrainz release MBID from the dim_albums join. Null when no album match.
+          - name: release_year
+            description: Release year from dim_albums. Null when no album match.
+          - name: album_is_canon
+            description: Whether the album is in the canon. Null when no dim_albums match.
+          - name: loaded_at
+            description: Fivetran sync timestamp (_fivetran_synced) from the source table.
+
+    - name: agg_top_tracks_by_window
+      description: |
+          Spotify top tracks, deduplicated within each time_range window.
+          One row per (track_id, time_range). Natural key: (track_id, time_range).
+      columns:
+          - name: track_id
+            description: Spotify track ID.
+            data_tests:
+                - not_null
+          - name: track_name
+            description: Track name.
+          - name: artist_id
+            description: Spotify artist ID for the track.
+          - name: artist_name
+            description: Artist name.
+          - name: album_id
+            description: Spotify album ID for the track.
+          - name: album_name
+            description: Album name.
+          - name: duration_ms
+            description: Track duration in milliseconds.
+          - name: popularity
+            description: Spotify popularity score at the time of the snapshot (0–100).
+          - name: rank
+            description: Position in the top-tracks list for this window (1-based).
+            data_tests:
+                - not_null
+          - name: time_range
+            description: Spotify time window — short_term (4 weeks), medium_term (6 months), or long_term (all-time).
+            data_tests:
+                - not_null
+                - accepted_values:
+                      values:
+                          - short_term
+                          - medium_term
+                          - long_term
+          - name: explicit
+            description: True if Spotify marks the track as explicit.
+          - name: loaded_at
+            description: Fivetran sync timestamp from the source table.
+
+    - name: agg_top_artists_by_window
+      description: |
+          Spotify top artists, deduplicated within each time_range window, enriched
+          with MusicBrainz context from dim_artists. One row per (spotify_artist_id, time_range).
+      columns:
+          - name: spotify_artist_id
+            description: Spotify artist ID. Part of the natural key.
+            data_tests:
+                - not_null
+          - name: artist_name
+            description: Artist name as returned by Spotify.
+            data_tests:
+                - not_null
+          - name: spotify_popularity
+            description: Spotify popularity score at the time of the snapshot (0–100).
+          - name: rank
+            description: Position in the top-artists list for this window (1-based).
+            data_tests:
+                - not_null
+          - name: time_range
+            description: Spotify time window — short_term, medium_term, or long_term.
+            data_tests:
+                - not_null
+                - accepted_values:
+                      values:
+                          - short_term
+                          - medium_term
+                          - long_term
+          - name: spotify_genres_raw
+            description: Comma-separated genre string from the Spotify top-artists feed.
+          - name: mb_artist_id
+            description: MusicBrainz artist MBID from the dim_artists join. Null when no MB match.
+          - name: artist_type
+            description: MusicBrainz artist type from the dim_artists join.
+          - name: country
+            description: Country of origin from dim_artists.
+          - name: mb_genres_raw
+            description: Genre string from MusicBrainz via dim_artists.
+          - name: is_ended
+            description: True if MusicBrainz marks the artist as disbanded or deceased.
+          - name: loaded_at
+            description: Fivetran sync timestamp from the source table.
+
+    # ── curation ─────────────────────────────────────────────────────────────
+
+    - name: canon_vs_listening
+      description: |
+          One row per canon album seed entry. Joins to dim_albums and fct_plays to
+          show whether each curated album has been recently listened to. Grain: canon
+          title + artist (one row per canon_albums.csv row).
+      columns:
+          - name: canon_artist
+            description: Artist name from canon_albums.csv.
+            data_tests:
+                - not_null
+          - name: canon_title
+            description: Album title from canon_albums.csv.
+            data_tests:
+                - not_null
+          - name: canon_year
+            description: Release year from canon_albums.csv.
+            data_tests:
+                - not_null
+          - name: canon_note
+            description: Jason's curatorial note from canon_albums.csv.
+          - name: spotify_album_id
+            description: Spotify album ID matched via dim_albums. Null when no Spotify match found.
+          - name: mb_release_id
+            description: MusicBrainz release MBID matched via dim_albums. Null when no MB match.
+          - name: last_played_at
+            description: Most recent play timestamp for this album from fct_plays. Null if never played.
+          - name: play_count_30d
+            description: Number of track-plays from this album in the rolling 30 days before the latest loaded play.
+            data_tests:
+                - not_null
+          - name: total_play_minutes
+            description: Cumulative minutes played from this album across all history in fct_plays.
+          - name: in_top_50_long_term
+            description: True if any track from this album appears in the long-term Spotify top-50 tracks.
+            data_tests:
+                - not_null
+                - accepted_values:
+                      values:
+                          - true
+                          - false
+
+    - name: discoveries
+      description: |
+          Top Spotify artists that have no matching entry in canon_albums.csv.
+          Ordered by long_term_rank ascending so the most persistent discoveries
+          surface first. Excludes "Various Artists", "Soundtrack", and "Anonymous".
+          Grain: spotify_artist_id (one row per distinct Spotify artist).
+      columns:
+          - name: spotify_artist_id
+            description: Spotify artist ID. Primary key for this model.
+            data_tests:
+                - not_null
+                - unique
+          - name: artist_name
+            description: Artist name from Spotify.
+            data_tests:
+                - not_null
+          - name: genres_raw
+            description: Comma-separated genre string from the Spotify top-artists feed.
+          - name: max_popularity
+            description: Spotify popularity (max across all time windows).
+          - name: best_rank_any_window
+            description: Minimum rank number across all time windows (lower = more prominent).
+          - name: long_term_rank
+            description: Rank in the long-term top-artists window. Null if not present in that window.
+          - name: medium_term_rank
+            description: Rank in the medium-term top-artists window. Null if not present in that window.
+          - name: short_term_rank
+            description: Rank in the short-term top-artists window. Null if not present in that window.
+
+    - name: decade_distribution
+      description: |
+          Play minutes and canon album counts rolled up by decade. play_pct and
+          canon_pct are percentage shares used to spot bias between what is curated
+          and what is actually listened to. Grain: decade (one row per decade bucket).
+      columns:
+          - name: decade
+            description: Decade bucket as integer (e.g., 1990, 2000, 2010).
+            data_tests:
+                - not_null
+                - unique
+          - name: total_play_minutes
+            description: Total minutes played from albums released in this decade.
+          - name: canon_album_count
+            description: Number of canon albums released in this decade.
+          - name: play_pct
+            description: Share of all play minutes attributable to this decade (0–100, rounded to 1 decimal).
+          - name: canon_pct
+            description: Share of all canon albums attributable to this decade (0–100, rounded to 1 decimal).
+          - name: grand_total_play_minutes
+            description: Total play minutes across all decades (same value on every row, used for context).
+          - name: grand_total_canon_albums
+            description: Total canon album count across all decades (same value on every row, used for context).
