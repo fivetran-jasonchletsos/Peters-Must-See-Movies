@@ -172,7 +172,7 @@ export default function MovieStats() {
       {/* ------------------------------------------------------------------ */}
       {/* Section A: Headline numbers — giant serif number + stats column     */}
       {/* ------------------------------------------------------------------ */}
-      <Section number="02" title="By the Numbers" blurb="Pete's list, quantified.">
+      <Section number="02" title="By the Numbers" blurb="Peter's list, quantified.">
         <div className="flex flex-col gap-0 lg:flex-row lg:items-stretch">
           <div className="flex items-center justify-center border border-ink/8 bg-ink/[0.03] p-10 lg:flex-1 lg:p-16">
             <div className="text-center">

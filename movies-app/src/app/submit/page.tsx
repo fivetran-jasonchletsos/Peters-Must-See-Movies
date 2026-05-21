@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Submit an Film — Must See",
   description:
-    "Submit a film for canon consideration. Cortex evaluates it against the curator's standards and names the film on Pete's list that already does the job better.",
+    "Submit a film for canon consideration. Cortex evaluates it against the curator's standards and names the film on Peter's list that already does the job better.",
 };
 
 export default function SubmitPage() {

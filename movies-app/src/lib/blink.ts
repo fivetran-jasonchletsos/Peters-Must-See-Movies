@@ -11,7 +11,7 @@ export type BlinkDVD = {
 // available at the time of broadcast, used as an in-universe device to record
 // half of a conversation Sally Sparrow could only hear once.
 //
-// Pete's list said "I could have added the 17 DVDs in Doctor Who's 'Blink,'
+// Peter's list said "I could have added the 17 DVDs in Doctor Who's 'Blink,'
 // but I have no idea what their titles are." Here they are.
 export const blinkDVDs: BlinkDVD[] = [
   {
@@ -137,4 +137,4 @@ export const blinkDVDs: BlinkDVD[] = [
 
 // Note: the canonical list of the exact 17 DVDs from the Blink Easter egg is
 // debated. This is a best-effort reconstruction based on what's documented
-// in the on-screen credits and contemporary fan listings. Pete can update.
+// in the on-screen credits and contemporary fan listings. Peter can update.

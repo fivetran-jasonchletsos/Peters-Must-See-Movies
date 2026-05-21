@@ -168,7 +168,7 @@ function MovieDetailModal({ movie, onClose }: { movie: CanonMovie; onClose: () =
 
             <blockquote className="border-l-2 border-accent pl-5">
               <p className="serif text-base italic leading-relaxed text-ink/85 sm:text-lg">{movie.note}</p>
-              <footer className="mt-3 font-mono text-[9px] uppercase tracking-[0.28em] text-ink/40">— Pete Chletsos, curator</footer>
+              <footer className="mt-3 font-mono text-[9px] uppercase tracking-[0.28em] text-ink/40">— Peter Chletsos, curator</footer>
             </blockquote>
 
             <div className="flex flex-wrap gap-3">

@@ -4,8 +4,8 @@ import { useEffect, useState, FormEvent } from "react";
 import Link from "next/link";
 
 const PASSWORD = "Elektra1948";
-const STORAGE_AUTH = "pete-add-authed";
-const STORAGE_LIST = "pete-pending-additions";
+const STORAGE_AUTH = "peter-add-authed";
+const STORAGE_LIST = "peter-pending-additions";
 const ISSUE_URL = "https://github.com/fivetran-jasonchletsos/Peters-Must-See-Movies/issues/new";
 
 type Submission = {
@@ -61,20 +61,20 @@ export default function AddPage() {
     };
     if (!sub.title) return;
 
-    // Save locally so Pete sees it immediately
+    // Save locally so Peter sees it immediately
     const next = [sub, ...pending];
     setPending(next);
     window.localStorage.setItem(STORAGE_LIST, JSON.stringify(next));
     setJustAdded(sub);
 
     // Open a pre-filled GitHub issue in a new tab so Jason can merge it to the canon
-    const issueTitle = `Pete suggests: ${sub.title}${sub.year ? ` (${sub.year})` : ""}`;
+    const issueTitle = `Peter suggests: ${sub.title}${sub.year ? ` (${sub.year})` : ""}`;
     const issueBody = [
       `**Title:** ${sub.title}`,
       sub.year     ? `**Year:** ${sub.year}` : "",
       sub.director ? `**Director:** ${sub.director}` : "",
       "",
-      sub.why ? `**Pete's note:**\n${sub.why}` : "",
+      sub.why ? `**Peter's note:**\n${sub.why}` : "",
       "",
       `Submitted from /add at ${sub.submitted_at}.`,
     ]
@@ -86,7 +86,7 @@ export default function AddPage() {
       new URLSearchParams({
         title: issueTitle,
         body: issueBody,
-        labels: "movie-submission,from-pete",
+        labels: "movie-submission,from-peter",
       }).toString();
 
     window.open(url, "_blank", "noopener,noreferrer");
@@ -101,7 +101,7 @@ export default function AddPage() {
             Must See / Add
           </p>
           <h1 className="serif text-3xl sm:text-4xl text-ink leading-tight mb-4">
-            For Pete.
+            For Peter.
           </h1>
           <p className="text-ink/70 text-lg leading-relaxed mb-8">
             Enter the password to add a film to the suggestion list.
@@ -150,7 +150,7 @@ export default function AddPage() {
           Add a film to the list.
         </h1>
         <p className="text-ink/70 text-lg leading-relaxed mb-10">
-          Welcome, Pete. Type a film below and click "Submit." Your suggestion is saved here
+          Welcome, Peter. Type a film below and click "Submit." Your suggestion is saved here
           on your screen right away, and a note is opened so Jason can add it to the
           canonical list.
         </p>

@@ -17,7 +17,7 @@ export default function Footer() {
               It's not what you look at that matters; it's what you see.
             </p>
             <p className="serif mt-2 text-sm text-ink/40">
-              Curated by Pete Chletsos · — Henry David Thoreau
+              Curated by Peter Chletsos · — Henry David Thoreau
             </p>
           </div>
 

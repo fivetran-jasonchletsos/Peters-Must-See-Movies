@@ -74,7 +74,7 @@ const TEMPLATES: ((s: Submission, seed: number) => string)[] = [
 ];
 
 const DUP_RESPONSE = (s: Submission) =>
-  `${s.title} is already on Pete's list. Read it before pitching.`;
+  `${s.title} is already on Peter's list. Read it before pitching.`;
 
 const EMPTY_RESPONSE = "Type a film title. The list doesn't accept vibes.";
 
@@ -189,13 +189,13 @@ export default function SubmissionRejector() {
               </p>
             </blockquote>
             <p className="mt-auto pt-6 font-mono text-[9px] uppercase tracking-[0.28em] text-ink/35">
-              Powered by Snowflake Cortex · Curated by Pete Chletsos
+              Powered by Snowflake Cortex · Curated by Peter Chletsos
             </p>
           </>
         ) : (
           <p className="serif text-base italic text-ink/40 leading-relaxed">
             Waiting for a submission. Type a film title. Cortex will weigh it against the list
-            and explain what's already on Pete's shelf that beats it.
+            and explain what's already on Peter's shelf that beats it.
           </p>
         )}
       </div>

@@ -81,7 +81,7 @@ export default function Hero() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
           <div className="min-w-0">
             <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">
-              Must See &nbsp;/&nbsp; Pete Chletsos
+              Must See &nbsp;/&nbsp; Peter Chletsos
             </p>
             <h1 className="serif mt-1 text-2xl leading-tight text-ink sm:text-3xl md:text-4xl font-light">
               It's not what you look at{" "}
@@ -93,7 +93,7 @@ export default function Hero() {
               It's what you see.  — Henry David Thoreau
             </p>
             <p className="serif mt-1 text-xs text-ink/45 leading-snug max-w-md">
-              Pete Chletsos's list of must-see movies. In no particular order — and the list is fluid.
+              Peter Chletsos's list of must-see movies. In no particular order — and the list is fluid.
             </p>
           </div>
         </div>

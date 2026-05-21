@@ -132,7 +132,7 @@ export default function MoviePage({ params }: Props) {
 
             <blockquote className="mt-8 border-l-2 border-accent pl-5">
               <p className="serif text-lg italic leading-relaxed text-ink/90 sm:text-xl">{movie.note}</p>
-              <footer className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-ink/45">— Pete Chletsos, curator</footer>
+              <footer className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-ink/45">— Peter Chletsos, curator</footer>
             </blockquote>
           </div>
         </div>

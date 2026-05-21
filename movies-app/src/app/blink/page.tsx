@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Blink — The 17 DVDs · Must See",
   description:
-    "The 17 Doctor Who DVDs that carried the Doctor's Easter-egg commentary in 'Blink'. Pete's list said he'd add them if he knew the titles — here they are.",
+    "The 17 Doctor Who DVDs that carried the Doctor's Easter-egg commentary in 'Blink'. Peter's list said he'd add them if he knew the titles — here they are.",
 };
 
 export default function BlinkPage() {
@@ -33,7 +33,7 @@ export default function BlinkPage() {
           </h1>
           <p className="serif mt-4 max-w-2xl text-base italic text-ink/75 leading-relaxed sm:text-lg">
             "I could have added the 17 DVDs in Doctor Who's <em>Blink</em>, but I have no idea
-            what their titles are." — Pete Chletsos
+            what their titles are." — Peter Chletsos
           </p>
           <p className="serif mt-3 max-w-2xl text-sm text-ink/55 leading-relaxed">
             In the 2007 episode <em>Blink</em>, the Doctor's prerecorded half of a conversation
@@ -71,7 +71,7 @@ export default function BlinkPage() {
 
           <p className="mt-12 font-mono text-[9px] uppercase tracking-[0.28em] text-ink/30 max-w-2xl">
             The exact 17-DVD list from the Blink Easter egg is debated. This is reconstructed
-            from on-screen credits and fan listings. Pete can update.
+            from on-screen credits and fan listings. Peter can update.
           </p>
         </div>
       </section>

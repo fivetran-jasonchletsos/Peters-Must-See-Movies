@@ -6,7 +6,7 @@ export type CanonMovie = {
   searchQuery?: string;
 };
 
-// Pete Chletsos's Must See Movies. In no particular order — and the list is fluid.
+// Peter Chletsos's Must See Movies. In no particular order — and the list is fluid.
 // "It's not what you look at that matters; it's what you see." — Henry David Thoreau
 export const movies: CanonMovie[] = [
   {
