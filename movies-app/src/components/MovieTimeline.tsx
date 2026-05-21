@@ -2,9 +2,8 @@ import Link from "next/link";
 import { movies } from "@/lib/movies";
 import postersManifest from "@/../public/posters/manifest.json";
 
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
-// ─── slug helpers (same djb2 as Hero.tsx) ────────────────────────────────────
+// Visual pattern mirrors the music timeline: posters (or fallback dots)
+// stacked vertically above a baseline, one column per year.
 
 function djb2(s: string): number {
   let h = 5381;
@@ -12,272 +11,283 @@ function djb2(s: string): number {
   return h;
 }
 
-function movieSlug(director: string, title: string) {
+function posterSlug(director: string, title: string): string {
+  return djb2(director + "///" + title).toString(16);
+}
+
+function movieSlug(director: string, title: string): string {
   return djb2(director + "###" + title).toString(16);
 }
 
-// poster uses director + "///" + title (matching Hero.tsx posterFileSlug)
-function posterSlug(director: string, title: string): string {
-  let h = 5381;
-  const s = director + "///" + title;
-  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
-  return h.toString(16);
+const SVG_WIDTH = 1400;
+const PAD_LEFT = 56;
+const PAD_RIGHT = 56;
+const USABLE_WIDTH = SVG_WIDTH - PAD_LEFT - PAD_RIGHT;
+
+const YEAR_MIN = 1939;
+const YEAR_MAX = 2023;
+const YEAR_SPAN = YEAR_MAX - YEAR_MIN;
+
+const BASELINE_Y = 240;
+const DOT_SIZE = 7;
+const DOT_STEP = 10;
+const THUMB_SIZE = 28;
+
+const SVG_HEIGHT = BASELINE_Y + 60;
+
+function yearToX(year: number): number {
+  return PAD_LEFT + ((year - YEAR_MIN) / YEAR_SPAN) * USABLE_WIDTH;
 }
 
-function posterUrl(director: string, title: string): string | null {
-  const slug = posterSlug(director, title);
-  const m = postersManifest as Record<string, { found: boolean }>;
-  if (m[slug]?.found) return `${BASE_PATH}/posters/${slug}.jpg`;
-  return null;
-}
-
-// ─── timeline constants ───────────────────────────────────────────────────────
-
-const YEAR_START = 1930; // visual left anchor (a bit before 1939)
-const YEAR_END   = 2030; // visual right anchor (a bit after 2023)
-const YEAR_SPAN  = YEAR_END - YEAR_START; // 100
-
-// Decades to render on the rail
 const DECADES = [1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020];
 
-// ─── build per-year stacks ────────────────────────────────────────────────────
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 type MovieDot = {
-  title: string;
   director: string;
+  title: string;
   year: number;
   slug: string;
-  poster: string | null;
+  posterSrc: string | null;
+  x: number;
+  y: number;
+  colIndex: number;
 };
 
-function buildYearStacks(): Map<number, MovieDot[]> {
-  const map = new Map<number, MovieDot[]>();
+function buildDots(): MovieDot[] {
+  const manifest = postersManifest as Record<string, { found: boolean }>;
+  const byYear = new Map<number, MovieDot[]>();
+
   for (const m of movies) {
-    if (!map.has(m.year)) map.set(m.year, []);
-    map.get(m.year)!.push({
-      title: m.title,
+    const ps = posterSlug(m.director, m.title);
+    const hasPoster = manifest[ps]?.found === true;
+
+    const dot: MovieDot = {
       director: m.director,
+      title: m.title,
       year: m.year,
       slug: movieSlug(m.director, m.title),
-      poster: posterUrl(m.director, m.title),
-    });
+      posterSrc: hasPoster ? `${BASE_PATH}/posters/${ps}.jpg` : null,
+      x: yearToX(m.year),
+      y: 0,
+      colIndex: 0,
+    };
+
+    if (!byYear.has(m.year)) byYear.set(m.year, []);
+    byYear.get(m.year)!.push(dot);
   }
-  return map;
+
+  const result: MovieDot[] = [];
+  for (const [, dots] of byYear) {
+    dots.forEach((dot, i) => {
+      dot.colIndex = i;
+      dot.y = BASELINE_Y - i * DOT_STEP - DOT_SIZE / 2;
+    });
+    result.push(...dots);
+  }
+
+  return result;
 }
 
-// ─── position helpers ─────────────────────────────────────────────────────────
-
-// Returns a percentage (0–100) left position for a given year on the rail
-function yearToPercent(year: number): number {
-  return ((year - YEAR_START) / YEAR_SPAN) * 100;
-}
-
-// ─── component ────────────────────────────────────────────────────────────────
+const DOTS = buildDots();
 
 export default function MovieTimeline() {
-  const stacks = buildYearStacks();
-  const total  = movies.length;
-  const maxStack = Math.max(...Array.from(stacks.values()).map((v) => v.length));
-
-  // Determine vertical height needed: rail sits at a fixed band, dots stack below
-  // Each dot row is 14px tall + 4px gap. Plus space for tooltip above rail.
-  const DOT_SIZE = 7;       // px — rendered as inline-block
-  const DOT_GAP  = 4;       // px between stacked dots
-
-  // We render the timeline as a relative-positioned container with:
-  //  – a thin horizontal rail line
-  //  – decade tick marks + labels
-  //  – per-year dot columns stacked below the rail
-  // All positioned via inline `left: X%` on absolute children.
-  // The outer div scrolls horizontally on mobile (min-width: 900px).
-
   return (
-    <div className="w-full">
-      {/* Mobile drag hint */}
-      <p className="mb-3 flex items-center justify-center gap-2 font-mono text-[9px] uppercase tracking-[0.3em] text-ink/25 sm:hidden">
-        <span aria-hidden="true">←</span>
-        drag to explore
-        <span aria-hidden="true">→</span>
-      </p>
-
-      {/* Scrollable container */}
-      <div
-        className="overflow-x-auto pb-4"
-        style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
-      >
-        {/* Fixed-width inner layout */}
-        <div
-          className="relative"
-          style={{
-            minWidth: "900px",
-            // Height: label row (24) + tick (16) + rail (2) + dot stack area + bottom padding
-            height: `${24 + 16 + 2 + (DOT_SIZE + DOT_GAP) * maxStack + 20}px`,
-          }}
-        >
-          {/* ── Rail ──────────────────────────────────────────────────────── */}
-          <div
-            className="absolute left-0 right-0 bg-ink/15"
-            style={{ top: "42px", height: "1px" }}
-            aria-hidden="true"
-          />
-
-          {/* Subtle accent glow on the rail — a thin ember line underneath */}
-          <div
-            className="absolute left-0 right-0 bg-ember/20"
-            style={{ top: "43px", height: "1px" }}
-            aria-hidden="true"
-          />
-
-          {/* ── Decade ticks + labels ─────────────────────────────────────── */}
-          {DECADES.map((decade) => {
-            const pct = yearToPercent(decade);
-            return (
-              <div
-                key={decade}
-                className="absolute"
-                style={{ left: `${pct}%`, top: "0px" }}
-              >
-                {/* Label — links to /?decade=XXXX#canon */}
-                <Link
-                  href={`/?decade=${decade}#canon`}
-                  className="group absolute block"
-                  style={{ transform: "translateX(-50%)", top: "0px" }}
-                  title={`Filter to ${decade}s`}
-                >
-                  <span
-                    className="font-mono text-[9px] uppercase tracking-[0.28em] text-ink/35
-                      transition-colors group-hover:text-accent whitespace-nowrap block text-center"
-                  >
-                    {decade}s
-                  </span>
-                </Link>
-
-                {/* Tick mark */}
-                <div
-                  className="absolute w-px bg-ink/20"
-                  style={{
-                    left: "0px",
-                    top: "20px",
-                    height: "24px",
-                  }}
-                  aria-hidden="true"
-                />
-              </div>
-            );
-          })}
-
-          {/* ── Year dot stacks ───────────────────────────────────────────── */}
-          {Array.from(stacks.entries()).map(([year, dots]) => {
-            const pct = yearToPercent(year);
-            // The first dot sits just below the rail; subsequent dots stack downward
-            const railBottom = 44; // px from top of container
-
-            return (
-              <div
-                key={year}
-                className="absolute"
-                style={{
-                  left: `${pct}%`,
-                  top: `${railBottom}px`,
-                  transform: "translateX(-50%)",
-                }}
-              >
-                {dots.map((dot, stackIdx) => {
-                  const dotTop = stackIdx * (DOT_SIZE + DOT_GAP);
-                  return (
-                    <Link
-                      key={dot.slug}
-                      href={`/movie/${dot.slug}`}
-                      className="group absolute block"
-                      style={{
-                        top: `${dotTop}px`,
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        width: `${DOT_SIZE}px`,
-                        height: `${DOT_SIZE}px`,
-                      }}
-                      title={`${dot.title} (${dot.year})`}
-                      aria-label={`${dot.title} — ${dot.director}, ${dot.year}`}
-                    >
-                      {/* The dot itself */}
-                      <span
-                        className="block rounded-full bg-accent transition-all duration-150
-                          group-hover:scale-[2.2] group-hover:bg-accent group-hover:shadow-[0_0_8px_2px_rgba(217,79,58,0.6)]"
-                        style={{ width: `${DOT_SIZE}px`, height: `${DOT_SIZE}px` }}
-                        aria-hidden="true"
-                      />
-
-                      {/* Tooltip — appears above dot on hover */}
-                      {/* Only the top dot in a stack shows poster; all show label */}
-                      <span
-                        className="pointer-events-none absolute bottom-[calc(100%+10px)] left-1/2
-                          -translate-x-1/2 z-50
-                          opacity-0 group-hover:opacity-100
-                          transition-opacity duration-150
-                          flex flex-col items-center gap-1"
-                        aria-hidden="true"
-                      >
-                        {/* Tiny poster thumbnail — only if poster exists */}
-                        {dot.poster && (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={dot.poster}
-                            alt=""
-                            className="w-8 h-12 object-cover border border-accent/50 shadow-lg flex-none"
-                            loading="lazy"
-                          />
-                        )}
-
-                        {/* Title chip */}
-                        <span
-                          className="block whitespace-nowrap bg-paper border border-ink/15
-                            px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-ink
-                            shadow-[0_4px_16px_rgba(0,0,0,0.7)]"
-                        >
-                          {dot.title}
-                          <span className="ml-1.5 text-accent">{dot.year}</span>
-                        </span>
-
-                        {/* Arrow notch */}
-                        <span
-                          className="block w-0 h-0"
-                          style={{
-                            borderLeft: "4px solid transparent",
-                            borderRight: "4px solid transparent",
-                            borderTop: "4px solid rgba(245,241,234,0.15)",
-                            marginTop: "-1px",
-                          }}
-                        />
-                      </span>
-                    </Link>
-                  );
-                })}
-              </div>
-            );
-          })}
-
-          {/* ── Year span labels at far edges ─────────────────────────────── */}
-          <span
-            className="absolute font-mono text-[9px] text-ink/20 tracking-widest"
-            style={{ left: `${yearToPercent(1939) - 0.5}%`, top: "35px", transform: "translateX(-50%)" }}
-            aria-hidden="true"
-          >
-            1939
-          </span>
-          <span
-            className="absolute font-mono text-[9px] text-ink/20 tracking-widest"
-            style={{ left: `${yearToPercent(2023) + 0.5}%`, top: "35px", transform: "translateX(-50%)" }}
-            aria-hidden="true"
-          >
-            2023
-          </span>
-        </div>
+    <div>
+      <div className="mb-6">
+        <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">
+          Across time
+        </p>
+        <h2 className="serif mt-2 text-3xl font-light text-ink sm:text-4xl md:text-5xl leading-[1.1]">
+          1939 &rarr; 2023
+        </h2>
+        <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/45 mt-3">
+          {movies.length} films &nbsp;&middot;&nbsp; click a poster to open the film &nbsp;&middot;&nbsp; click a decade to filter the list
+        </p>
       </div>
 
-      {/* Total count */}
-      <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.3em] text-ink/30 text-center">
-        {total} films &middot; 1939 &ndash; 2023
-      </p>
+      <div className="overflow-x-auto -mx-5 px-5 sm:-mx-6 sm:px-6 md:-mx-0 md:px-0">
+        <div style={{ minWidth: "1000px" }}>
+          <svg
+            viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
+            width="100%"
+            height={SVG_HEIGHT}
+            aria-label="Timeline of films from 1939 to 2023"
+            role="img"
+            style={{ display: "block" }}
+          >
+            {DECADES.map((decade) => {
+              const x = yearToX(decade);
+              return (
+                <g key={decade}>
+                  <line x1={x} y1={20} x2={x} y2={BASELINE_Y}
+                        stroke="#1a1410" strokeOpacity="0.08" strokeWidth="1" />
+                  <line x1={x} y1={BASELINE_Y - 4} x2={x} y2={BASELINE_Y + 4}
+                        stroke="#1a1410" strokeOpacity="0.3" strokeWidth="1" />
+                </g>
+              );
+            })}
+
+            {[YEAR_MIN, YEAR_MAX].map((yr) => (
+              <line key={yr}
+                    x1={yearToX(yr)} y1={BASELINE_Y - 4}
+                    x2={yearToX(yr)} y2={BASELINE_Y + 4}
+                    stroke="#1a1410" strokeOpacity="0.25" strokeWidth="1" />
+            ))}
+
+            <line x1={PAD_LEFT} y1={BASELINE_Y}
+                  x2={SVG_WIDTH - PAD_RIGHT} y2={BASELINE_Y}
+                  stroke="#1a1410" strokeOpacity="0.18" strokeWidth="1" />
+
+            {DOTS.map((dot) => {
+              if (dot.posterSrc) return null;
+              return (
+                <circle key={`dot-${dot.slug}`}
+                        cx={dot.x} cy={dot.y} r={DOT_SIZE / 2}
+                        fill="#b83420" fillOpacity="0.85" />
+              );
+            })}
+          </svg>
+
+          <div
+            className="relative"
+            style={{ marginTop: `-${SVG_HEIGHT}px`, height: `${SVG_HEIGHT}px` }}
+            aria-hidden="false"
+          >
+            {DECADES.map((decade) => {
+              const xPct = (yearToX(decade) / SVG_WIDTH) * 100;
+              const yPct = ((BASELINE_Y + 12) / SVG_HEIGHT) * 100;
+              return (
+                <Link
+                  key={`decade-label-${decade}`}
+                  href={`/?decade=${decade}#list`}
+                  className="absolute font-mono text-[10px] uppercase tracking-[0.3em] text-ink/45
+                    hover:text-accent transition-colors -translate-x-1/2"
+                  style={{ left: `${xPct}%`, top: `${yPct}%` }}
+                  title={`Filter to ${decade}s`}
+                >
+                  {decade}s
+                </Link>
+              );
+            })}
+
+            {[
+              { year: YEAR_MIN, align: "left" as const },
+              { year: YEAR_MAX, align: "right" as const },
+            ].map(({ year, align }) => {
+              const xPct = (yearToX(year) / SVG_WIDTH) * 100;
+              const yPct = ((BASELINE_Y + 12) / SVG_HEIGHT) * 100;
+              return (
+                <span
+                  key={`end-${year}`}
+                  className="absolute font-mono text-[10px] text-ink/30"
+                  style={{
+                    left: `${xPct}%`,
+                    top: `${yPct}%`,
+                    transform: align === "right" ? "translateX(-100%)" : "none",
+                  }}
+                >
+                  {year}
+                </span>
+              );
+            })}
+
+            {DOTS.map((dot) => {
+              const xPct = (dot.x / SVG_WIDTH) * 100;
+              const yPct = (dot.y / SVG_HEIGHT) * 100;
+
+              if (dot.posterSrc) {
+                const halfThumbPct = ((THUMB_SIZE / 2) / SVG_WIDTH) * 100;
+                const halfThumbYPct = ((THUMB_SIZE / 2) / SVG_HEIGHT) * 100;
+                return (
+                  <Link
+                    key={`dot-${dot.slug}`}
+                    href={`/movie/${dot.slug}`}
+                    className="absolute group"
+                    style={{
+                      left: `${xPct - halfThumbPct}%`,
+                      top: `${yPct - halfThumbYPct}%`,
+                      width: `${(THUMB_SIZE / SVG_WIDTH) * 100}%`,
+                      height: `${(THUMB_SIZE / SVG_HEIGHT) * 100}%`,
+                    }}
+                    title={`${dot.title} — ${dot.director} (${dot.year})`}
+                    aria-label={`${dot.title} by ${dot.director}, ${dot.year}`}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={dot.posterSrc}
+                      alt=""
+                      width={THUMB_SIZE}
+                      height={THUMB_SIZE}
+                      className="w-full h-full object-cover border border-ink/15
+                        transition group-hover:border-accent group-hover:z-10 group-hover:scale-[1.8] group-hover:shadow-xl"
+                      style={{ position: "relative", zIndex: 1 }}
+                      loading="lazy"
+                    />
+                    <span
+                      className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5
+                        hidden group-hover:flex flex-col items-center z-50"
+                    >
+                      <span
+                        className="whitespace-nowrap bg-paper border border-ink/20 px-2 py-1
+                          font-mono text-[9px] uppercase tracking-[0.15em] text-ink shadow-xl"
+                      >
+                        {dot.title}
+                      </span>
+                      <span
+                        className="whitespace-nowrap bg-paper/95 px-2 py-0.5
+                          font-mono text-[8px] uppercase tracking-[0.15em] text-ink/65"
+                      >
+                        {dot.director} · {dot.year}
+                      </span>
+                    </span>
+                  </Link>
+                );
+              }
+
+              const halfDotPct = ((DOT_SIZE / 2) / SVG_WIDTH) * 100;
+              const halfDotYPct = ((DOT_SIZE / 2) / SVG_HEIGHT) * 100;
+              return (
+                <Link
+                  key={`dot-${dot.slug}`}
+                  href={`/movie/${dot.slug}`}
+                  className="absolute group"
+                  style={{
+                    left: `${xPct - halfDotPct}%`,
+                    top: `${yPct - halfDotYPct}%`,
+                    width: `${(DOT_SIZE / SVG_WIDTH) * 100}%`,
+                    height: `${(DOT_SIZE / SVG_HEIGHT) * 100}%`,
+                  }}
+                  title={`${dot.title} — ${dot.director} (${dot.year})`}
+                  aria-label={`${dot.title} by ${dot.director}, ${dot.year}`}
+                >
+                  <span
+                    className="absolute inset-0 rounded-full bg-accent/80 transition
+                      group-hover:bg-accent group-hover:scale-[2.5] group-hover:z-10"
+                  />
+                  <span
+                    className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2
+                      hidden group-hover:flex flex-col items-center z-50"
+                  >
+                    <span
+                      className="whitespace-nowrap bg-paper border border-ink/20 px-2 py-1
+                        font-mono text-[9px] uppercase tracking-[0.15em] text-ink shadow-xl"
+                    >
+                      {dot.title}
+                    </span>
+                    <span
+                      className="whitespace-nowrap bg-paper/95 px-2 py-0.5
+                        font-mono text-[8px] uppercase tracking-[0.15em] text-ink/65"
+                    >
+                      {dot.director} · {dot.year}
+                    </span>
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

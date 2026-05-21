@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { movies, type CanonMovie } from "@/lib/movies";
 
 function djb2(s: string): number {
@@ -109,7 +109,11 @@ export default function SubmissionRejector() {
     setTitle("");
   }
 
-  const placeholder = useMemo(() => {
+  // Set rotating sample after mount to avoid a hydration mismatch (Date.now()
+  // returns different values during SSR vs hydration, which can leave the form
+  // unresponsive).
+  const [placeholder, setPlaceholder] = useState("Synecdoche, New York");
+  useEffect(() => {
     const samples = [
       "The Royal Tenenbaums",
       "Lost in Translation",
@@ -119,7 +123,7 @@ export default function SubmissionRejector() {
       "Mulholland Drive",
     ];
     const i = Math.floor((Date.now() / 60000) % samples.length);
-    return samples[i];
+    setPlaceholder(samples[i]);
   }, []);
 
   return (

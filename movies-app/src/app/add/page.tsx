@@ -91,6 +91,11 @@ export default function AddPage() {
 
     window.open(url, "_blank", "noopener,noreferrer");
     form.reset();
+    // Refocus the title input so the next submission is one keystroke away.
+    requestAnimationFrame(() => {
+      const titleInput = form.elements.namedItem("title") as HTMLInputElement | null;
+      titleInput?.focus();
+    });
   }
 
   if (!authed) {
@@ -216,14 +221,27 @@ export default function AddPage() {
 
         {justAdded && (
           <div className="mb-10 p-5 border border-accent/40 bg-accent/5 rounded">
-            <p className="serif text-lg text-ink mb-1">
-              Saved: <span className="italic">{justAdded.title}</span>
-              {justAdded.year ? ` (${justAdded.year})` : ""}
-            </p>
-            <p className="text-ink/60 text-sm">
-              A new tab opened with a pre-filled note for Jason. If it didn't open,
-              that's okay — your suggestion is still saved here.
-            </p>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="serif text-lg text-ink mb-1">
+                  Saved: <span className="italic">{justAdded.title}</span>
+                  {justAdded.year ? ` (${justAdded.year})` : ""}
+                </p>
+                <p className="text-ink/60 text-sm">
+                  A new tab opened with a pre-filled note for Jason. If it didn't open,
+                  that's okay — your suggestion is still saved here. The form above is
+                  ready for your next pick.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setJustAdded(null)}
+                className="font-mono text-xs uppercase tracking-[0.2em] text-ink/50 hover:text-accent shrink-0"
+                aria-label="Dismiss saved notice"
+              >
+                Dismiss
+              </button>
+            </div>
           </div>
         )}
 
