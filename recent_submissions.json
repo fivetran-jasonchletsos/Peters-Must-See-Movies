@@ -1,0 +1,103 @@
+{
+  "_note": "Seed data for the Cortex submissions ticker. In production, this file is overwritten daily by a Snowflake → JSON export. See scripts/refresh-submissions.md.",
+  "_source": "snowflake-cortex-rejections (simulated)",
+  "_updated_at": "2026-05-21T00:00:00Z",
+  "submissions": [
+    {
+      "id": "s_001",
+      "submitted_at": "2026-05-20T22:47:00Z",
+      "title": "Garden State",
+      "city": "Brooklyn, NY",
+      "verdict": "Garden State is a film that wants to be on the list. The list is films that don't have to want anything.",
+      "verdict_kind": "rejection"
+    },
+    {
+      "id": "s_002",
+      "submitted_at": "2026-05-20T22:31:00Z",
+      "title": "Drive",
+      "city": "Austin, TX",
+      "verdict": "Drive is fine. The list already has Bullitt doing the job Drive wants to do, only with more conviction.",
+      "verdict_kind": "rejection"
+    },
+    {
+      "id": "s_003",
+      "submitted_at": "2026-05-20T21:58:00Z",
+      "title": "La La Land",
+      "city": "Los Angeles, CA",
+      "verdict": "La La Land would be on the list if it had ended fifteen minutes earlier. As is, Singin' in the Rain keeps the slot.",
+      "verdict_kind": "rejection"
+    },
+    {
+      "id": "s_004",
+      "submitted_at": "2026-05-20T21:42:00Z",
+      "title": "Inception",
+      "city": "Seattle, WA",
+      "verdict": "Critically respected, commercially loved, canonically inert. The Wizard of Oz is none of the first two and all of the third.",
+      "verdict_kind": "rejection"
+    },
+    {
+      "id": "s_005",
+      "submitted_at": "2026-05-20T21:15:00Z",
+      "title": "The Royal Tenenbaums",
+      "city": "Portland, OR",
+      "verdict": "The Royal Tenenbaums is the film you put on for guests. The list is the films you put on alone.",
+      "verdict_kind": "rejection"
+    },
+    {
+      "id": "s_006",
+      "submitted_at": "2026-05-20T20:38:00Z",
+      "title": "Pulp Fiction",
+      "city": "Chicago, IL",
+      "verdict": "Pulp Fiction is already on Peter's list. Read it before pitching.",
+      "verdict_kind": "duplicate"
+    },
+    {
+      "id": "s_007",
+      "submitted_at": "2026-05-20T20:12:00Z",
+      "title": "Whiplash",
+      "city": "Boston, MA",
+      "verdict": "Two of these scenes are perfect. A film needs the whole runtime. The Treasure of the Sierra Madre has the whole runtime.",
+      "verdict_kind": "rejection"
+    },
+    {
+      "id": "s_008",
+      "submitted_at": "2026-05-20T19:44:00Z",
+      "title": "Eternal Sunshine of the Spotless Mind",
+      "city": "San Francisco, CA",
+      "verdict": "Considered against Vertigo. Cut. The list is what it is for a reason.",
+      "verdict_kind": "rejection"
+    },
+    {
+      "id": "s_009",
+      "submitted_at": "2026-05-20T19:20:00Z",
+      "title": "Mulholland Drive",
+      "city": "New York, NY",
+      "verdict": "Mulholland Drive is a director's flex. The list collects films, not auteurs.",
+      "verdict_kind": "rejection"
+    },
+    {
+      "id": "s_010",
+      "submitted_at": "2026-05-20T18:55:00Z",
+      "title": "Synecdoche, New York",
+      "city": "Philadelphia, PA",
+      "verdict": "Respectfully declined. Sunset Boulevard is what this submission was trying to be.",
+      "verdict_kind": "rejection"
+    },
+    {
+      "id": "s_011",
+      "submitted_at": "2026-05-20T18:30:00Z",
+      "title": "Children of Men",
+      "city": "Denver, CO",
+      "verdict": "Children of Men is the wrong third act in a near-perfect film. The Deer Hunter stuck the landing.",
+      "verdict_kind": "rejection"
+    },
+    {
+      "id": "s_012",
+      "submitted_at": "2026-05-20T17:48:00Z",
+      "title": "The Master",
+      "city": "Detroit, MI",
+      "verdict": "The Master is a singles-band album of a film: one great hook, padded out.",
+      "verdict_kind": "rejection"
+    }
+  ]
+}
