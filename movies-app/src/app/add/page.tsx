@@ -103,7 +103,7 @@ export default function AddPage() {
       <main className="min-h-screen">
         <div className="mx-auto max-w-xl px-6 py-16 sm:py-24">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-3">
-            Must See / Add
+            Peter's Movies / Add
           </p>
           <h1 className="serif text-3xl sm:text-4xl text-ink leading-tight mb-4">
             For Peter.
@@ -149,7 +149,7 @@ export default function AddPage() {
     <main className="min-h-screen">
       <div className="mx-auto max-w-3xl px-6 py-12 sm:py-16">
         <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-3">
-          Must See / Add
+          Peter's Movies / Add
         </p>
         <h1 className="serif text-3xl sm:text-4xl text-ink leading-tight mb-3">
           Add a film to the list.

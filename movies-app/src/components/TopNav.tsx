@@ -28,7 +28,7 @@ export default function TopNav() {
           href="/"
           className="flex-none flex items-center gap-2.5 serif text-lg text-ink hover:text-accent
             focus:outline-none focus:ring-2 focus:ring-accent/40 sm:text-xl"
-          aria-label="Must See home"
+          aria-label="Peter's Movies home"
         >
           <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true" className="flex-none">
             <circle cx="16" cy="16" r="14" fill="#1a1a1a" stroke="#f5f1ea" strokeWidth="0.5" opacity="0.9" />
@@ -36,7 +36,7 @@ export default function TopNav() {
             <circle cx="16" cy="16" r="5" fill="#d94f3a" />
             <circle cx="16" cy="16" r="1.4" fill="#0a0a0a" />
           </svg>
-          <span className="hidden sm:inline">Must See</span>
+          <span className="hidden sm:inline">Peter's Movies</span>
         </Link>
 
         <nav

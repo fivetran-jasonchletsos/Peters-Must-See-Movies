@@ -3,7 +3,7 @@ import { blinkDVDs } from "@/lib/blink";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blink — The 17 DVDs · Must See",
+  title: "Blink — The 17 DVDs · Peter's Movies",
   description:
     "The 17 Doctor Who DVDs that carried the Doctor's Easter-egg commentary in 'Blink'. Peter's list said he'd add them if he knew the titles — here they are.",
 };
@@ -15,7 +15,7 @@ export default function BlinkPage() {
       <div className="border-b border-ink/10 px-5 py-4 sm:px-6 md:px-16">
         <div className="mx-auto max-w-6xl flex items-center gap-3">
           <Link href="/" className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 transition hover:text-accent">
-            Must See
+            Peter's Movies
           </Link>
           <span className="font-mono text-[10px] text-ink/20">/</span>
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/70">Blink</span>
@@ -26,7 +26,7 @@ export default function BlinkPage() {
       <header className="border-b border-ink/10 px-5 py-8 sm:px-6 sm:py-10 md:px-16 md:py-14">
         <div className="mx-auto max-w-6xl">
           <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
-            Must See / Bonus — Doctor Who
+            Peter's Movies / Bonus — Doctor Who
           </p>
           <h1 className="serif mt-2 text-3xl font-light leading-tight text-ink sm:text-4xl md:text-5xl">
             Don't blink.

@@ -50,7 +50,7 @@ export default function MovieVotingBoard() {
             href="/"
             className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 transition hover:text-accent"
           >
-            Must See
+            Peter's Movies
           </Link>
           <span className="font-mono text-[10px] text-ink/20">/</span>
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
@@ -64,7 +64,7 @@ export default function MovieVotingBoard() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-x-8 gap-y-4">
           <div className="min-w-0">
             <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
-              Must See / 05 — Voting
+              Peter's Movies / 05 — Voting
             </p>
             <h1 className="serif text-2xl leading-tight text-ink sm:text-3xl md:text-4xl">
               Your picks.

@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Must See — Peter Chletsos's Must See Movies",
+  title: "Peter's Movies",
   description:
     "Peter Chletsos's list of must-see movies. It's not what you look at that matters; it's what you see.",
 };

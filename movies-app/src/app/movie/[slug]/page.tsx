@@ -31,7 +31,7 @@ export function generateMetadata({ params }: Props): Metadata {
   const movie = findMovieBySlug(params.slug);
   if (!movie) return { title: "Movie not found" };
   return {
-    title: `${movie.title} (${movie.year}) · Must See`,
+    title: `${movie.title} (${movie.year}) · Peter's Movies`,
     description: movie.note,
   };
 }
@@ -87,7 +87,7 @@ export default function MoviePage({ params }: Props) {
       <div className="border-b border-ink/10 px-5 py-4 sm:px-6 md:px-16">
         <div className="mx-auto max-w-6xl flex flex-wrap items-center gap-3">
           <Link href="/" className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 transition hover:text-accent">
-            Must See
+            Peter's Movies
           </Link>
           <span className="font-mono text-[10px] text-ink/20">/</span>
           <Link href={`/?decade=${decade}#canon`} className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 transition hover:text-accent">

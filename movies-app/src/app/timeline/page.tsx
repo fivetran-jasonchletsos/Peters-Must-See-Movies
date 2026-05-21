@@ -4,7 +4,7 @@ import { movies } from "@/lib/movies";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Timeline — Must See",
+  title: "Timeline — Peter's Movies",
   description:
     "Every film placed by year — 1939 to 2023. Click a decade to filter the list; click a film to read its entry.",
 };
@@ -21,7 +21,7 @@ export default function TimelinePage() {
             href="/"
             className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 transition hover:text-accent"
           >
-            Must See
+            Peter's Movies
           </Link>
           <span className="font-mono text-[10px] text-ink/20">/</span>
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/70">

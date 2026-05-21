@@ -81,7 +81,7 @@ export default function Hero() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
           <div className="min-w-0">
             <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">
-              Must See &nbsp;/&nbsp; Peter Chletsos
+              Peter's Movies &nbsp;/&nbsp; Peter Chletsos
             </p>
             <h1 className="serif mt-1 text-2xl leading-tight text-ink sm:text-3xl md:text-4xl font-light">
               It's not what you look at{" "}

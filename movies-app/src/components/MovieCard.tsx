@@ -132,7 +132,7 @@ function MovieDetailModal({ movie, onClose }: { movie: CanonMovie; onClose: () =
 
       <div className="relative z-10 flex w-full max-w-4xl flex-col overflow-y-auto border border-ink/15 bg-paper shadow-2xl max-h-[92vh]">
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-ink/10 bg-paper/95 px-5 py-3 backdrop-blur sm:px-8">
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">Must See / Detail</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">Peter's Movies / Detail</p>
           <button
             type="button"
             onClick={onClose}

@@ -76,6 +76,33 @@ const TEMPLATES: ((s: Submission, seed: number) => string)[] = [
 const DUP_RESPONSE = (s: Submission) =>
   `${s.title} is already on Peter's list. Read it before pitching.`;
 
+// ─── persistence: write each verdict to localStorage so the live ticker picks
+// it up. Capped at 50 entries. Same storage key the ticker reads from. ───────
+
+const STORAGE_KEY = "peter-recent-cortex-verdicts";
+
+function persistVerdict(title: string, verdict: string) {
+  if (typeof window === "undefined") return;
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    const prev = raw ? (JSON.parse(raw) as Array<Record<string, unknown>>) : [];
+    const next = [
+      {
+        id: `local_${Date.now().toString(36)}`,
+        submitted_at: new Date().toISOString(),
+        title: title || "(no film)",
+        city: "this device",
+        verdict,
+        verdict_kind: title ? "rejection" : "empty",
+      },
+      ...prev,
+    ].slice(0, 50);
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+  } catch {
+    /* storage full / private mode — ignore */
+  }
+}
+
 const EMPTY_RESPONSE = "Type a film title. The list doesn't accept vibes.";
 
 function pickResponse(title: string): string {
@@ -97,11 +124,9 @@ export default function SubmissionRejector() {
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const t = title.trim();
-    if (!t) {
-      setSubmitted({ title: t, response: EMPTY_RESPONSE });
-      return;
-    }
-    setSubmitted({ title: t, response: pickResponse(t) });
+    const response = !t ? EMPTY_RESPONSE : pickResponse(t);
+    setSubmitted({ title: t, response });
+    persistVerdict(t, response);
   }
 
   function reset() {

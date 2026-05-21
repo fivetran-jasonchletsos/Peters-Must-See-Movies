@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between mb-10">
           <div>
             <p className="font-mono text-[9px] uppercase tracking-[0.35em] text-ink/30 mb-3">
-              Must See &middot; Volume 1
+              Peter's Movies &middot; Volume 1
             </p>
             <p className="serif text-2xl font-light text-ink/80 leading-snug max-w-xs italic">
               It's not what you look at that matters; it's what you see.

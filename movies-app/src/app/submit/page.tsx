@@ -1,9 +1,10 @@
 import Link from "next/link";
 import SubmissionRejector from "@/components/SubmissionRejector";
+import SubmissionsTicker from "@/components/SubmissionsTicker";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Submit an Film — Must See",
+  title: "Submit an Film — Peter's Movies",
   description:
     "Submit a film for canon consideration. Cortex evaluates it against the curator's standards and names the film on Peter's list that already does the job better.",
 };
@@ -18,7 +19,7 @@ export default function SubmitPage() {
             href="/"
             className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 transition hover:text-accent"
           >
-            Must See
+            Peter's Movies
           </Link>
           <span className="font-mono text-[10px] text-ink/20">/</span>
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
@@ -31,7 +32,7 @@ export default function SubmitPage() {
       <header className="border-b border-ink/10 px-5 py-6 sm:px-6 sm:py-7 md:px-16 md:py-9">
         <div className="mx-auto max-w-6xl">
           <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
-            Must See / Submit
+            Peter's Movies / Submit
           </p>
           <h1 className="serif text-2xl leading-tight text-ink sm:text-3xl md:text-4xl">
             Pitch a film for the list.
@@ -48,6 +49,8 @@ export default function SubmitPage() {
           <SubmissionRejector />
         </div>
       </section>
+
+      <SubmissionsTicker />
     </main>
   );
 }
