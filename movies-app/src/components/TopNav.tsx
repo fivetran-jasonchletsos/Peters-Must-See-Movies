@@ -10,7 +10,8 @@ const NAV = [
   { num: "04", href: "/blink", label: "Blink" },
   { num: "05", href: "/submit", label: "Submit" },
   { num: "06", href: "/voting", label: "Picks" },
-  { num: "07", href: "/add", label: "For Peter" },
+  { num: "07", href: "/match", label: "Match" },
+  { num: "08", href: "/add", label: "For Peter" },
 ];
 
 export default function TopNav() {

@@ -178,3 +178,9 @@ p, li {
   background: rgba(250,246,236,0.92);
   border-bottom: 1px solid rgba(26,26,26,0.12);
 }
+
+/* Match-page fade-in for quiz cards + result */
+@keyframes fadeUp {
+  0%   { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

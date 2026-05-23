@@ -54,6 +54,14 @@ const HUB: HubCard[] = [
       "Hearted any poster on the list? Your picks aggregate here — by decade, by director, ranked.",
     glyph: "♥ what you loved",
   },
+  {
+    number: "07",
+    href: "/match",
+    title: "Matcher",
+    blurb:
+      "Three honest questions about tonight — mood, era, runtime budget. The matcher picks the film from Peter's shelf that fits.",
+    glyph: "3 questions · 1 film",
+  },
 ];
 
 export default function Home() {
