@@ -77,22 +77,22 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="px-4 py-5 sm:px-6 sm:py-6 md:px-10 md:py-7">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+      <div className="px-4 py-6 sm:px-6 sm:py-7 md:px-10 md:py-8">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
           <div className="min-w-0">
-            <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">
+            <p className="eyebrow eyebrow--accent">
               Peter's Movies &nbsp;/&nbsp; Peter Chletsos
             </p>
-            <h1 className="serif mt-1 text-2xl leading-tight text-ink sm:text-3xl md:text-4xl font-light">
+            <h1 className="serif mt-2 text-3xl leading-tight text-ink sm:text-4xl md:text-5xl font-light">
               It's not what you look at{" "}
               <span className="hero-underline italic">that matters.</span>
             </h1>
           </div>
           <div className="min-w-0">
-            <p className="serif text-sm italic text-ink/70 sm:text-base leading-snug max-w-md">
+            <p className="serif text-base italic text-ink/80 sm:text-lg leading-snug max-w-md">
               It's what you see.  — Henry David Thoreau
             </p>
-            <p className="serif mt-1 text-xs text-ink/45 leading-snug max-w-md">
+            <p className="serif mt-2 text-sm note leading-snug max-w-md">
               Peter Chletsos's list of must-see movies. In no particular order — and the list is fluid.
             </p>
           </div>

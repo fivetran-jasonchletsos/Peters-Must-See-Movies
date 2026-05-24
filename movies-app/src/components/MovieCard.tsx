@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { movies, type CanonMovie } from "@/lib/movies";
-import { useLikes } from "@/lib/likes";
 import postersManifest from "@/../public/posters/manifest.json";
 
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -131,20 +130,20 @@ function MovieDetailModal({ movie, onClose }: { movie: CanonMovie; onClose: () =
       />
 
       <div className="relative z-10 flex w-full max-w-4xl flex-col overflow-y-auto border border-ink/15 bg-paper shadow-2xl max-h-[92vh]">
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-ink/10 bg-paper/95 px-5 py-3 backdrop-blur sm:px-8">
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">Peter's Movies / Detail</p>
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-ink/15 bg-paper/95 px-5 py-4 backdrop-blur sm:px-8">
+          <p className="eyebrow eyebrow--accent">Peter's Movies / Detail</p>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/60 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40"
+            className="eyebrow text-ink/75 hover:text-accent min-h-[44px] px-2 -mr-2 focus:outline-none focus:ring-2 focus:ring-accent/40"
           >
             Close ✕
           </button>
         </div>
 
-        <div className="grid gap-8 px-5 py-6 sm:px-8 sm:py-8 md:grid-cols-[280px_1fr] md:gap-10">
-          <div className="aspect-[2/3] overflow-hidden border border-ink/10 shadow-xl">
+        <div className="grid gap-8 px-5 py-7 sm:px-8 sm:py-9 md:grid-cols-[280px_1fr] md:gap-10">
+          <div className="aspect-[2/3] overflow-hidden border border-ink/15 shadow-xl">
             {(() => {
               const real = realPosterUrl(movie.director, movie.title);
               return real ? (
@@ -156,47 +155,47 @@ function MovieDetailModal({ movie, onClose }: { movie: CanonMovie; onClose: () =
             })()}
           </div>
 
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-6">
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
+              <p className="eyebrow note">
                 Directed by {movie.director} &middot; {movie.year} &middot; {decade}s
               </p>
-              <h2 id="movie-modal-title" className="serif mt-2 text-3xl font-light leading-tight text-ink sm:text-4xl md:text-5xl">
+              <h2 id="movie-modal-title" className="serif mt-3 text-3xl font-light leading-tight text-ink sm:text-4xl md:text-5xl">
                 {movie.title}
               </h2>
             </div>
 
             <blockquote className="border-l-2 border-accent pl-5">
-              <p className="serif text-base italic leading-relaxed text-ink/85 sm:text-lg">{movie.note}</p>
-              <footer className="mt-3 font-mono text-[9px] uppercase tracking-[0.28em] text-ink/40">— Peter Chletsos, curator</footer>
+              <p className="serif text-lg italic leading-relaxed text-ink sm:text-xl">{movie.note}</p>
+              <footer className="mt-3 eyebrow eyebrow--small note">— Peter Chletsos, curator</footer>
             </blockquote>
 
             <div className="flex flex-wrap gap-3">
-              <a href={imdbSearchUrl(movie.title, movie.year)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-paper transition hover:bg-ink focus:outline-none focus:ring-2 focus:ring-accent/40">
+              <a href={imdbSearchUrl(movie.title, movie.year)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent px-5 py-3 font-mono text-sm uppercase tracking-[0.18em] text-paper transition hover:bg-ink focus:outline-none focus:ring-2 focus:ring-accent/40 min-h-[44px]">
                 IMDb <span aria-hidden>→</span>
               </a>
-              <a href={letterboxdSearchUrl(movie.title)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-ink/20 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink/80 transition hover:border-accent hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40">
+              <a href={letterboxdSearchUrl(movie.title)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-ink/30 px-5 py-3 font-mono text-sm uppercase tracking-[0.18em] text-ink transition hover:border-accent hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40 min-h-[44px]">
                 Letterboxd <span aria-hidden>→</span>
               </a>
             </div>
 
             {others.length > 0 ? (
-              <div className="border-t border-ink/10 pt-5">
-                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
-                  Also in the list by {movie.director}
+              <div className="border-t border-ink/15 pt-5">
+                <p className="eyebrow note">
+                  Also on the list by {movie.director}
                 </p>
-                <ul className="mt-3 space-y-1">
+                <ul className="mt-3 space-y-2">
                   {others.map((o) => (
-                    <li key={o.title} className="serif text-sm text-ink/70">
+                    <li key={o.title} className="serif text-base text-ink/85">
                       <span>{o.title}</span>
-                      <span className="ml-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink/35">{o.year}</span>
+                      <span className="ml-2 font-mono text-sm text-ink/60">{o.year}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             ) : null}
 
-            <p className="mt-auto font-mono text-[10px] uppercase tracking-[0.3em] text-ink/30">
+            <p className="mt-auto eyebrow eyebrow--small eyebrow--quiet">
               Entry {index + 1} of {movies.length} on the list
             </p>
           </div>
@@ -214,8 +213,6 @@ export default function MovieCard({
   size?: CardSize;
 }) {
   const [open, setOpen] = useState(false);
-  const { isLiked, toggle } = useLikes();
-  const liked = isLiked(movie.director, movie.title);
 
   return (
     <>
@@ -240,61 +237,31 @@ export default function MovieCard({
           </div>
 
           <span
-            className="absolute right-2.5 top-2.5 bg-paper/90 border border-ink/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em] text-ink/80 shadow-md backdrop-blur-sm pointer-events-none"
+            className="absolute right-2.5 top-2.5 bg-paper/95 border border-ink/15 px-2.5 py-1 font-mono text-xs uppercase tracking-[0.15em] text-ink shadow-md backdrop-blur-sm pointer-events-none"
             style={{ borderRadius: "1px" }}
             aria-hidden="true"
           >
             {movie.year}
           </span>
-
-          <span
-            role="button"
-            tabIndex={0}
-            aria-label={liked ? `Unlike ${movie.title}` : `Like ${movie.title}`}
-            aria-pressed={liked}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              toggle(movie.director, movie.title);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                e.stopPropagation();
-                toggle(movie.director, movie.title);
-              }
-            }}
-            className={
-              "absolute left-2.5 top-2.5 inline-flex items-center justify-center cursor-pointer h-10 w-10 backdrop-blur-sm shadow-lg transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
-              (liked
-                ? "bg-accent border border-accent text-paper hover:bg-ink hover:border-ink"
-                : "bg-paper/85 border border-ink/25 hover:border-accent hover:bg-paper")
-            }
-            style={{ borderRadius: "2px" }}
-          >
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill={liked ? "#0a0a0a" : "none"} stroke={liked ? "#0a0a0a" : "#f5f1ea"} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-          </span>
         </button>
 
-        <div className={size === "s" ? "mt-2" : "mt-3"}>
+        <div className={size === "s" ? "mt-2.5" : "mt-3.5"}>
           <button
             type="button"
             onClick={() => setOpen(true)}
             className="text-left focus:outline-none focus:ring-2 focus:ring-accent/40"
           >
-            <h3 className={"serif font-normal leading-snug text-ink transition-colors hover:text-accent " + (size === "s" ? "text-sm" : size === "l" ? "text-xl" : "text-[1.05rem]")}>
+            <h3 className={"serif font-normal leading-snug text-ink transition-colors hover:text-accent " + (size === "s" ? "text-base" : size === "l" ? "text-2xl" : "text-lg")}>
               {movie.title}
             </h3>
           </button>
-          <p className={"mt-0.5 font-mono uppercase tracking-[0.25em] text-ink/45 " + (size === "s" ? "text-[8px]" : size === "l" ? "text-[10px]" : "text-[9px]")}>
-            {movie.director}
+          <p className={"serif mt-1 italic note " + (size === "s" ? "text-sm" : size === "l" ? "text-lg" : "text-base")}>
+            {movie.director} <span className="not-italic font-mono text-ink/55 ml-1">{movie.year}</span>
           </p>
         </div>
 
         {size !== "s" ? (
-          <p className={"film-note serif mt-2 leading-snug text-ink/65 " + (size === "l" ? "text-base" : "text-sm")}>
+          <p className={"film-note serif mt-3 leading-relaxed text-ink/80 " + (size === "l" ? "text-lg" : "text-base")}>
             {movie.note}
           </p>
         ) : null}

@@ -95,14 +95,14 @@ export default function MovieTimeline() {
   return (
     <div>
       <div className="mb-6">
-        <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">
+        <p className="eyebrow eyebrow--accent">
           Across time
         </p>
-        <h2 className="serif mt-2 text-3xl font-light text-ink sm:text-4xl md:text-5xl leading-[1.1]">
+        <h2 className="serif mt-3 text-3xl font-light text-ink sm:text-4xl md:text-5xl leading-[1.1]">
           1939 &rarr; 2023
         </h2>
-        <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/45 mt-3">
-          {movies.length} films &nbsp;&middot;&nbsp; click a poster to open the film &nbsp;&middot;&nbsp; click a decade to filter the list
+        <p className="mt-3 serif text-base italic note">
+          {movies.length} films &middot; click a poster to open the film &middot; click a decade to filter the list
         </p>
       </div>
 
@@ -161,8 +161,8 @@ export default function MovieTimeline() {
                 <Link
                   key={`decade-label-${decade}`}
                   href={`/?decade=${decade}#list`}
-                  className="absolute font-mono text-[10px] uppercase tracking-[0.3em] text-ink/45
-                    hover:text-accent transition-colors -translate-x-1/2"
+                  className="absolute font-mono text-sm uppercase tracking-[0.18em] text-ink/75
+                    hover:text-accent transition-colors -translate-x-1/2 py-2 px-1"
                   style={{ left: `${xPct}%`, top: `${yPct}%` }}
                   title={`Filter to ${decade}s`}
                 >
@@ -180,7 +180,7 @@ export default function MovieTimeline() {
               return (
                 <span
                   key={`end-${year}`}
-                  className="absolute font-mono text-[10px] text-ink/30"
+                  className="absolute font-mono text-xs text-ink/60"
                   style={{
                     left: `${xPct}%`,
                     top: `${yPct}%`,

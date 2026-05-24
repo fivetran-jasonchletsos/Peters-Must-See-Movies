@@ -26,15 +26,15 @@ export default function Section({
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 flex flex-col gap-3 sm:mb-12 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent sm:text-xs">
+            <p className="eyebrow eyebrow--accent">
               {number}
             </p>
-            <h2 className="serif mt-2 text-3xl font-light text-ink sm:text-4xl md:text-5xl leading-[1.1]">
+            <h2 className="serif mt-3 text-3xl font-light text-ink sm:text-4xl md:text-5xl leading-[1.1]">
               {title}
             </h2>
           </div>
           {blurb ? (
-            <p className="max-w-md serif text-sm text-ink/50 sm:text-base md:text-right leading-relaxed italic">
+            <p className="max-w-md serif text-base text-ink/80 sm:text-lg md:text-right leading-relaxed italic">
               {blurb}
             </p>
           ) : null}

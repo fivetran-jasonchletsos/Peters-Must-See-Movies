@@ -17,12 +17,12 @@ export default function SubmitPage() {
         <div className="mx-auto max-w-6xl flex items-center gap-3">
           <Link
             href="/"
-            className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 transition hover:text-accent"
+            className="eyebrow note transition hover:text-accent"
           >
             Peter's Movies
           </Link>
-          <span className="font-mono text-[10px] text-ink/20">/</span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
+          <span className="font-mono text-sm text-ink/50">/</span>
+          <span className="eyebrow note">
             Submit
           </span>
         </div>
@@ -31,7 +31,7 @@ export default function SubmitPage() {
       {/* Hero strip */}
       <header className="border-b border-ink/10 px-5 py-6 sm:px-6 sm:py-7 md:px-16 md:py-9">
         <div className="mx-auto max-w-6xl">
-          <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
+          <p className="mb-1 eyebrow eyebrow--accent">
             Peter's Movies / Submit
           </p>
           <h1 className="serif text-2xl leading-tight text-ink sm:text-3xl md:text-4xl">

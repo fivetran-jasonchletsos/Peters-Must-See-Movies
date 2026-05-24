@@ -207,12 +207,12 @@ export default function MovieExplorer() {
       </div>
 
       {/* Controls */}
-      <div className="mb-8 flex flex-col gap-4 border-b border-ink/10 pb-6 md:flex-row md:items-center md:justify-between">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
+      <div className="mb-8 flex flex-col gap-5 border-b border-ink/15 pb-7 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+          <span className="eyebrow note">
             Sort
           </span>
-          <div className="flex border border-ink/15">
+          <div className="flex border border-ink/20">
             {(["year", "director"] as const).map((mode) => (
               <button
                 key={mode}
@@ -220,30 +220,30 @@ export default function MovieExplorer() {
                 onClick={() => setSort(mode)}
                 aria-pressed={sort === mode}
                 className={
-                  "px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
+                  "px-4 py-2.5 font-mono text-sm uppercase tracking-[0.15em] min-h-[44px] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
                   (sort === mode
                     ? "bg-accent text-paper"
-                    : "text-ink/60 hover:text-accent")
+                    : "text-ink/80 hover:text-accent")
                 }
               >
-                {mode === "year" ? "Year" : "Artist (A–Z)"}
+                {mode === "year" ? "Year" : "Director"}
               </button>
             ))}
           </div>
 
-          <span className="ml-2 font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
+          <span className="ml-2 eyebrow note">
             Decade
           </span>
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1.5">
             <button
               type="button"
               onClick={() => setDecadeFilter(null)}
               aria-pressed={decadeFilter === null}
               className={
-                "px-2 py-1 font-mono text-[10px] uppercase tracking-[0.2em] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
+                "px-3 py-2 font-mono text-sm uppercase tracking-[0.15em] min-h-[40px] min-w-[44px] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
                 (decadeFilter === null
                   ? "bg-ember/80 text-ink"
-                  : "text-ink/50 hover:text-accent")
+                  : "text-ink/75 hover:text-accent")
               }
             >
               All
@@ -255,10 +255,10 @@ export default function MovieExplorer() {
                 onClick={() => setDecadeFilter(d === decadeFilter ? null : d)}
                 aria-pressed={decadeFilter === d}
                 className={
-                  "px-2 py-1 font-mono text-[10px] uppercase tracking-[0.2em] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
+                  "px-3 py-2 font-mono text-sm uppercase tracking-[0.15em] min-h-[40px] min-w-[44px] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
                   (decadeFilter === d
                     ? "bg-accent text-paper"
-                    : "text-ink/50 hover:text-accent")
+                    : "text-ink/75 hover:text-accent")
                 }
               >
                 {d}s
@@ -267,11 +267,11 @@ export default function MovieExplorer() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+          <span className="eyebrow note">
             Size
           </span>
-          <div className="flex border border-ink/15">
+          <div className="flex border border-ink/20">
             {(["s", "m", "l"] as const).map((s) => (
               <button
                 key={s}
@@ -280,10 +280,10 @@ export default function MovieExplorer() {
                 aria-pressed={size === s}
                 aria-label={`Cover size ${s.toUpperCase()}`}
                 className={
-                  "px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
+                  "px-4 py-2.5 font-mono text-sm uppercase tracking-[0.15em] min-h-[44px] min-w-[44px] transition focus:outline-none focus:ring-2 focus:ring-accent/40 " +
                   (size === s
                     ? "bg-accent text-paper"
-                    : "text-ink/60 hover:text-accent")
+                    : "text-ink/80 hover:text-accent")
                 }
               >
                 {s.toUpperCase()}
@@ -295,10 +295,10 @@ export default function MovieExplorer() {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Find director, movie, lyric phrase…"
+            placeholder="Find a director or title…"
             aria-label="Search the list"
-            className="w-full bg-ink/5 px-3 py-1.5 font-mono text-xs text-ink placeholder:text-ink/30
-              focus:outline-none focus:ring-2 focus:ring-accent/40 md:w-60"
+            className="w-full bg-ink/5 border border-ink/15 px-4 py-2.5 serif text-base text-ink placeholder:text-ink/50 min-h-[44px]
+              focus:outline-none focus:ring-2 focus:ring-accent/40 md:w-72"
           />
           {(query || decadeFilter !== null) && (
             <button
@@ -307,7 +307,7 @@ export default function MovieExplorer() {
                 setQuery("");
                 setDecadeFilter(null);
               }}
-              className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/40 hover:text-accent"
+              className="eyebrow note hover:text-accent min-h-[44px] px-2"
             >
               Clear
             </button>
@@ -316,8 +316,8 @@ export default function MovieExplorer() {
       </div>
 
       {/* Result count */}
-      <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
-        Showing {filtered.length} of {movies.length} records
+      <p className="mb-7 eyebrow note">
+        Showing {filtered.length} of {movies.length} films
       </p>
 
       {/* Grid — with pull quotes interleaved when not in search/filter mode */}
@@ -381,8 +381,8 @@ export default function MovieExplorer() {
       )}
 
       {filtered.length === 0 && (
-        <p className="mt-12 text-center serif text-ink/40">
-          No records match. Try clearing the filter.
+        <p className="mt-12 text-center serif text-lg italic note">
+          No films match. Try clearing the filter.
         </p>
       )}
     </div>

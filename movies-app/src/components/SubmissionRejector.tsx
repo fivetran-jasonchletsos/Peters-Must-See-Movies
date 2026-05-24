@@ -158,11 +158,11 @@ export default function SubmissionRejector() {
         className="border border-ink/10 bg-ink/5 p-6 sm:p-8"
         aria-label="Submit a film for the list"
       >
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 mb-5">
+        <p className="eyebrow note mb-5">
           The Suggestion Box
         </p>
         <label className="block">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40">
+          <span className="eyebrow note">
             Film
           </span>
           <input
@@ -177,7 +177,7 @@ export default function SubmissionRejector() {
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <button
             type="submit"
-            className="bg-accent px-5 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-paper
+            className="bg-accent px-5 py-3 font-mono text-sm uppercase tracking-[0.18em] text-paper min-h-[44px]
               transition hover:bg-ink focus:outline-none focus:ring-2 focus:ring-accent/40"
           >
             Submit for consideration →
@@ -186,7 +186,7 @@ export default function SubmissionRejector() {
             <button
               type="button"
               onClick={reset}
-              className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/50
+              className="eyebrow note
                 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40"
             >
               Try another
@@ -201,11 +201,11 @@ export default function SubmissionRejector() {
 
       <div className="flex min-h-[14rem] flex-col border border-ink/10 bg-paper p-6 sm:p-8">
         <div className="flex items-baseline gap-2 mb-4">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
+          <span className="eyebrow eyebrow--accent">
             Cortex / Verdict
           </span>
           {submitted ? (
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ink/40">
+            <span className="eyebrow eyebrow--small note">
               Re: {submitted.title || "(no film)"}
             </span>
           ) : null}
@@ -217,12 +217,12 @@ export default function SubmissionRejector() {
                 {submitted.response}
               </p>
             </blockquote>
-            <p className="mt-auto pt-6 font-mono text-[9px] uppercase tracking-[0.28em] text-ink/35">
+            <p className="mt-auto pt-6 eyebrow eyebrow--small eyebrow--quiet">
               Powered by Snowflake Cortex · Curated by Peter Chletsos
             </p>
           </>
         ) : (
-          <p className="serif text-base italic text-ink/40 leading-relaxed">
+          <p className="serif text-base italic note leading-relaxed">
             Waiting for a submission. Type a film title. Cortex will weigh it against the list
             and explain what's already on Peter's shelf that beats it.
           </p>

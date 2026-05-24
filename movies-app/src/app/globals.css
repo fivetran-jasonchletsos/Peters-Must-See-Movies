@@ -12,8 +12,9 @@
 ----------------------------------------------------------------------- */
 
 html {
-  /* Bumps every rem-based size up. Tailwind's default base = 16px → now 18px. */
-  font-size: 112.5%;
+  /* Base font size for a 75-year-old reader. Tailwind default = 16px → 19.5px.
+     Every rem-based size scales with this; text-base = 19.5px, text-sm ≈ 17px. */
+  font-size: 121.875%;
 }
 
 html, body {
@@ -183,4 +184,46 @@ p, li {
 @keyframes fadeUp {
   0%   { opacity: 0; transform: translateY(8px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+/* -----------------------------------------------------------------------
+   Eyebrow / kicker utility — replaces ad-hoc 9-10px tracked mono labels.
+   Sized + colored to stay readable at arm's length on a laptop or phone.
+----------------------------------------------------------------------- */
+
+.eyebrow {
+  font-family: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8125rem;          /* ~16px against 19.5px base */
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b5744;                 /* umber — warmer + higher contrast than ink/40 */
+  font-weight: 500;
+}
+.eyebrow--accent { color: #b83420; }
+.eyebrow--quiet  { color: #7a7264; }
+.eyebrow--small  { font-size: 0.75rem; letter-spacing: 0.12em; }
+
+/* -----------------------------------------------------------------------
+   Note text — slightly muted body copy with senior-readable contrast.
+   Use .note instead of text-ink/40 or text-ink/45.
+----------------------------------------------------------------------- */
+
+.note {
+  color: #4a4138;                  /* warm dark gray, ~7.2:1 on #faf6ec */
+}
+.note--soft { color: #5d5448; }
+
+/* -----------------------------------------------------------------------
+   Reduced motion — silences the marquee + transitions for users who ask.
+----------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track { animation: none !important; }
 }

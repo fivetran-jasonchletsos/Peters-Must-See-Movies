@@ -14,18 +14,18 @@ export default function BlinkPage() {
       {/* Breadcrumb */}
       <div className="border-b border-ink/10 px-5 py-4 sm:px-6 md:px-16">
         <div className="mx-auto max-w-6xl flex items-center gap-3">
-          <Link href="/" className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 transition hover:text-accent">
+          <Link href="/" className="eyebrow note transition hover:text-accent">
             Peter's Movies
           </Link>
-          <span className="font-mono text-[10px] text-ink/20">/</span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/70">Blink</span>
+          <span className="font-mono text-sm text-ink/50">/</span>
+          <span className="eyebrow">Blink</span>
         </div>
       </div>
 
       {/* Hero */}
       <header className="border-b border-ink/10 px-5 py-8 sm:px-6 sm:py-10 md:px-16 md:py-14">
         <div className="mx-auto max-w-6xl">
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
+          <p className="eyebrow eyebrow--accent">
             Peter's Movies / Bonus — Doctor Who
           </p>
           <h1 className="serif mt-2 text-3xl font-light leading-tight text-ink sm:text-4xl md:text-5xl">
@@ -53,15 +53,15 @@ export default function BlinkPage() {
                 className="flex flex-col gap-2 border border-ink/10 bg-ink/5 p-5 transition hover:border-accent hover:bg-ink/10"
               >
                 <div className="flex items-baseline justify-between gap-3">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
+                  <span className="eyebrow eyebrow--accent">
                     {dvd.position.toString().padStart(2, "0")} / 17
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/40">
+                  <span className="eyebrow note">
                     {dvd.year}
                   </span>
                 </div>
                 <h2 className="serif text-xl text-ink leading-snug">{dvd.title}</h2>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/45">
+                <p className="eyebrow note">
                   {dvd.doctor}
                 </p>
                 <p className="serif mt-1 text-sm text-ink/65 leading-snug">{dvd.note}</p>
@@ -69,7 +69,7 @@ export default function BlinkPage() {
             ))}
           </ol>
 
-          <p className="mt-12 font-mono text-[9px] uppercase tracking-[0.28em] text-ink/30 max-w-2xl">
+          <p className="mt-12 eyebrow eyebrow--small eyebrow--quiet max-w-2xl">
             The exact 17-DVD list from the Blink Easter egg is debated. This is reconstructed
             from on-screen credits and fan listings. Peter can update.
           </p>
@@ -78,7 +78,7 @@ export default function BlinkPage() {
 
       <div className="border-t border-ink/10 px-5 py-8 sm:px-6 md:px-16">
         <div className="mx-auto max-w-6xl">
-          <Link href="/" className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/50 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40">
+          <Link href="/" className="eyebrow note hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent/40">
             ← Back to the list
           </Link>
         </div>

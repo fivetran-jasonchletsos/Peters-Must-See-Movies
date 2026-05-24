@@ -48,14 +48,6 @@ const HUB: HubCard[] = [
   },
   {
     number: "06",
-    href: "/voting",
-    title: "Your Picks",
-    blurb:
-      "Hearted any poster on the list? Your picks aggregate here — by decade, by director, ranked.",
-    glyph: "♥ what you loved",
-  },
-  {
-    number: "07",
     href: "/match",
     title: "Matcher",
     blurb:
@@ -92,21 +84,21 @@ export default function Home() {
             <Link
               key={card.href}
               href={card.href}
-              className="group flex flex-col gap-3 border border-ink/10 bg-ink/5 p-6 transition
-                hover:border-accent hover:bg-ink/10
+              className="group flex flex-col gap-3 border border-ink/15 bg-ink/[0.04] p-7 transition
+                hover:border-accent hover:bg-ink/[0.08]
                 focus:outline-none focus:ring-2 focus:ring-accent/40"
             >
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
+              <p className="eyebrow eyebrow--accent">
                 {card.number}
               </p>
-              <h3 className="serif text-2xl text-ink leading-snug">{card.title}</h3>
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/35">
+              <h3 className="serif text-2xl sm:text-3xl text-ink leading-snug font-light">{card.title}</h3>
+              <p className="serif text-sm italic note">
                 {card.glyph}
               </p>
-              <p className="serif text-sm text-ink/65 mt-auto pt-2 leading-snug">
+              <p className="serif text-base text-ink/80 mt-auto pt-3 leading-relaxed">
                 {card.blurb}
               </p>
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 group-hover:text-accent transition">
+              <span className="eyebrow note group-hover:text-accent transition">
                 Open →
               </span>
             </Link>

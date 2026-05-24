@@ -137,7 +137,7 @@ export default function AddPage() {
               Unlock
             </button>
           </form>
-          <p className="text-ink/40 text-sm mt-10">
+          <p className="note text-base mt-10">
             <Link href="/" className="underline underline-offset-4 hover:text-accent">← Back to the list</Link>
           </p>
         </div>
@@ -262,7 +262,7 @@ export default function AddPage() {
                     {s.director ? ` — dir. ${s.director}` : ""}
                   </p>
                   {s.why && <p className="text-ink/70 mt-1 text-base leading-relaxed">{s.why}</p>}
-                  <p className="text-ink/30 text-xs font-mono mt-2">
+                  <p className="note text-sm font-mono mt-2">
                     {new Date(s.submitted_at).toLocaleString()}
                   </p>
                 </li>
@@ -271,7 +271,7 @@ export default function AddPage() {
           </div>
         )}
 
-        <p className="text-ink/40 text-sm mt-12">
+        <p className="note text-base mt-12">
           <Link href="/" className="underline underline-offset-4 hover:text-accent">← Back to the list</Link>
         </p>
       </div>
