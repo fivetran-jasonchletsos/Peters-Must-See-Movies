@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, JetBrains_Mono } from "next/font/google";
 import Footer from "@/components/Footer";
 import TopNav from "@/components/TopNav";
+import Script from "next/script";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <TopNav />
         <div className="flex-1">{children}</div>
         <Footer />
+        <Script src="/feedback-widget.js" strategy="afterInteractive" />
       </body>
     </html>
   );
